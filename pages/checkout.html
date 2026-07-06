@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Review your PetsMart cart, choose delivery and payment details, and complete checkout.">
+  <title>Your Cart &amp; Checkout | PetsMart</title>
+  <link rel="canonical" href="https://www.petsmart-store.com/pages/checkout.html">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="../assets/css/orders.css">
+
+  <script>
+    (function() {
+      const saved = localStorage.getItem('petshop-theme') || localStorage.getItem('theme');
+      const theme = saved || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      if (!saved) {
+        localStorage.setItem('petshop-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar navbar-expand-lg navbar-pet" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-paw" aria-hidden="true"></i> PetsMart
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="pets-for-sale.html">Pets for Sale</a></li>
+          <li class="nav-item"><a class="nav-link" href="grooming.html">Grooming</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-controls ms-lg-3">
+          <a href="login.html" class="btn-pet btn-pet-outline btn-pet-sm me-2" id="navAuthLink">
+            <i class="fas fa-user" aria-hidden="true"></i> Login
+          </a>
+          <a href="checkout.html" class="cart-toggle me-2" id="navCartLink" aria-label="View cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-badge d-none" id="navCartBadge">0</span>
+          </a>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="rtl-toggle" aria-label="Switch to RTL layout">
+            <i class="fas fa-align-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <div class="page-header">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-pet">
+            <li class="breadcrumb-item active" aria-current="page">Your Cart</li>
+          </ol>
+        </nav>
+        <span class="section-label">Checkout</span>
+        <h1 id="cart-heading">Your Cart</h1>
+        <p>Review your items, confirm delivery details, and place your order.</p>
+      </div>
+    </div>
+
+    <section class="section-pet" aria-labelledby="cart-heading">
+      <div class="container">
+
+        <div id="cartEmpty" class="text-center py-5 d-none">
+          <i class="fas fa-shopping-cart fa-2x mb-3 text-muted" aria-hidden="true"></i>
+          <p class="mb-3">Your cart is empty.</p>
+          <a href="products.html" class="btn-pet btn-pet-primary">
+            <i class="fas fa-paw" aria-hidden="true"></i> Browse Products
+          </a>
+        </div>
+
+        <div id="orderSuccess" class="text-center py-5 d-none">
+          <i class="fas fa-circle-check fa-3x mb-3" style="color: var(--color-success);" aria-hidden="true"></i>
+          <h2 class="h3 mb-2">Order Placed Successfully!</h2>
+          <p class="text-muted mb-1">Order ID: <strong id="successOrderId">—</strong></p>
+          <p class="text-muted mb-4">Total: <strong id="successOrderTotal">$0.00</strong></p>
+          <p class="mb-4">Thank you for shopping with PetsMart. We'll get your order ready right away.</p>
+          <a href="products.html" class="btn-pet btn-pet-primary">
+            <i class="fas fa-paw" aria-hidden="true"></i> Continue Shopping
+          </a>
+        </div>
+
+        <div id="cartWrap" class="row g-4 d-none">
+          <div class="col-lg-8">
+            <div class="order-card" id="cartItemsCard">
+              <div class="order-card-header">
+                <span class="order-id">Cart Items</span>
+                <span class="order-date" id="cartItemCount">0 items</span>
+              </div>
+              <div id="cartItemsList"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="order-card">
+              <div class="order-card-header">
+                <span class="order-id">Order Summary</span>
+              </div>
+
+              <div class="d-flex justify-content-between mb-2">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">$0.00</span>
+              </div>
+              <p class="item-meta mb-3" id="deliveryNote"></p>
+
+              <div class="mb-3">
+                <label for="checkoutAddress" class="form-label fw-bold">Delivery Address</label>
+                <textarea id="checkoutAddress" class="form-control" rows="3" placeholder="123 Paw Street, Petville, CA 90210"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="checkoutPayment" class="form-label fw-bold">Payment Method</label>
+                <select id="checkoutPayment" class="form-select form-pet">
+                  <option>Cash on Delivery</option>
+                  <option>Credit Card</option>
+                  <option>Debit Card</option>
+                  <option>UPI</option>
+                  <option>Net Banking</option>
+                </select>
+              </div>
+
+              <div class="order-card-footer">
+                <span>Total</span>
+                <span class="order-total" id="cartTotal">$0.00</span>
+              </div>
+
+              <button type="button" id="placeOrderBtn" class="btn-pet btn-pet-primary w-100 mt-3">
+                <i class="fas fa-check-circle" aria-hidden="true"></i> Place Order
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-pet" aria-label="Site footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h3><i class="fas fa-paw" aria-hidden="true"></i> PetsMart</h3>
+          <p>Your trusted pet shop for supplies, companions, and grooming since 2010.</p>
+          <div class="footer-social mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="pets-for-sale.html">Pets for Sale</a></li>
+            <li><a href="grooming.html">Grooming</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="coming-soon.html">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123 Paw Street, Petville, CA 90210</li>
+            <li><a href="tel:+15557387467"><i class="fas fa-phone" aria-hidden="true"></i> (555) PET-SHOP</a></li>
+            <li><a href="mailto:hello@petsmart-store.com"><i class="fas fa-envelope" aria-hidden="true"></i> hello@petsmart-store.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PetsMart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/images.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/auth-ui.js"></script>
+  <script src="../assets/js/orders.js"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      if (window.PMAuth) {
+        await PMAuth.ready;
+      }
+      if (window.PMOrders) {
+        PMOrders.syncCurrentUserFromSession();
+      }
+
+      const cartEmpty = document.getElementById('cartEmpty');
+      const cartWrap = document.getElementById('cartWrap');
+      const orderSuccess = document.getElementById('orderSuccess');
+      const cartItemsList = document.getElementById('cartItemsList');
+      const cartItemCount = document.getElementById('cartItemCount');
+      const cartSubtotal = document.getElementById('cartSubtotal');
+      const cartTotal = document.getElementById('cartTotal');
+      const deliveryNote = document.getElementById('deliveryNote');
+      const addressInput = document.getElementById('checkoutAddress');
+      const paymentSelect = document.getElementById('checkoutPayment');
+      const placeOrderBtn = document.getElementById('placeOrderBtn');
+
+      function money(n) {
+        return '$' + Number(n || 0).toFixed(2);
+      }
+
+      function escapeHtml(s) {
+        if (window.PMOrders) {
+          return PMOrders.escapeHtml(s);
+        }
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      function getCart() {
+        return window.PMOrders ? PMOrders.getCart() : JSON.parse(localStorage.getItem('cart') || '[]');
+      }
+
+      function setCart(cart) {
+        if (window.PMOrders) {
+          PMOrders.setCart(cart);
+        } else {
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        if (typeof window.updateCartBadge === 'function') {
+          window.updateCartBadge();
+        }
+      }
+
+      function render() {
+        const cart = getCart();
+
+        if (!cart.length) {
+          cartEmpty.classList.remove('d-none');
+          cartWrap.classList.add('d-none');
+          return;
+        }
+        cartEmpty.classList.add('d-none');
+        cartWrap.classList.remove('d-none');
+
+        const totalQty = cart.reduce(function (sum, item) {
+          return sum + (parseInt(item.quantity, 10) || 1);
+        }, 0);
+        cartItemCount.textContent = totalQty + (totalQty === 1 ? ' item' : ' items');
+
+        cartItemsList.innerHTML = cart.map(function (item, index) {
+          const qty = parseInt(item.quantity, 10) || 1;
+          const lineTotal = (Number(item.price) || 0) * qty;
+          const img = item.image || '../assets/images/products/dry-dog-food-premium.webp';
+          return '' +
+            '<div class="order-item-row cart-row" data-index="' + index + '">' +
+              '<img src="' + escapeHtml(img) + '" alt="' + escapeHtml(item.name) + '" onerror="this.src=\'../assets/images/products/dog-food-bowl-premium.webp\'">' +
+              '<div class="flex-grow-1">' +
+                '<div class="item-name">' + escapeHtml(item.name) + '</div>' +
+                (item.size ? '<div class="item-meta">' + escapeHtml(item.size) + '</div>' : '') +
+                '<div class="item-meta">' + money(item.price) + ' each</div>' +
+              '</div>' +
+              '<div class="cart-row-actions">' +
+                '<div class="quantity-picker">' +
+                  '<button type="button" class="cart-qty-minus" data-index="' + index + '" aria-label="Decrease quantity">&minus;</button>' +
+                  '<input type="number" class="cart-qty-input" data-index="' + index + '" value="' + qty + '" min="1" max="99" aria-label="Quantity for ' + escapeHtml(item.name) + '">' +
+                  '<button type="button" class="cart-qty-plus" data-index="' + index + '" aria-label="Increase quantity">+</button>' +
+                '</div>' +
+                '<div class="fw-bold cart-line-total">' + money(lineTotal) + '</div>' +
+                '<button type="button" class="btn-pet btn-pet-outline btn-pet-sm cart-remove" data-index="' + index + '" aria-label="Remove ' + escapeHtml(item.name) + ' from cart">' +
+                  '<i class="fas fa-trash" aria-hidden="true"></i>' +
+                '</button>' +
+              '</div>' +
+            '</div>';
+        }).join('');
+
+        const subtotal = cart.reduce(function (sum, item) {
+          return sum + (Number(item.price) || 0) * (parseInt(item.quantity, 10) || 1);
+        }, 0);
+        cartSubtotal.textContent = money(subtotal);
+        cartTotal.textContent = money(subtotal);
+
+        if (subtotal >= 50) {
+          deliveryNote.innerHTML = '<i class="fas fa-truck" aria-hidden="true"></i> You qualify for free local delivery!';
+        } else {
+          deliveryNote.innerHTML = '<i class="fas fa-truck" aria-hidden="true"></i> Add ' + money(50 - subtotal) + ' more for free local delivery.';
+        }
+
+        if (typeof window.updateCartBadge === 'function') {
+          window.updateCartBadge();
+        }
+      }
+
+      function updateQty(index, newQty) {
+        const cart = getCart();
+        if (!cart[index]) {
+          return;
+        }
+        newQty = Math.max(1, Math.min(99, parseInt(newQty, 10) || 1));
+        cart[index].quantity = newQty;
+        setCart(cart);
+        render();
+      }
+
+      cartItemsList.addEventListener('click', function (e) {
+        const minus = e.target.closest('.cart-qty-minus');
+        const plus = e.target.closest('.cart-qty-plus');
+        const remove = e.target.closest('.cart-remove');
+
+        if (minus) {
+          const idx = parseInt(minus.dataset.index, 10);
+          const cart = getCart();
+          updateQty(idx, (parseInt(cart[idx].quantity, 10) || 1) - 1);
+        } else if (plus) {
+          const idx = parseInt(plus.dataset.index, 10);
+          const cart = getCart();
+          updateQty(idx, (parseInt(cart[idx].quantity, 10) || 1) + 1);
+        } else if (remove) {
+          const idx = parseInt(remove.dataset.index, 10);
+          const cart = getCart();
+          const removedName = cart[idx] ? cart[idx].name : 'Item';
+          cart.splice(idx, 1);
+          setCart(cart);
+          if (typeof window.pmToast === 'function') {
+            window.pmToast(removedName + ' removed from cart.', 'info');
+          }
+          render();
+        }
+      });
+
+      cartItemsList.addEventListener('change', function (e) {
+        if (e.target.classList.contains('cart-qty-input')) {
+          updateQty(parseInt(e.target.dataset.index, 10), e.target.value);
+        }
+      });
+
+      if (window.PMOrders) {
+        const user = PMOrders.getCurrentUser();
+        if (user && user.address) {
+          addressInput.value = user.address;
+        }
+      }
+
+      function genOrderId() {
+        const orders = window.PMOrders ? PMOrders.allOrders() : JSON.parse(localStorage.getItem('orders') || '[]');
+        const nums = orders
+          .map(function (o) { return parseInt(String(o.orderId).replace(/\D/g, ''), 10); })
+          .filter(function (n) { return !isNaN(n); });
+        const next = (nums.length ? Math.max.apply(null, nums) : 1000) + 1;
+        return 'ORD' + next;
+      }
+
+      function placeOrder(cart, paymentMethod, address) {
+        // Logged-in customers: delegate to PMOrders.placeOrder so the order
+        // gets the full schema (trackingNumber, courier, expectedDelivery,
+        // statusHistory, email, etc.) that the My Orders tracking/details
+        // modals rely on. Building the order by hand here previously left
+        // those fields undefined.
+        if (window.PMOrders && PMOrders.getCurrentUser()) {
+          return PMOrders.placeOrder({ products: cart, paymentMethod: paymentMethod, address: address });
+        }
+
+        // Guest checkout fallback (no logged-in session) — still write the
+        // same full schema so the order object is consistent everywhere.
+        const orders = window.PMOrders ? PMOrders.allOrders() : JSON.parse(localStorage.getItem('orders') || '[]');
+        const now = new Date();
+        const total = cart.reduce(function (sum, item) {
+          return sum + (Number(item.price) || 0) * (parseInt(item.quantity, 10) || 1);
+        }, 0);
+        const couriers = ['BlueDart', 'Delhivery', 'DTDC', 'FedEx', 'India Post'];
+        const expected = new Date(now.getTime() + 5 * 86400000);
+
+        const order = {
+          orderId: genOrderId(),
+          userId: 'GUEST',
+          customerName: 'Guest',
+          email: '',
+          products: cart,
+          total: total,
+          paymentMethod: paymentMethod || 'Cash on Delivery',
+          address: address,
+          status: 'Order Placed',
+          trackingNumber: 'TRK' + Math.floor(100000000 + Math.random() * 899999999),
+          courier: couriers[Math.floor(Math.random() * couriers.length)],
+          orderDate: now.toISOString().slice(0, 10),
+          expectedDelivery: expected.toISOString().slice(0, 10),
+          lastUpdated: now.toLocaleString(),
+          statusHistory: [{ status: 'Order Placed', at: now.toLocaleString() }]
+        };
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        return order;
+      }
+
+      placeOrderBtn.addEventListener('click', function () {
+        const cart = getCart();
+        if (!cart.length) {
+          if (typeof window.pmToast === 'function') {
+            window.pmToast('Your cart is empty.', 'danger');
+          }
+          return;
+        }
+        if (!addressInput.value.trim()) {
+          if (typeof window.pmToast === 'function') {
+            window.pmToast('Please enter a delivery address.', 'danger');
+          }
+          addressInput.focus();
+          return;
+        }
+
+        const order = placeOrder(cart, paymentSelect.value, addressInput.value.trim());
+        setCart([]);
+
+        if (typeof window.pmToast === 'function') {
+          window.pmToast('Order ' + order.orderId + ' placed successfully!', 'success');
+        }
+
+        document.getElementById('successOrderId').textContent = order.orderId;
+        document.getElementById('successOrderTotal').textContent = money(order.total);
+        cartEmpty.classList.add('d-none');
+        cartWrap.classList.add('d-none');
+        orderSuccess.classList.remove('d-none');
+        orderSuccess.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      render();
+    });
+  </script>
+</body>
+</html>
+
+

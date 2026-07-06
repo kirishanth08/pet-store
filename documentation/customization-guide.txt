@@ -1,0 +1,100 @@
+PetsMart — Customization Guide
+==============================
+
+COLORS & THEME
+--------------
+All colors are defined as CSS variables in assets/css/style.css under :root.
+
+  --color-primary    : #00897B  (Teal — buttons, links, accents)
+  --color-secondary  : #FF7043  (Warm Orange — CTAs, highlights)
+  --color-bg         : #FFFDF7  (Warm white — page background)
+  --color-text       : #2D2D2D  (Body text)
+  --color-section    : #FFF3E0  (Alternating section background)
+
+To change the color scheme, edit these variables in style.css.
+Dark mode overrides are in assets/css/dark-mode.css under [data-theme="dark"].
+
+DARK MODE
+---------
+Toggle is handled by assets/js/main.js.
+User preference is saved in localStorage under key "petshop-theme".
+To force dark mode by default, add data-theme="dark" to the <html> tag.
+
+RTL SUPPORT
+-----------
+Toggle adds dir="rtl" to the <html> element.
+RTL-specific styles are in assets/css/rtl.css.
+Preference saved in localStorage under key "petshop-dir".
+
+FONTS
+-----
+Headings: Fredoka One (Google Fonts)
+Body:     Nunito (Google Fonts)
+
+To change fonts, update the Google Fonts link in each HTML page <head>
+and the --font-heading / --font-body variables in style.css.
+
+NAVIGATION
+----------
+Navbar links are in each HTML file inside <nav class="navbar-pet">.
+To add a new page:
+  1. Create the HTML file in pages/
+  2. Add a nav link to all 13 pages
+  3. Add the URL to sitemap.xml
+
+FORMS
+-----
+Contact form:     pages/contact.html
+Grooming booking: pages/grooming.html
+Pet enquiry:      pages/pet-details.html
+
+All use data-validate="true" for client-side validation via main.js.
+Replace Formspree action URLs:
+  action="https://formspree.io/f/YOUR_FORM_ID"
+
+NEWSLETTER
+----------
+Mailchimp placeholders in:
+  - pages/index.html (newsletter section)
+  - pages/coming-soon.html (email signup)
+
+Replace with your Mailchimp embed URL or form action.
+
+IMAGES
+------
+Current images use Unsplash CDN URLs with &fm=webp for WebP format.
+To use local images:
+  1. Save WebP files to assets/images/
+  2. Update src attributes: ../assets/images/your-image.webp
+  3. Always include descriptive alt text
+
+HOVER EFFECTS
+-------------
+All hover transitions use: transition: all 0.3s ease
+Card lift:     translateY(-6px)
+Button scale:  scale(1.02)
+Image zoom:    scale(1.05) with overflow: hidden on parent
+Nav underline: width 0 to 100% slide-in
+
+Do not increase transition duration beyond 0.4s.
+
+RESPONSIVE BREAKPOINTS
+----------------------
+Mobile:  < 640px   — reduced animations, stacked layouts
+Tablet:  640–1024px
+Desktop: 1024–1280px
+Large:   > 1280px
+
+Breakpoints are defined in style.css @media queries.
+
+SEO
+---
+Each page has a unique <title> and <meta name="description">.
+index.html includes JSON-LD PetStore schema.
+Update canonical URLs when deploying to your domain.
+
+ADDING PRODUCTS OR PETS
+-----------------------
+Copy an existing card-pet block in products.html or pets-for-sale.html.
+Update image, name, price, badge, and link.
+Maintain unique alt text for every image.

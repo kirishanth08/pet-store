@@ -1,0 +1,66 @@
+PetsMart — Pet Shop & Pet Supplies Store
+Installation Guide
+======================================
+
+Thank you for choosing the PetsMart static website template.
+
+REQUIREMENTS
+------------
+- A modern web browser (Chrome, Firefox, Safari, or Edge)
+- A local web server (recommended) OR open HTML files directly
+- Internet connection for CDN assets (Bootstrap, Font Awesome, Google Fonts, images)
+
+QUICK START
+-----------
+1. Extract the pet-shop folder to your desired location.
+2. Open pages/index.html in your browser, OR
+3. Run a local server from the pet-shop directory:
+
+   Using Python 3:
+     python -m http.server 8080
+     Then visit: http://localhost:8080/pages/index.html
+
+   Using Node.js (npx):
+     npx serve .
+     Then visit the URL shown in the terminal.
+
+   Using VS Code:
+     Install the "Live Server" extension and open pages/index.html.
+
+FOLDER STRUCTURE
+----------------
+pet-shop/
+  assets/css/     — Stylesheets (style, dark-mode, rtl)
+  assets/js/      — JavaScript (main.js)
+  assets/images/  — Place your local images here
+  pages/          — All 13 HTML pages
+  documentation/  — Guides and credits
+  sitemap.xml     — SEO sitemap
+  robots.txt      — Search engine directives
+  index.html      — Redirect to pages/index.html
+
+DEPLOYMENT
+----------
+Upload the entire pet-shop folder to any static hosting provider:
+  - Netlify
+  - Vercel
+  - GitHub Pages
+  - AWS S3 + CloudFront
+
+Set pages/index.html as your default entry point, or configure
+your host to redirect the root URL to /pages/index.html.
+
+BEFORE GOING LIVE
+-----------------
+1. Replace Formspree placeholder URLs in contact.html, grooming.html,
+   and pet-details.html with your actual Formspree form IDs.
+2. Replace Mailchimp placeholder URLs in index.html and coming-soon.html.
+3. Update the Google Maps iframe src in contact.html with your store location.
+4. Replace Unsplash placeholder images with your own WebP images in assets/images/.
+5. Update store name, address, phone, and email across all pages.
+6. Update sitemap.xml and robots.txt with your actual domain.
+
+SUPPORT
+-------
+Refer to customization-guide.txt for theme and layout changes.
+Refer to credits.txt for third-party asset attributions.

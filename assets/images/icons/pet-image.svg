@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Pet product placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5eb"/>
+      <stop offset="100%" stop-color="#fdebd3"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="250" r="88" fill="#f4a261" opacity="0.25"/>
+  <g transform="translate(400 280)" fill="#e76f51">
+    <ellipse cx="0" cy="18" rx="70" ry="58"/>
+    <circle cx="-52" cy="-38" r="22"/>
+    <circle cx="52" cy="-38" r="22"/>
+    <circle cx="-18" cy="-62" r="20"/>
+    <circle cx="18" cy="-62" r="20"/>
+    <ellipse cx="0" cy="8" rx="18" ry="14" fill="#fff"/>
+    <circle cx="-6" cy="6" r="4" fill="#264653"/>
+    <circle cx="6" cy="6" r="4" fill="#264653"/>
+    <ellipse cx="0" cy="18" rx="8" ry="6" fill="#c8553d"/>
+  </g>
+  <text x="400" y="430" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-size="28" font-weight="700" fill="#264653">PetsMart</text>
+  <text x="400" y="468" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-size="18" fill="#6c757d">Local pet image</text>
+</svg>

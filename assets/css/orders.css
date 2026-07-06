@@ -1,0 +1,462 @@
+/* ==========================================================================
+   PetsMart Order Management & Tracking Styles
+   ========================================================================== */
+
+/* ---------------------------- order cards ---------------------------- */
+
+.order-card {
+  background: var(--card-bg, #fff);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.25rem;
+}
+
+[data-theme="dark"] .order-card {
+  background: #1f2430;
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 1px dashed rgba(125, 125, 125, 0.25);
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.order-card-header .order-id {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.order-card-header .order-date {
+  color: var(--text-muted, #888);
+  font-size: 0.85rem;
+}
+
+.order-item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.5rem 0;
+}
+
+.order-item-row img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 0.6rem;
+  background: #f3f3f3;
+  flex-shrink: 0;
+}
+
+.order-item-row .item-name {
+  font-weight: 600;
+}
+
+.order-item-row .item-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted, #888);
+}
+
+/* ------------------------------ cart page ------------------------------ */
+
+.order-item-row.cart-row {
+  flex-wrap: wrap;
+  border-bottom: 1px dashed rgba(125, 125, 125, 0.2);
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.order-item-row.cart-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cart-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.cart-line-total {
+  min-width: 70px;
+  text-align: right;
+}
+
+.order-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(125, 125, 125, 0.25);
+}
+
+.order-total {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/* status badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.status-order-placed {
+  background: #6c757d;
+}
+
+.status-confirmed {
+  background: #0d6efd;
+}
+
+.status-packed {
+  background: #6f42c1;
+}
+
+.status-shipped {
+  background: #fd7e14;
+}
+
+.status-out-for-delivery {
+  background: #0dcaf0;
+  color: #06323b;
+}
+
+.status-delivered {
+  background: #198754;
+}
+
+.status-cancelled {
+  background: #dc3545;
+}
+
+.status-requested {
+  background: #fff3cd;
+  color: #856404 !important;
+  border: 1px solid #ffe69c;
+}
+
+/* ----------------------------- timeline ------------------------------- */
+
+.tracking-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin: 2rem 0 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.tracking-timeline::before {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: 5%;
+  right: 5%;
+  height: 4px;
+  background: rgba(125, 125, 125, 0.2);
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.tracking-timeline .timeline-fill {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: 5%;
+  height: 4px;
+  background: var(--bs-primary, #ff7a45);
+  border-radius: 4px;
+  z-index: 1;
+  transition: width 0.4s ease;
+}
+
+.timeline-step {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+}
+
+.timeline-step .step-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--card-bg, #fff);
+  border: 3px solid rgba(125, 125, 125, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-muted, #888);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-step.done .step-dot {
+  background: var(--bs-primary, #ff7a45);
+  border-color: var(--bs-primary, #ff7a45);
+  color: #fff;
+}
+
+.timeline-step.current .step-dot {
+  background: #fff;
+  border-color: var(--bs-primary, #ff7a45);
+  color: var(--bs-primary, #ff7a45);
+  box-shadow: 0 0 0 5px rgba(255, 122, 69, 0.18);
+}
+
+.timeline-step .step-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  max-width: 90px;
+}
+
+.timeline-step.done .step-label,
+.timeline-step.current .step-label {
+  color: var(--text-color, #222);
+}
+
+.timeline-step:not(.done):not(.current) .step-label {
+  color: var(--text-muted, #999);
+}
+
+.timeline-step.cancelled-step .step-dot {
+  background: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+@media (max-width: 575px) {
+  .tracking-timeline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-left: 1rem;
+  }
+
+  .tracking-timeline::before,
+  .tracking-timeline .timeline-fill {
+    top: 0;
+    bottom: 0;
+    left: 17px;
+    right: auto;
+    width: 4px;
+    height: auto;
+  }
+
+  .timeline-step {
+    flex-direction: row;
+    text-align: left;
+    gap: 0.75rem;
+  }
+
+  .timeline-step .step-dot {
+    margin-bottom: 0;
+  }
+
+  .timeline-step .step-label {
+    max-width: none;
+  }
+}
+
+/* ---------------------------- progress bar ----------------------------- */
+
+.delivery-progress {
+  height: 10px;
+  border-radius: 1rem;
+  background: rgba(125, 125, 125, 0.2);
+  overflow: hidden;
+  margin: 0.75rem 0;
+}
+
+.delivery-progress .bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--bs-primary, #ff7a45), #ffb178);
+  border-radius: 1rem;
+  transition: width 0.4s ease;
+}
+
+.tracking-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.tracking-meta .meta-item .meta-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #888);
+}
+
+.tracking-meta .meta-item .meta-value {
+  font-weight: 700;
+}
+
+/* ------------------------------ filters -------------------------------- */
+
+.order-filter-bar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+/* ------------------------------- invoice -------------------------------- */
+
+.invoice-box {
+  background: #fff;
+  color: #222;
+  padding: 2rem;
+  border-radius: 0.75rem;
+}
+
+.invoice-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-box th,
+.invoice-box td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #invoiceArea,
+  #invoiceArea * {
+    visibility: visible;
+  }
+
+  #invoiceArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ------------------------------- toasts --------------------------------- */
+
+.pm-toast-container {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pm-toast {
+  min-width: 260px;
+  max-width: 340px;
+  background: var(--card-bg, #fff);
+  border-left: 5px solid var(--bs-primary, #ff7a45);
+  border-radius: 0.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  animation: pmToastIn 0.25s ease;
+}
+
+[data-theme="dark"] .pm-toast {
+  background: #1f2430;
+}
+
+.pm-toast.success {
+  border-left-color: #198754;
+}
+
+.pm-toast.danger {
+  border-left-color: #dc3545;
+}
+
+.pm-toast.info {
+  border-left-color: #0d6efd;
+}
+
+.pm-toast .toast-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted, #888);
+}
+
+@keyframes pmToastIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ------------------------------ empty state ------------------------------ */
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted, #888);
+}
+
+.empty-state i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* ----------------------------- account card ----------------------------- */
+
+.account-card {
+  background-color: var(--color-white, #fff);
+  border: 1px solid var(--color-border, #E0E0E0);
+  border-radius: var(--radius-lg, 16px);
+  color: var(--color-text, #2D2D2D);
+  transition: var(--transition, all 0.3s ease);
+}

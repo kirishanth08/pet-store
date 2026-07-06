@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Read the PetsMart blog for expert pet care tips, nutrition advice, training guides, and stories for dog, cat, fish, and bird owners.">
+  <title>PetsMart Blog — Pet Care Tips &amp; Advice</title>
+  <link rel="canonical" href="https://www.petsmart-store.com/pages/blog.html">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <script>
+    (function () {
+      const saved = localStorage.getItem('petshop-theme') || localStorage.getItem('theme');
+      const theme = saved || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      if (!saved) {
+        localStorage.setItem('petshop-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar navbar-expand-lg navbar-pet" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-paw" aria-hidden="true"></i> PetsMart
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="pets-for-sale.html">Pets for Sale</a></li>
+          <li class="nav-item"><a class="nav-link" href="grooming.html">Grooming</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-controls ms-lg-3">
+          <a href="login.html" class="btn-pet btn-pet-outline btn-pet-sm me-2" id="navAuthLink">
+            <i class="fas fa-user" aria-hidden="true"></i> Login
+          </a>
+          <a href="checkout.html" class="cart-toggle me-2" id="navCartLink" aria-label="View cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-badge d-none" id="navCartBadge">0</span>
+          </a>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="rtl-toggle" aria-label="Switch to RTL layout">
+            <i class="fas fa-align-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <header class="page-header">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-pet">
+            <!-- <li class="breadcrumb-item"><a href="index.html">Home</a></li> -->
+            <!-- <li class="breadcrumb-item active" aria-current="page">Blog</li> -->
+          </ol>
+        </nav>
+        <span class="section-label">Pet Care Insights</span>
+        <h1>Pet Care Blog</h1>
+        <p>Expert tips, guides, and stories to help you give your pets the happiest, healthiest life possible.</p>
+      </div>
+    </header>
+
+    <section class="section-pet" aria-label="Blog articles">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-12">
+            <ul class="nav nav-tabs blog-tabs mb-4" id="blogTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-all-btn" data-bs-toggle="tab" data-bs-target="#tab-all"
+                  type="button" role="tab" aria-controls="tab-all" aria-selected="true">All</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-dogs-btn" data-bs-toggle="tab" data-bs-target="#tab-dogs" type="button"
+                  role="tab" aria-controls="tab-dogs" aria-selected="false">Dogs</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-cats-btn" data-bs-toggle="tab" data-bs-target="#tab-cats" type="button"
+                  role="tab" aria-controls="tab-cats" aria-selected="false">Cats</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-fish-btn" data-bs-toggle="tab" data-bs-target="#tab-fish" type="button"
+                  role="tab" aria-controls="tab-fish" aria-selected="false">Fish</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-birds-btn" data-bs-toggle="tab" data-bs-target="#tab-birds"
+                  type="button" role="tab" aria-controls="tab-birds" aria-selected="false">Birds</button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="blogTabContent">
+
+              <div class="tab-pane fade show active" id="tab-all" role="tabpanel" aria-labelledby="tab-all-btn"
+                tabindex="0">
+                <div class="row g-4">
+                  <div class="col-lg-4 col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/blog/dog-summer-safety.webp"
+                          alt="Golden retriever playing outdoors in summer" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-06-10" class="text-muted small d-block mb-2">June 10, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Summer Safety Tips for Dogs</a></h2>
+                        <p>Keep your pup cool, hydrated, and protected during hot weather with these essential summer
+                          care guidelines.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/Understanding cat Nutrients.jpg"
+                          alt="Cat eating from a bowl of nutritious food" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-06-05" class="text-muted small d-block mb-2">June 5, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Understanding Cat Nutrition</a></h2>
+                        <p>Learn how to choose the right food, portion sizes, and feeding schedule for your feline
+                          friend.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/Setting Up Your First Aquarium.jpg"
+                          alt="Colourful tropical fish in a home aquarium" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-fish position-absolute top-0 start-0 m-2">Fish</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-05-28" class="text-muted small d-block mb-2">May 28, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Setting Up Your First Aquarium</a>
+                        </h2>
+                        <p>A step-by-step guide to cycling your tank, choosing fish, and maintaining crystal-clear
+                          water.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/parent-essentials.jpg" alt="Green parakeet perched on a branch"
+                          width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-bird position-absolute top-0 start-0 m-2">Birds</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-05-20" class="text-muted small d-block mb-2">May 20, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Parakeet Care Essentials</a></h2>
+                        <p>Everything you need to know about cage setup, diet, socialisation, and daily care for
+                          parakeets.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/Puppy Training Basics.jpg"
+                          alt="Puppy learning basic obedience training" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-05-15" class="text-muted small d-block mb-2">May 15, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Puppy Training Basics</a></h2>
+                        <p>Start your new puppy off right with positive reinforcement techniques and essential commands.
+                        </p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-lg-4 col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/Indoor Cat Enrichment Ideas.jpg"
+                          alt="Indoor cat playing with enrichment toys" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-05-08" class="text-muted small d-block mb-2">May 8, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Indoor Cat Enrichment Ideas</a></h2>
+                        <p>Keep indoor cats mentally stimulated and physically active with creative toys, climbing
+                          spaces, and play routines.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="tab-dogs" role="tabpanel" aria-labelledby="tab-dogs-btn" tabindex="0">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/blog/dog-summer-safety.webp"
+                          alt="Golden retriever playing outdoors in summer" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-06-10" class="text-muted small d-block mb-2">June 10, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Summer Safety Tips for Dogs</a></h2>
+                        <p>Keep your pup cool, hydrated, and protected during hot weather with these essential summer
+                          care guidelines.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/gallery/golden-retriever-portrait.webp"
+                          alt="Puppy learning basic obedience training" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-05-15" class="text-muted small d-block mb-2">May 15, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Puppy Training Basics</a></h2>
+                        <p>Start your new puppy off right with positive reinforcement techniques and essential commands.
+                        </p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="tab-cats" role="tabpanel" aria-labelledby="tab-cats-btn" tabindex="0">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/products/cat-treats-premium.webp"
+                          alt="Cat eating from a bowl of nutritious food" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-06-05" class="text-muted small d-block mb-2">June 5, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Understanding Cat Nutrition</a></h2>
+                        <p>Learn how to choose the right food, portion sizes, and feeding schedule for your feline
+                          friend.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/gallery/ragdoll-cat-portrait.webp"
+                          alt="Indoor cat playing with enrichment toys" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-05-08" class="text-muted small d-block mb-2">May 8, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Indoor Cat Enrichment Ideas</a></h2>
+                        <p>Keep indoor cats mentally stimulated and physically active with creative toys, climbing
+                          spaces, and play routines.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="tab-fish" role="tabpanel" aria-labelledby="tab-fish-btn" tabindex="0">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/Setting Up Your First Aquarium.jpg"
+                          alt="Colourful tropical fish in a home aquarium" width="400" height="250" loading="lazy">
+                        <span class="badge-pet badge-fish position-absolute top-0 start-0 m-2">Fish</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-05-28" class="text-muted small d-block mb-2">May 28, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Setting Up Your First Aquarium</a>
+                        </h2>
+                        <p>A step-by-step guide to cycling your tank, choosing fish, and maintaining crystal-clear
+                          water.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="tab-birds" role="tabpanel" aria-labelledby="tab-birds-btn" tabindex="0">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <article class="card-pet">
+                      <div class="card-pet-image">
+                        <img src="../assets/images/parakeet-portrait.webp" ...> <span
+                          class="badge-pet badge-bird position-absolute top-0 start-0 m-2">Birds</span>
+                      </div>
+                      <div class="card-pet-body">
+                        <time datetime="2026-05-20" class="text-muted small d-block mb-2">May 20, 2026</time>
+                        <h2 class="card-pet-title h5"><a href="blog-details.html">Parakeet Care Essentials</a></h2>
+                        <p>Everything you need to know about cage setup, diet, socialisation, and daily care for
+                          parakeets.</p>
+                        <a href="blog-details.html" class="btn-pet btn-pet-outline btn-pet-sm">Read More</a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-pet" aria-label="Site footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h3><i class="fas fa-paw" aria-hidden="true"></i> PetsMart</h3>
+          <p>Your trusted pet shop for supplies, companions, and grooming since 2010.</p>
+          <div class="footer-social mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="pets-for-sale.html">Pets for Sale</a></li>
+            <li><a href="grooming.html">Grooming</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="coming-soon.html">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123 Paw Street, Petville, CA 90210</li>
+            <li><a href="tel:+15557387467"><i class="fas fa-phone" aria-hidden="true"></i> (555) PET-SHOP</a></li>
+            <li><a href="mailto:hello@petsmart-store.com"><i class="fas fa-envelope" aria-hidden="true"></i>
+                hello@petsmart-store.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PetsMart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/images.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/auth-ui.js"></script>
+  <script src="../assets/js/orders.js"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+
+  <script>
+    document.querySelectorAll(".blog-category").forEach(category => {
+      category.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const tabId = this.dataset.tab;
+        const tabButton = document.getElementById(tabId);
+
+        if (tabButton) {
+          bootstrap.Tab.getOrCreateInstance(tabButton).show();
+
+          document.getElementById("blogTab").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

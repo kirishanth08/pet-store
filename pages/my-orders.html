@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track your PetsMart orders, view delivery status, and manage your purchases.">
+  <title>My Orders — PetsMart Pet Shop</title>
+  <link rel="canonical" href="https://www.petsmart-store.com/pages/my-orders.html">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="../assets/css/orders.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('petshop-theme') || localStorage.getItem('theme');
+      const theme = saved || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      if (!saved) {
+        localStorage.setItem('petshop-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar navbar-expand-lg navbar-pet" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-paw" aria-hidden="true"></i> PetsMart
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="pets-for-sale.html">Pets for Sale</a></li>
+          <li class="nav-item"><a class="nav-link" href="grooming.html">Grooming</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-controls ms-lg-3">
+          <a href="login.html" class="btn-pet btn-pet-outline btn-pet-sm me-2" id="navAuthLink">
+            <i class="fas fa-user" aria-hidden="true"></i> Login
+          </a>
+          <a href="checkout.html" class="cart-toggle me-2" id="navCartLink" aria-label="View cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-badge d-none" id="navCartBadge">0</span>
+          </a>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="rtl-toggle" aria-label="Switch to RTL layout">
+            <i class="fas fa-align-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <header class="page-header">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-pet">
+          </ol>
+        </nav>
+        <span class="section-label">Your Account</span>
+        <h1>My Orders</h1>
+        <p>Track deliveries, view invoices, and manage your purchases.</p>
+      </div>
+    </header>
+
+    <section class="py-5">
+      <div class="container">
+
+        <div id="loggedOutNotice" class="text-center py-5 d-none">
+          <i class="fas fa-lock fa-2x mb-3 text-muted" aria-hidden="true"></i>
+          <p class="mb-3">Please log in to view your orders.</p>
+          <a href="login.html?next=my-orders.html" class="btn-pet btn-pet-primary">
+            <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Log In
+          </a>
+        </div>
+
+        <div id="ordersWrap" class="d-none">
+          <!-- Account Details Section -->
+          <div class="card border-0 shadow-sm mb-4 account-card" id="accountDetailsSection">
+            <div class="card-body">
+              <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+                <div>
+                  <!-- <span class="section-label">Profile</span> -->
+                  <h2 class="h4 mb-1" id="profileGreeting">Your profile</h2>
+                  <p class="text-muted mb-0">Manage your account details and keep your shipping information up to date.</p>
+                </div>
+                <button type="button" class="btn-pet btn-pet-outline btn-pet-sm" id="profileEditToggle">
+                  <i class="fas fa-user-edit"></i> Edit Profile
+                </button>
+              </div>
+
+              <div class="row g-3 mt-2">
+                <div class="col-md-6">
+                  <div class="small text-uppercase text-muted fw-bold mb-1">Account</div>
+                  <div><strong>Name:</strong> <span id="profileName">—</span></div>
+                  <div><strong>Email:</strong> <span id="profileEmail">—</span></div>
+                  <div><strong>Role:</strong> <span id="profileRole">—</span></div>
+                  <div><strong>Joined:</strong> <span id="profileJoined">—</span></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="small text-uppercase text-muted fw-bold mb-1">Contact</div>
+                  <div><strong>Phone:</strong> <span id="profilePhone">—</span></div>
+                  <div><strong>Address:</strong> <span id="profileAddress">—</span></div>
+                </div>
+              </div>
+
+              <form id="profileForm" class="form-pet row g-3 mt-3 d-none">
+                <div class="col-md-6">
+                  <label class="form-label" for="profileNameInput">Full name</label>
+                  <input type="text" class="form-control" id="profileNameInput" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="profileEmailInput">Email</label>
+                  <input type="email" class="form-control" id="profileEmailInput" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="profilePhoneInput">Phone</label>
+                  <input type="text" class="form-control" id="profilePhoneInput" placeholder="Add your phone number">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="profileAddressInput">Address</label>
+                  <input type="text" class="form-control" id="profileAddressInput" placeholder="Add your shipping address">
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="profilePasswordInput">New password <span class="text-muted">(leave blank to keep the current password)</span></label>
+                  <input type="password" class="form-control" id="profilePasswordInput" minlength="8">
+                </div>
+                <div class="col-12 d-flex gap-2">
+                  <button type="submit" class="btn-pet btn-pet-primary btn-pet-sm">Save Changes</button>
+                  <button type="button" class="btn-pet btn-pet-outline btn-pet-sm" id="profileCancelBtn">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Orders Section -->
+          <div id="ordersSection">
+            <div class="order-filter-bar">
+              <input type="search" class="form-control" id="orderSearch" placeholder="Search by Order ID or product name" style="max-width:280px;">
+              <select class="form-select" id="orderStatusFilter" style="max-width:200px;">
+                <option value="">All Statuses</option>
+                <option>Order Placed</option>
+                <option>Confirmed</option>
+                <option>Packed</option>
+                <option>Shipped</option>
+                <option>Out for Delivery</option>
+                <option>Delivered</option>
+                <option>Cancelled</option>
+              </select>
+            </div>
+
+            <div id="ordersList"></div>
+            <div id="noOrders" class="empty-state d-none">
+              <i class="fas fa-box-open" aria-hidden="true"></i>
+              <p class="mb-1">No orders found.</p>
+              <a href="products.html" class="btn-pet btn-pet-outline btn-pet-sm mt-2">Browse Products</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TRACKING MODAL -->
+    <div class="modal fade" id="trackModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h5"><i class="fas fa-truck-fast"></i> Track Order <span id="trackOrderId"></span></h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="tracking-timeline" id="trackingTimeline"></div>
+
+            <div class="delivery-progress">
+              <div class="bar-fill" id="deliveryProgressBar" style="width:0%;"></div>
+            </div>
+
+            <div class="tracking-meta">
+              <div class="meta-item">
+                <div class="meta-label">Tracking Number</div>
+                <div class="meta-value" id="trackTrackingNumber">—</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Courier Partner</div>
+                <div class="meta-value" id="trackCourier">—</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Last Updated</div>
+                <div class="meta-value" id="trackLastUpdated">—</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Estimated Delivery</div>
+                <div class="meta-value" id="trackEstDelivery">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER DETAILS MODAL -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header no-print">
+            <h2 class="modal-title h5"><i class="fas fa-receipt"></i> Order Details</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="invoiceArea" class="invoice-box">
+              <div class="invoice-header">
+                <div>
+                  <h3 class="mb-0"><i class="fas fa-paw"></i> PetsMart</h3>
+                  <p class="text-muted mb-0">123 Paw Street, Petville, CA 90210</p>
+                  <p class="text-muted mb-0">hello@petsmart-store.com</p>
+                </div>
+                <div class="text-end">
+                  <h4 class="mb-0" id="detailsOrderId">ORD0000</h4>
+                  <p class="text-muted mb-0">Date: <span id="detailsOrderDate">—</span></p>
+                  <span class="status-badge" id="detailsStatusBadge">—</span>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <h6>Bill To</h6>
+                  <p class="mb-0" id="detailsCustomerName">—</p>
+                  <p class="mb-0" id="detailsCustomerEmail">—</p>
+                  <p class="mb-0" id="detailsAddress">—</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Payment</h6>
+                  <p class="mb-0">Method: <span id="detailsPaymentMethod">—</span></p>
+                  <p class="mb-0">Expected Delivery: <span id="detailsExpectedDelivery">—</span></p>
+                </div>
+              </div>
+
+              <table>
+                <thead>
+                  <tr><th>Product</th><th>Qty</th><th>Price</th><th>Subtotal</th></tr>
+                </thead>
+                <tbody id="detailsProductsTable"></tbody>
+                <tfoot>
+                  <tr><td colspan="3" class="text-end fw-bold">Total</td><td class="fw-bold" id="detailsTotal">—</td></tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer no-print">
+            <button type="button" class="btn-pet btn-pet-outline btn-pet-sm" id="printInvoiceBtn">
+              <i class="fas fa-print"></i> Print / Download Invoice
+            </button>
+            <button type="button" class="btn-pet btn-pet-secondary btn-pet-sm d-none" id="cancelOrderBtn">
+              <i class="fas fa-ban"></i> Cancel Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-pet" aria-label="Site footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h3><i class="fas fa-paw" aria-hidden="true"></i> PetsMart</h3>
+          <p>Your trusted pet shop for supplies, companions, and grooming since 2010.</p>
+          <div class="footer-social mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="pets-for-sale.html">Pets for Sale</a></li>
+            <li><a href="grooming.html">Grooming</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="coming-soon.html">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123 Paw Street, Petville, CA 90210</li>
+            <li><a href="tel:+15557387467"><i class="fas fa-phone" aria-hidden="true"></i> (555) PET-SHOP</a></li>
+            <li><a href="mailto:hello@petsmart-store.com"><i class="fas fa-envelope" aria-hidden="true"></i> hello@petsmart-store.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PetsMart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/images.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/auth-ui.js"></script>
+  <script src="../assets/js/orders.js"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      await PMAuth.ready;
+
+      if (!PMAuth.isLoggedIn()) {
+        document.getElementById('loggedOutNotice').classList.remove('d-none');
+        return;
+      }
+
+      PMOrders.syncCurrentUserFromSession();
+      document.getElementById('ordersWrap').classList.remove('d-none');
+
+      const profileForm = document.getElementById('profileForm');
+      const profileEditToggle = document.getElementById('profileEditToggle');
+      const profileCancelBtn = document.getElementById('profileCancelBtn');
+
+      function formatDate(value) {
+        try { return new Date(value).toLocaleDateString(); } catch (e) { return value || '—'; }
+      }
+
+      function renderProfile() {
+        const profile = PMAuth.getCurrentUserProfile();
+        if (!profile) return;
+        document.getElementById('profileGreeting').textContent = `Hello, ${profile.name}`;
+        document.getElementById('profileName').textContent = profile.name || '—';
+        document.getElementById('profileEmail').textContent = profile.email || '—';
+        document.getElementById('profileRole').textContent = profile.role || 'customer';
+        document.getElementById('profileJoined').textContent = formatDate(profile.createdAt);
+        document.getElementById('profilePhone').textContent = profile.phone || '—';
+        document.getElementById('profileAddress').textContent = profile.address || '—';
+
+        document.getElementById('profileNameInput').value = profile.name || '';
+        document.getElementById('profileEmailInput').value = profile.email || '';
+        document.getElementById('profilePhoneInput').value = profile.phone || '';
+        document.getElementById('profileAddressInput').value = profile.address || '';
+        document.getElementById('profilePasswordInput').value = '';
+      }
+
+      profileEditToggle.addEventListener('click', function () {
+        profileForm.classList.remove('d-none');
+        document.getElementById('profileNameInput').focus();
+      });
+      profileCancelBtn.addEventListener('click', function () {
+        profileForm.classList.add('d-none');
+        renderProfile();
+      });
+      profileForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        try {
+          await PMAuth.updateProfile({
+            name: document.getElementById('profileNameInput').value,
+            email: document.getElementById('profileEmailInput').value,
+            phone: document.getElementById('profilePhoneInput').value,
+            address: document.getElementById('profileAddressInput').value,
+            password: document.getElementById('profilePasswordInput').value,
+          });
+          pmToast('Profile updated successfully.', 'success');
+          profileForm.classList.add('d-none');
+          renderProfile();
+          renderOrders();
+        } catch (err) {
+          pmToast(err.message, 'danger');
+        }
+      });
+
+      const STATUS_FLOW = PMOrders.STATUS_FLOW;
+      const trackModalEl = document.getElementById('trackModal');
+      const detailsModalEl = document.getElementById('detailsModal');
+      const trackModal = new bootstrap.Modal(trackModalEl);
+      const detailsModal = new bootstrap.Modal(detailsModalEl);
+
+      function statusClass(status) {
+        return 'status-' + status.toLowerCase().replace(/[^a-z]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+
+      function renderOrders() {
+        const search = document.getElementById('orderSearch').value.trim().toLowerCase();
+        const filter = document.getElementById('orderStatusFilter').value;
+        let orders = PMOrders.ordersForCurrentUser();
+
+        if (search) {
+          orders = orders.filter(function (o) {
+            return o.orderId.toLowerCase().includes(search) ||
+              o.products.some(p => p.name.toLowerCase().includes(search));
+          });
+        }
+        if (filter) {
+          orders = orders.filter(o => o.status === filter);
+        }
+
+        const list = document.getElementById('ordersList');
+        const empty = document.getElementById('noOrders');
+
+        if (!orders.length) {
+          list.innerHTML = '';
+          empty.classList.remove('d-none');
+          return;
+        }
+        empty.classList.add('d-none');
+
+        list.innerHTML = orders.map(function (o) {
+          const itemsHtml = o.products.map(function (p) {
+            return `
+              <div class="order-item-row">
+                <img src="${PMOrders.escapeHtml(p.image)}" alt="${PMOrders.escapeHtml(p.name)}" onerror="this.src='../assets/images/products/dog-food-bowl-premium.webp'">
+                <div>
+                  <div class="item-name">${PMOrders.escapeHtml(p.name)}</div>
+                  <div class="item-meta">Qty: ${p.quantity} &times; ${PMOrders.money(p.price)}</div>
+                </div>
+              </div>`;
+          }).join('');
+
+          return `
+          <div class="order-card">
+            <div class="order-card-header">
+              <div>
+                <div class="order-id">Order #${o.orderId}</div>
+                <div class="order-date">Placed on ${o.orderDate}</div>
+              </div>
+              <span class="status-badge ${statusClass(o.status)}">${o.status}</span>
+            </div>
+            ${itemsHtml}
+            <div class="order-card-footer">
+              <div>
+                <div class="order-total">${PMOrders.money(o.total)}</div>
+                <div class="text-muted small">${o.paymentMethod} &bull; Delivery by ${o.expectedDelivery}</div>
+              </div>
+              <div class="d-flex gap-2 flex-wrap">
+                <button class="btn-pet btn-pet-outline btn-pet-sm" data-action="track" data-id="${o.orderId}">
+                  <i class="fas fa-route"></i> Track Order
+                </button>
+                <button class="btn-pet btn-pet-primary btn-pet-sm" data-action="details" data-id="${o.orderId}">
+                  <i class="fas fa-receipt"></i> View Details
+                </button>
+              </div>
+            </div>
+          </div>`;
+        }).join('');
+      }
+
+      renderProfile();
+
+      function openTrackModal(orderId) {
+        const o = PMOrders.getOrder(orderId);
+        if (!o) return;
+        document.getElementById('trackOrderId').textContent = '#' + o.orderId;
+        document.getElementById('trackTrackingNumber').textContent = o.trackingNumber;
+        document.getElementById('trackCourier').textContent = o.courier;
+        document.getElementById('trackLastUpdated').textContent = o.lastUpdated;
+        document.getElementById('trackEstDelivery').textContent = o.expectedDelivery;
+
+        const isCancelled = o.status === PMOrders.CANCELLED;
+        const currentIdx = STATUS_FLOW.indexOf(o.status);
+
+        const timeline = document.getElementById('trackingTimeline');
+        if (isCancelled) {
+          timeline.innerHTML = `<div class="timeline-step cancelled-step">
+            <div class="step-dot"><i class="fas fa-xmark"></i></div>
+            <div class="step-label">Order Cancelled</div>
+          </div>`;
+        } else {
+          timeline.innerHTML = `<div class="timeline-fill" style="width:${PMOrders.progressPercent(o.status)}%;"></div>` +
+            STATUS_FLOW.map(function (step, idx) {
+              const done = idx < currentIdx;
+              const current = idx === currentIdx;
+              const icon = done ? 'fa-check' : (current ? 'fa-truck' : 'fa-circle');
+              return `<div class="timeline-step ${done ? 'done' : ''} ${current ? 'current' : ''}">
+                <div class="step-dot"><i class="fas ${icon}"></i></div>
+                <div class="step-label">${step}</div>
+              </div>`;
+            }).join('');
+        }
+
+        document.getElementById('deliveryProgressBar').style.width = (isCancelled ? 0 : PMOrders.progressPercent(o.status)) + '%';
+        trackModal.show();
+      }
+
+      function openDetailsModal(orderId) {
+        const o = PMOrders.getOrder(orderId);
+        if (!o) return;
+        document.getElementById('detailsOrderId').textContent = '#' + o.orderId;
+        document.getElementById('detailsOrderDate').textContent = o.orderDate;
+        const badge = document.getElementById('detailsStatusBadge');
+        badge.textContent = o.status;
+        badge.className = 'status-badge ' + statusClass(o.status);
+        document.getElementById('detailsCustomerName').textContent = o.customerName;
+        document.getElementById('detailsCustomerEmail').textContent = o.email;
+        document.getElementById('detailsAddress').textContent = o.address;
+        document.getElementById('detailsPaymentMethod').textContent = o.paymentMethod;
+        document.getElementById('detailsExpectedDelivery').textContent = o.expectedDelivery;
+        document.getElementById('detailsTotal').textContent = PMOrders.money(o.total);
+
+        document.getElementById('detailsProductsTable').innerHTML = o.products.map(function (p) {
+          return `<tr>
+            <td>${PMOrders.escapeHtml(p.name)}</td>
+            <td>${p.quantity}</td>
+            <td>${PMOrders.money(p.price)}</td>
+            <td>${PMOrders.money(p.price * p.quantity)}</td>
+          </tr>`;
+        }).join('');
+
+        const cancelBtn = document.getElementById('cancelOrderBtn');
+        const canCancel = ['Order Placed', 'Confirmed'].includes(o.status);
+        cancelBtn.classList.toggle('d-none', !canCancel);
+        cancelBtn.dataset.id = o.orderId;
+
+        detailsModal.show();
+      }
+
+      document.getElementById('ordersList').addEventListener('click', function (e) {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        if (btn.dataset.action === 'track') openTrackModal(btn.dataset.id);
+        if (btn.dataset.action === 'details') openDetailsModal(btn.dataset.id);
+      });
+
+      document.getElementById('cancelOrderBtn').addEventListener('click', function () {
+        const orderId = this.dataset.id;
+        if (!confirm(`Cancel order #${orderId}? This cannot be undone.`)) return;
+        try {
+          PMOrders.cancelOrder(orderId);
+          pmToast(`Order #${orderId} has been cancelled.`, 'success');
+          detailsModal.hide();
+          renderOrders();
+        } catch (err) {
+          pmToast(err.message, 'danger');
+        }
+      });
+
+      document.getElementById('printInvoiceBtn').addEventListener('click', function () {
+        window.print();
+      });
+
+      document.getElementById('orderSearch').addEventListener('input', renderOrders);
+      document.getElementById('orderStatusFilter').addEventListener('change', renderOrders);
+
+      renderOrders();
+
+      function switchView(view) {
+        const accountDetailsSection = document.getElementById('accountDetailsSection');
+        const ordersSection = document.getElementById('ordersSection');
+        const pageTitle = document.querySelector('.page-header h1');
+        const pageDescription = document.querySelector('.page-header p');
+
+        if (view === 'account') {
+          if (accountDetailsSection) accountDetailsSection.classList.remove('d-none');
+          if (ordersSection) ordersSection.classList.add('d-none');
+          if (pageTitle) pageTitle.textContent = 'My Account';
+          if (pageDescription) pageDescription.textContent = 'Manage your account details and keep your shipping information up to date.';
+          document.title = 'My Account — PetsMart Pet Shop';
+        } else {
+          if (accountDetailsSection) accountDetailsSection.classList.add('d-none');
+          if (ordersSection) ordersSection.classList.remove('d-none');
+          if (pageTitle) pageTitle.textContent = 'My Orders';
+          if (pageDescription) pageDescription.textContent = 'Track deliveries, view invoices, and manage your purchases.';
+          document.title = 'My Orders — PetsMart Pet Shop';
+        }
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialView = urlParams.get('view') || 'orders';
+      switchView(initialView);
+
+      window.addEventListener('popstate', function () {
+        const currentParams = new URLSearchParams(window.location.search);
+        const currentView = currentParams.get('view') || 'orders';
+        switchView(currentView);
+      });
+
+      document.addEventListener('click', function (e) {
+        const link = e.target.closest('#navAuthLink, #navOrdersLink');
+        if (link && window.location.pathname.includes('my-orders.html')) {
+          const href = link.getAttribute('href');
+          if (href && href.includes('?view=')) {
+            e.preventDefault();
+            const view = href.split('view=')[1];
+            window.history.pushState(null, '', href);
+            switchView(view);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+

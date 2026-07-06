@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta & SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop premium pet supplies at PetsMart. Browse food, toys, bedding, and accessories for dogs, cats, fish, birds, and small pets. Filter by type, brand, and price.">
+  <title>Pet Products — PetsMart Pet Shop &amp; Pet Supplies Store</title>
+  <link rel="canonical" href="https://www.petsmart-store.com/pages/products.html">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('petshop-theme') || localStorage.getItem('theme');
+      const theme = saved || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      if (!saved) {
+        localStorage.setItem('petshop-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-pet" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-paw" aria-hidden="true"></i> PetsMart
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="pets-for-sale.html">Pets for Sale</a></li>
+          <li class="nav-item"><a class="nav-link" href="grooming.html">Grooming</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-controls ms-lg-3">
+          <a href="login.html" class="btn-pet btn-pet-outline btn-pet-sm me-2" id="navAuthLink">
+            <i class="fas fa-user" aria-hidden="true"></i> Login
+          </a>
+          <a href="checkout.html" class="cart-toggle me-2" id="navCartLink" aria-label="View cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-badge d-none" id="navCartBadge">0</span>
+          </a>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="rtl-toggle" aria-label="Switch to RTL layout">
+            <i class="fas fa-align-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Page Header -->
+    <header class="page-header" aria-labelledby="products-heading">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-pet">
+            <!-- <li class="breadcrumb-item"><a href="index.html">Home</a></li> -->
+            <!-- <li class="breadcrumb-item active" aria-current="page">Products</li> -->
+          </ol>
+        </nav>
+        <h1 id="products-heading">Pet Products</h1>
+        <p>Everything your pet needs — from nutritious food and fun toys to cosy bedding and health essentials.</p>
+      </div>
+    </header>
+
+    <!-- Products Listing -->
+    <section class="section-pet" aria-label="Product catalogue">
+      <div class="container">
+        <div class="row g-4">
+
+          <!-- Filter Sidebar -->
+          <aside class="col-lg-3" aria-label="Product filters">
+            <div class="filter-sidebar">
+              <h2 class="h5">Filter Products</h2>
+
+              <!-- Pet Type Filter -->
+              <div class="filter-group">
+                <h3>Pet Type</h3>
+                <label>
+                  <input type="checkbox" name="pet-type" value="dogs">
+                  Dogs
+                </label>
+                <label>
+                  <input type="checkbox" name="pet-type" value="cats">
+                  Cats
+                </label>
+                <label>
+                  <input type="checkbox" name="pet-type" value="fish">
+                  Fish
+                </label>
+                <label>
+                  <input type="checkbox" name="pet-type" value="birds">
+                  Birds
+                </label>
+                <label>
+                  <input type="checkbox" name="pet-type" value="small-pets">
+                  Small Pets
+                </label>
+              </div>
+
+              <!-- Category Filter -->
+              <div class="filter-group">
+                <h3>Category</h3>
+                <label>
+                  <input type="checkbox" name="category" value="food">
+                  Food
+                </label>
+                <label>
+                  <input type="checkbox" name="category" value="toys">
+                  Toys
+                </label>
+                <label>
+                  <input type="checkbox" name="category" value="bedding">
+                  Bedding
+                </label>
+                <label>
+                  <input type="checkbox" name="category" value="health">
+                  Health
+                </label>
+                <label>
+                  <input type="checkbox" name="category" value="accessories">
+                  Accessories
+                </label>
+              </div>
+
+              <!-- Brand Filter -->
+              <div class="filter-group">
+                <h3>Brand</h3>
+                <label>
+                  <input type="checkbox" name="brand" value="royal-canin">
+                  Royal Canin
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="hills">
+                  Hill's
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="purina">
+                  Purina
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="kong">
+                  Kong
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="whiskas">
+                  Whiskas
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="tetra">
+                  Tetra
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="blue-buffalo">
+                  Blue Buffalo
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="orijen">
+                  Orijen
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="frontline">
+                  Frontline
+                </label>
+                <label>
+                  <input type="checkbox" name="brand" value="ferplast">
+                  Ferplast
+                </label>
+              </div>
+
+              <!-- Price Filter -->
+              <div class="filter-group">
+                <h3>Price</h3>
+                <label>
+                  <input type="radio" name="price" value="" checked>
+                  All Prices
+                </label>
+                <label>
+                  <input type="radio" name="price" value="under-25">
+                  Under $25
+                </label>
+                <label>
+                  <input type="radio" name="price" value="25-50">
+                  $25 – $50
+                </label>
+                <label>
+                  <input type="radio" name="price" value="50-100">
+                  $50 – $100
+                </label>
+                <label>
+                  <input type="radio" name="price" value="over-100">
+                  Over $100
+                </label>
+              </div>
+
+              <div class="filter-actions d-grid gap-2">
+                <button type="button" id="applyFilters" class="btn-pet btn-pet-primary btn-pet-sm">
+                  <i class="fas fa-filter" aria-hidden="true"></i> Apply Filters
+                </button>
+                <button type="button" id="clearFilters" class="btn-pet btn-pet-outline btn-pet-sm">
+                  Clear All
+                </button>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Product Grid Area -->
+          <div class="col-lg-9">
+
+            <!-- Sort Toolbar -->
+            <div class="toolbar-pet">
+              <p class="mb-0"><strong id="productCount">12</strong> products found</p>
+              <div class="d-flex align-items-center gap-2">
+                <label for="sortProducts" class="mb-0 fw-semibold">Sort by:</label>
+                <select id="sortProducts" class="form-select form-select-sm" aria-label="Sort products">
+                  <option value="featured" selected>Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="name-az">Name: A – Z</option>
+                  <option value="name-za">Name: Z – A</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="productGrid" class="row g-4">
+
+              <!-- Product 1 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="dogs" data-category="food" data-brand="royal-canin" data-price="49.99" data-name="Premium Dry Dog Food" data-featured="1">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/Premium Dry Dog Food.jpg" alt="Premium dry dog food bag with natural ingredients" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Premium Dry Dog Food</h2>
+                    <p class="card-pet-price">$49.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 2 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="cats" data-category="food" data-brand="whiskas" data-price="12.99" data-name="Organic Cat Treats" data-featured="2">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/Organic Cat Treats.jpg" alt="Organic cat treats in resealable packaging" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Organic Cat Treats</h2>
+                    <p class="card-pet-price">$12.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 3 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="fish" data-category="accessories" data-brand="tetra" data-price="89.99" data-name="Aquarium Starter Kit" data-featured="3">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/aquarium-starter-kit-premium.webp" alt="Aquarium starter kit with filter and LED lighting" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-fish position-absolute top-0 start-0 m-2">Fish</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Aquarium Starter Kit</h2>
+                    <p class="card-pet-price">$89.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 4 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="birds" data-category="food" data-brand="purina" data-price="18.99" data-name="Premium Bird Seed Mix" data-featured="4">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/bird-seed-premium.webp" alt="Premium bird seed mix in a clear container" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-bird position-absolute top-0 start-0 m-2">Birds</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Premium Bird Seed Mix</h2>
+                    <p class="card-pet-price">$18.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 5 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="small-pets" data-category="bedding" data-brand="orijen" data-price="24.99" data-name="Hay &amp; Bedding Bundle" data-featured="5">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/hay-bedding-bundle-premium.webp" alt="Small pet hay and bedding bundle for rabbits" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-small position-absolute top-0 start-0 m-2">Small Pets</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Hay &amp; Bedding Bundle</h2>
+                    <p class="card-pet-price">$24.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 6 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="dogs" data-category="toys" data-brand="kong" data-price="15.99" data-name="Durable Chew Toy" data-featured="6">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/durable-chew-toy-premium.webp" alt="Durable rubber dog chew toy in bright orange" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Durable Chew Toy</h2>
+                    <p class="card-pet-price">$15.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 7 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="cats" data-category="accessories" data-brand="hills" data-price="34.99" data-name="Cat Scratching Post" data-featured="7">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/cat-scratching-post-premium.webp" alt="Tall cat scratching post with sisal rope" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Cat Scratching Post</h2>
+                    <p class="card-pet-price">$34.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 8 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="dogs" data-category="health" data-brand="frontline" data-price="9.99" data-name="Frontline Flea Treatment" data-featured="8">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/flea-treatment-premium.webp" alt="Frontline flea and tick treatment pack" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Frontline Flea Treatment</h2>
+                    <p class="card-pet-price">$9.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 9 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="dogs" data-category="accessories" data-brand="kong" data-price="22.99" data-name="Adjustable Dog Leash" data-featured="9">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/adjustable-dog-leash-premium.webp" alt="Adjustable nylon dog leash with padded handle" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Adjustable Dog Leash</h2>
+                    <p class="card-pet-price">$22.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 10 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="cats" data-category="bedding" data-brand="whiskas" data-price="39.99" data-name="Plush Cat Bed" data-featured="10">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/plush-cat-bed-premium.webp" alt="Plush cat bed with removable washable cover" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Plush Cat Bed</h2>
+                    <p class="card-pet-price">$39.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 11 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="birds" data-category="accessories" data-brand="ferplast" data-price="74.99" data-name="Spacious Bird Cage" data-featured="11">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/spacious-bird-cage-premium.webp" alt="Bird cage with perches and feeding dishes" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-bird position-absolute top-0 start-0 m-2">Birds</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Spacious Bird Cage</h2>
+                    <p class="card-pet-price">$74.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Product 12 -->
+              <div class="col-md-6 col-lg-4 product-item" data-pet-type="small-pets" data-category="toys" data-brand="blue-buffalo" data-price="19.99" data-name="Exercise Wheel &amp; Tunnel Set" data-featured="12">
+                <article class="card-pet">
+                  <div class="card-pet-image">
+                    <img src="../assets/images/products/exercise-wheel-tunnel-premium.webp" alt="Small pet exercise wheel and tunnel play set" width="400" height="300" loading="lazy">
+                    <span class="badge-pet badge-small position-absolute top-0 start-0 m-2">Small Pets</span>
+                  </div>
+                  <div class="card-pet-body">
+                    <h2 class="card-pet-title h5">Exercise Wheel &amp; Tunnel Set</h2>
+                    <p class="card-pet-price">$19.99</p>
+                    <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                  </div>
+                </article>
+              </div>
+
+            </div>
+
+            <div id="productEmpty" class="alert alert-info text-center d-none" role="status">
+              No products match your filters. Try adjusting or clearing your selections.
+            </div>
+
+            <!-- Pagination -->
+            <nav class="mt-4" aria-label="Product pagination" id="productPagination">
+              <ul class="pagination pagination-pet justify-content-center" id="paginationList">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" data-page="prev" aria-label="Previous page" tabindex="-1">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="#" data-page="1">1</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#" data-page="2">2</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#" data-page="3">3</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#" data-page="next" aria-label="Next page">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-pet" aria-label="Site footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h3><i class="fas fa-paw" aria-hidden="true"></i> PetsMart</h3>
+          <p>Your trusted pet shop for supplies, companions, and grooming since 2010.</p>
+          <div class="footer-social mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="pets-for-sale.html">Pets for Sale</a></li>
+            <li><a href="grooming.html">Grooming</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="coming-soon.html">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123 Paw Street, Petville, CA 90210</li>
+            <li><a href="tel:+15557387467"><i class="fas fa-phone" aria-hidden="true"></i> (555) PET-SHOP</a></li>
+            <li><a href="mailto:hello@petsmart-store.com"><i class="fas fa-envelope" aria-hidden="true"></i> hello@petsmart-store.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PetsMart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="../assets/js/images.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/auth-ui.js"></script>
+  <script src="../assets/js/orders.js"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
+
+
+

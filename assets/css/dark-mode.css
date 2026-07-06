@@ -1,0 +1,194 @@
+/* ============================================
+   Pet Shop — Dark Mode Theme Overrides
+   ============================================ */
+
+[data-theme="dark"] {
+  --color-primary: #26A69A;
+  --color-primary-dark: #00897B;
+  --color-secondary: #FF8A65;
+  --color-secondary-dark: #FF7043;
+  --color-bg: #1A1A2E;
+  --color-text: #E8E8E8;
+  --color-section: #16213E;
+  --color-white: #E8E8E8;
+  --color-footer-bg: #0A1929;
+  --color-border: #2A2A4A;
+  --color-muted: #A0A0B0;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  /* Backwards-compatible aliases for older/component styles */
+  --card-bg: #1f2430;
+  --text-color: var(--color-text);
+  --text-muted: var(--color-muted);
+  --bg-color: var(--color-bg);
+  --bs-primary: #ff7a45;
+}
+
+[data-theme="dark"] .navbar-pet {
+  background-color: var(--color-section);
+}
+
+[data-theme="dark"] .navbar-toggler {
+  border-color: rgba(255,255,255,0.35) !important;
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.92)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .navbar-toggler:hover {
+  border-color: rgba(255,255,255,0.55) !important;
+}
+
+[data-theme="dark"] .navbar-pet .navbar-collapse {
+  background-color: var(--color-section);
+}
+
+[data-theme="dark"] .navbar-pet .nav-link {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .card-pet,
+[data-theme="dark"] .filter-sidebar,
+[data-theme="dark"] .toolbar-pet,
+[data-theme="dark"] .filter-bar,
+[data-theme="dark"] .blog-sidebar,
+[data-theme="dark"] .contact-info-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .icon-box,
+[data-theme="dark"] .category-card,
+[data-theme="dark"] .team-card,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .brand-card,
+[data-theme="dark"] .review-card,
+[data-theme="dark"] .countdown-item {
+  background-color: var(--color-section);
+}
+
+[data-theme="dark"] .accordion-pet .accordion-button {
+  background-color: var(--color-section);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .accordion-pet .accordion-body {
+  background-color: var(--color-bg);
+   color: var(--color-text);
+}
+
+[data-theme="dark"] .form-pet .form-control,
+[data-theme="dark"] .form-pet .form-select {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .badge-dog { background-color: rgba(21, 101, 192, 0.2); color: #64B5F6; }
+[data-theme="dark"] .badge-cat { background-color: rgba(123, 31, 162, 0.2); color: #CE93D8; }
+[data-theme="dark"] .badge-fish { background-color: rgba(0, 131, 143, 0.2); color: #4DD0E1; }
+[data-theme="dark"] .badge-bird { background-color: rgba(245, 127, 23, 0.2); color: #FFB74D; }
+[data-theme="dark"] .badge-small { background-color: rgba(46, 125, 50, 0.2); color: #81C784; }
+
+[data-theme="dark"] .newsletter-form input {
+  background-color: var(--color-white);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .quantity-picker button {
+  background-color: var(--color-section);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .filter-bar select {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Tables: ensure Bootstrap tables and custom table cards are readable in dark mode */
+[data-theme="dark"] .table,
+[data-theme="dark"] table {
+  color: var(--color-text);
+  background-color: transparent;
+}
+
+[data-theme="dark"] .table thead th,
+[data-theme="dark"] table thead th {
+  color: var(--color-text);
+  background-color: transparent;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Highlighted header style for admin/customer tables (matches example) */
+[data-theme="dark"] .admin-table-card table thead th,
+[data-theme="dark"] .admin-table-card table thead tr,
+[data-theme="dark"] .invoice-box thead th,
+[data-theme="dark"] table.orders thead th,
+[data-theme="dark"] table thead.th-blue {
+  background-color: #163f7a;
+  color: #fff;
+  border-bottom: 2px solid rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .table tbody td,
+[data-theme="dark"] table tbody td {
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255,255,255,0.02);
+}
+
+/* Use card background for table rows (avoid white rows in dark mode) */
+[data-theme="dark"] .table tbody tr,
+[data-theme="dark"] table tbody tr {
+  background-color: var(--card-bg, #1f2430) !important;
+}
+
+[data-theme="dark"] .table tbody td,
+[data-theme="dark"] table tbody td {
+  background-color: transparent !important;
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .table-hover tbody tr:hover,
+[data-theme="dark"] .table tbody tr:hover {
+  background-color: rgba(255,255,255,0.03) !important;
+}
+
+[data-theme="dark"] .table thead th {
+  font-weight: 700;
+}
+
+[data-theme="dark"] .invoice-box {
+  background: #151821;
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .invoice-box th,
+[data-theme="dark"] .invoice-box td {
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .table-responsive {
+  background: transparent;
+}
+
+[data-theme="dark"] .admin-table-card table {
+  background: transparent;
+}
+
+/* Specific: hours-table (used in contact/locations) */
+[data-theme="dark"] .hours-table th,
+[data-theme="dark"] .hours-table td {
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .account-card {
+  background-color: var(--color-section) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}

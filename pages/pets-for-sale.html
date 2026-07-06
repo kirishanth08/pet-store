@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta & SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse health-checked, vaccinated, and microchipped pets for sale at PetsMart — puppies, kittens, birds, fish, rabbits, and more looking for loving homes.">
+  <title>Pets for Sale — Adopt Your New Companion | PetsMart</title>
+  <link rel="canonical" href="https://www.petsmart-store.com/pages/pets-for-sale.html">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('petshop-theme') || localStorage.getItem('theme');
+      const theme = saved || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      if (!saved) {
+        localStorage.setItem('petshop-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-pet" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-paw" aria-hidden="true"></i> PetsMart
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="pets-for-sale.html">Pets for Sale</a></li>
+          <li class="nav-item"><a class="nav-link" href="grooming.html">Grooming</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-controls ms-lg-3">
+          <a href="login.html" class="btn-pet btn-pet-outline btn-pet-sm me-2" id="navAuthLink">
+            <i class="fas fa-user" aria-hidden="true"></i> Login
+          </a>
+          <a href="checkout.html" class="cart-toggle me-2" id="navCartLink" aria-label="View cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-badge d-none" id="navCartBadge">0</span>
+          </a>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="rtl-toggle" aria-label="Switch to RTL layout">
+            <i class="fas fa-align-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Page Header -->
+    <header class="page-header" aria-labelledby="pets-page-heading">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-pet">
+            <!-- <li class="breadcrumb-item"><a href="index.html">Home</a></li> -->
+            <!-- <li class="breadcrumb-item active" aria-current="page">Pets for Sale</li> -->
+          </ol>
+        </nav>
+        <span class="section-label">Find Your Friend</span>
+        <h1 id="pets-page-heading">Pets Available for Sale</h1>
+        <p>Meet our adorable companions looking for their forever homes. Every pet is raised with love and ready to join your family.</p>
+      </div>
+    </header>
+
+    <!-- Pets Listing -->
+    <section class="section-pet" aria-labelledby="listings-heading">
+      <div class="container">
+
+        <!-- Filter Bar -->
+        <div class="filter-bar" role="search" aria-label="Filter pets">
+          <div class="flex-grow-1">
+            <label for="filterPetType" class="form-label visually-hidden">Pet Type</label>
+            <select class="form-select" id="filterPetType" name="pet_type" aria-label="Filter by pet type">
+              <option value="" selected>All Pet Types</option>
+              <option value="dog">Dogs</option>
+              <option value="cat">Cats</option>
+              <option value="fish">Fish</option>
+              <option value="bird">Birds</option>
+              <option value="small">Small Pets</option>
+            </select>
+          </div>
+          <div class="flex-grow-1">
+            <label for="filterAge" class="form-label visually-hidden">Age</label>
+            <select class="form-select" id="filterAge" name="age" aria-label="Filter by age">
+              <option value="" selected>All Ages</option>
+              <option value="puppy">Puppy / Kitten</option>
+              <option value="adult">Adult</option>
+            </select>
+          </div>
+          <div class="flex-grow-1">
+            <label for="filterPrice" class="form-label visually-hidden">Price Range</label>
+            <select class="form-select" id="filterPrice" name="price_range" aria-label="Filter by price range">
+              <option value="" selected>All Prices</option>
+              <option value="under-100">Under $100</option>
+              <option value="100-500">$100 – $500</option>
+              <option value="500-1000">$500 – $1,000</option>
+              <option value="over-1000">Over $1,000</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Info Banner -->
+        <div class="info-banner" role="note">
+          <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          All our pets are health-checked, vaccinated, and microchipped
+        </div>
+
+        <h2 id="listings-heading" class="visually-hidden">Pet Listings</h2>
+
+        <!-- Pet Cards Grid -->
+        <div id="petGrid" class="row g-4">
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="dog" data-age="puppy" data-price="850">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/gallery/golden-retriever-portrait.webp" alt="Golden Retriever puppy named Max" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Max</a></h3>
+                <p>Golden Retriever &bull; 12 weeks &bull; Male</p>
+                <p class="card-pet-price">$850</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="cat" data-age="adult" data-price="650">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/gallery/ragdoll-cat-portrait.webp" alt="British Shorthair cat named Luna" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Luna</a></h3>
+                <p>British Shorthair &bull; 8 months &bull; Female</p>
+                <p class="card-pet-price">$650</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="fish" data-age="adult" data-price="25">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/nemo.jpg" alt="Colourful Betta fish named Splash" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Splash</a></h3>
+                <p>Betta Fish &bull; 6 months &bull; Male</p>
+                <p class="card-pet-price">$25</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="bird" data-age="adult" data-price="120">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/Cockatiel.jpg" alt="Parakeet bird named Kiwi" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Kiwi</a></h3>
+                <p>Parakeet &bull; 1 year &bull; Male</p>
+                <p class="card-pet-price">$120</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="small" data-age="puppy" data-price="95">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/Holland Lop.jpg" alt="Holland Lop rabbit named Cotton" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Cotton</a></h3>
+                <p>Holland Lop &bull; 4 months &bull; Female</p>
+                <p class="card-pet-price">$95</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="dog" data-age="puppy" data-price="720">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/gallery/beagle-puppy-portrait.webp" alt="Beagle puppy named Buddy" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Buddy</a></h3>
+                <p>Beagle &bull; 16 weeks &bull; Male</p>
+                <p class="card-pet-price">$720</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="dog" data-age="puppy" data-price="900">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/gallery/german-shepherd-portrait.webp" alt="German Shepherd puppy named Rocky" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Rocky</a></h3>
+                <p>German Shepherd &bull; 10 weeks &bull; Male</p>
+                <p class="card-pet-price">$900</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="cat" data-age="adult" data-price="550">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/gallery/persian-cat-portrait.webp" alt="Persian cat named Bella" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Bella</a></h3>
+                <p>Persian &bull; 2 years &bull; Female</p>
+                <p class="card-pet-price">$550</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="fish" data-age="adult" data-price="35">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/gallery/betta-fish.webp" alt="Clownfish named Nemo" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Nemo</a></h3>
+                <p>Clownfish &bull; 1 year &bull; Male</p>
+                <p class="card-pet-price">$35</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="bird" data-age="adult" data-price="150">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/gallery/cockatiel-portrait.webp" alt="Cockatiel bird named Rio" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Rio</a></h3>
+                <p>Cockatiel &bull; 8 months &bull; Male</p>
+                <p class="card-pet-price">$150</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="small" data-age="puppy" data-price="45">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/gallery/guinea-pig-portrait.webp" alt="Guinea pig named Peanut" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Peanut</a></h3>
+                <p>Guinea Pig &bull; 6 weeks &bull; Female</p>
+                <p class="card-pet-price">$45</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 pet-item" data-pet-type="dog" data-age="adult" data-price="600">
+            <article class="card-pet">
+              <a href="pet-details.html" class="text-decoration-none text-reset">
+                <div class="card-pet-image">
+                  <img src="../assets/images/labrador retriever.jpg" alt="Labrador Retriever named Daisy" width="400" height="300" loading="lazy">
+                </div>
+              </a>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title"><a href="pet-details.html" class="text-decoration-none text-reset">Daisy</a></h3>
+                <p>Labrador Retriever &bull; 3 years &bull; Female</p>
+                <p class="card-pet-price">$600</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-pet" aria-label="Site footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h3><i class="fas fa-paw" aria-hidden="true"></i> PetsMart</h3>
+          <p>Your trusted pet shop for supplies, companions, and grooming since 2010.</p>
+          <div class="footer-social mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="pets-for-sale.html">Pets for Sale</a></li>
+            <li><a href="grooming.html">Grooming</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="coming-soon.html">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123 Paw Street, Petville, CA 90210</li>
+            <li><a href="tel:+15557387467"><i class="fas fa-phone" aria-hidden="true"></i> (555) PET-SHOP</a></li>
+            <li><a href="mailto:hello@petsmart-store.com"><i class="fas fa-envelope" aria-hidden="true"></i> hello@petsmart-store.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PetsMart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="../assets/js/images.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/auth-ui.js"></script>
+  <script src="../assets/js/orders.js"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
+
+
+

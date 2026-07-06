@@ -1,0 +1,79 @@
+/* ============================================
+   Pet Shop — RTL (Right-to-Left) Support
+   ============================================ */
+
+[dir="rtl"] body {
+  text-align: right;
+}
+
+[dir="rtl"] .navbar-pet .nav-link::after {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .footer-pet a:hover {
+  padding-left: 0;
+  padding-right: var(--spacing-xs);
+}
+
+[dir="rtl"] .footer-social a {
+  margin-right: 0;
+  margin-left: var(--spacing-sm);
+}
+
+[dir="rtl"] .share-buttons a {
+  margin-right: 0;
+  margin-left: var(--spacing-sm);
+}
+
+[dir="rtl"] .info-banner i {
+  margin-right: 0;
+  margin-left: var(--spacing-sm);
+}
+
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  float: right;
+  padding-right: 0;
+  padding-left: var(--spacing-sm);
+}
+
+[dir="rtl"] .hours-table th,
+[dir="rtl"] .hours-table td {
+  text-align: right;
+}
+
+[dir="rtl"] .author-bio {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .testimonial-author {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .checklist-pet li {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero-cta-group {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .filter-group label {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .newsletter-form {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .toolbar-pet {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .quantity-picker {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .navbar-controls {
+  flex-direction: row-reverse;
+}

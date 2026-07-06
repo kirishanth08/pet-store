@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta & SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PetsMart â€” Your friendly neighbourhood pet shop. Quality pet supplies, live pets for sale, grooming services, and trusted brands for dogs, cats, fish, birds, and small pets.">
+  <title>PetsMart â€” Pet Shop &amp; Pet Supplies Store | Home</title>
+  <link rel="canonical" href="https://www.petsmart-store.com/pages/index.html">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="../assets/css/orders.css">
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "PetStore",
+    "name": "PetsMart",
+    "description": "Pet Shop & Pet Supplies Store offering quality products, live pets, and grooming services.",
+    "url": "https://www.petsmart-store.com",
+    "telephone": "+1-555-PET-SHOP",
+    "email": "hello@petsmart-store.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Paw Street",
+      "addressLocality": "Petville",
+      "addressRegion": "CA",
+      "postalCode": "90210",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday","Sunday"],
+        "opens": "10:00",
+        "closes": "17:00"
+      }
+    ],
+    "priceRange": "$$"
+  }
+  
+  </script>
+  <script>
+      (function() {
+        const saved = localStorage.getItem('petshop-theme') || localStorage.getItem('theme');
+        const theme = saved || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        if (!saved) {
+          localStorage.setItem('petshop-theme', 'light');
+          localStorage.setItem('theme', 'light');
+        }
+      })();
+    </script>
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-pet" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-paw" aria-hidden="true"></i> PetsMart
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="pets-for-sale.html">Pets for Sale</a></li>
+          <li class="nav-item"><a class="nav-link" href="grooming.html">Grooming</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-controls ms-lg-3">
+          <a href="login.html" class="btn-pet btn-pet-outline btn-pet-sm me-2" id="navAuthLink">
+            <i class="fas fa-user" aria-hidden="true"></i> Login
+          </a>
+          <a href="checkout.html" class="cart-toggle me-2" id="navCartLink" aria-label="View cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-badge d-none" id="navCartBadge">0</span>
+          </a>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="rtl-toggle" aria-label="Switch to RTL layout">
+            <i class="fas fa-align-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6 hero-content">
+            <span class="section-label">Welcome to PetsMart</span>
+            <h1 id="hero-heading">Happy Pets, Happy Homes</h1>
+            <p class="hero-tagline">Your one-stop shop for premium pet supplies, adorable companions, and professional grooming â€” because every pet deserves the best.</p>
+            <div class="hero-cta-group">
+              <a href="products.html" class="btn-pet btn-pet-primary">Shop Products</a>
+              <a href="pets-for-sale.html" class="btn-pet btn-pet-secondary">Find Your Pet</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-image-wrapper">
+              <img src="../assets/images/hero1.jpg" alt="Happy golden retriever dog with a warm smile" width="800" height="500" loading="eager">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pet Type Categories -->
+    <section class="section-pet" aria-labelledby="categories-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Shop by Pet</span>
+          <h2 id="categories-heading">Browse by Pet Type</h2>
+          <p>Find the perfect supplies tailored for your furry, feathered, or finned friend.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-6 col-md-4 col-lg">
+            <a href="products.html?pet-type=dogs" class="category-card">
+              <i class="fas fa-dog" aria-hidden="true"></i>
+              <h3>Dogs</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg">
+            <a href="products.html?pet-type=cats" class="category-card">
+              <i class="fas fa-cat" aria-hidden="true"></i>
+              <h3>Cats</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg">
+            <a href="products.html?pet-type=fish" class="category-card">
+              <i class="fas fa-fish" aria-hidden="true"></i>
+              <h3>Fish</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg">
+            <a href="products.html?pet-type=birds" class="category-card">
+              <i class="fas fa-dove" aria-hidden="true"></i>
+              <h3>Birds</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg">
+            <a href="products.html?pet-type=small-pets" class="category-card">
+              <i class="fas fa-paw" aria-hidden="true"></i>
+              <h3>Small Pets</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop by Department Section -->
+    <section class="section-pet section-pet-alt" aria-labelledby="departments-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Top Categories</span>
+          <h2 id="departments-heading">Shop by Department</h2>
+          <p>Find premium, professionally formulated products and accessories for all your pets' needs.</p>
+        </div>
+        <div class="row g-3 row-cols-2 row-cols-md-5">
+          <!-- Department 1: Dog Food -->
+          <div class="col">
+            <a href="products.html?category=food&pet-type=dogs" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/dog-food-premium.webp" alt="Dog Food" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Dog Food</h3>
+            </a>
+          </div>
+          <!-- Department 2: Cat Food -->
+          <div class="col">
+            <a href="products.html?category=food&pet-type=cats" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/cat-food-premium.webp" alt="Cat Food" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Cat Food</h3>
+            </a>
+          </div>
+          <!-- Department 3: Birds -->
+          <div class="col">
+            <a href="products.html?pet-type=birds" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/parent-essentials.jpeg" alt="Birds" class="w-100 h-100" style="object-fit: cover; transform: scale(1.6) translateY(8%); transform-origin: 50% 0%;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Birds</h3>
+            </a>
+          </div>
+          <!-- Department 4: Fish -->
+          <div class="col">
+            <a href="products.html?pet-type=fish" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/fish-premium.webp" alt="Fish" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Fish</h3>
+            </a>
+          </div>
+          <!-- Department 5: Rabbits -->
+          <div class="col">
+            <a href="products.html?pet-type=small-pets" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/rabbit-premium.webp" alt="Rabbits" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Rabbits</h3>
+            </a>
+          </div>
+          <!-- Department 6: Small Pets -->
+          <div class="col">
+            <a href="products.html?pet-type=small-pets" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/small-pets-premium.webp" alt="Small Pets" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Small Pets</h3>
+            </a>
+          </div>
+          <!-- Department 7: Grooming -->
+          <div class="col">
+            <a href="grooming.html" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/pet-grooming-premium.webp" alt="Grooming" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Grooming</h3>
+            </a>
+          </div>
+          <!-- Department 8: Toys -->
+          <div class="col">
+            <a href="products.html?category=toys" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/pet-toys-premium.webp" alt="Toys" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Toys</h3>
+            </a>
+          </div>
+          <!-- Department 9: Accessories -->
+          <div class="col">
+            <a href="products.html?category=accessories" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/accessories-premium.webp" alt="Accessories" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Accessories</h3>
+            </a>
+          </div>
+          <!-- Department 10: Pet Healthcare -->
+          <div class="col">
+            <a href="products.html?category=health" class="category-card h-100 d-flex flex-column align-items-center justify-content-center p-3 text-center border shadow-sm">
+              <div class="mb-3" style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden;">
+                <img src="../assets/images/categories/healthcare-premium.webp" alt="Healthcare" class="w-100 h-100" style="object-fit: cover;">
+              </div>
+              <h3 class="h6 mb-0 text-center">Healthcare</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pets Available Teaser -->
+    <section class="section-pet section-pet-alt" aria-labelledby="pets-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Adopt a Friend</span>
+          <h2 id="pets-heading">Pets Available</h2>
+          <p>Meet our adorable pets looking for their forever homes. All health-checked and ready to love.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/gallery/golden-retriever-portrait.webp" alt="Golden Retriever puppy named Max" width="400" height="300" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Max</h3>
+                <p>Golden Retriever &bull; 12 weeks</p>
+                <p class="card-pet-price">$850</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View &amp; Enquire</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/gallery/ragdoll-cat-portrait.webp" alt="British Shorthair cat named Luna" width="400" height="300" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Luna</h3>
+                <p>British Shorthair &bull; 8 months</p>
+                <p class="card-pet-price">$650</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View &amp; Enquire</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/gallery/Betta Fish.jpg" alt="Colourful Betta fish named Splash" width="400" height="300" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Splash</h3>
+                <p>Betta Fish &bull; 6 months</p>
+                <p class="card-pet-price">$25</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View &amp; Enquire</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/parakeet-portrait.jpg" alt="Parakeet bird named Kiwi" width="200" height="200" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Kiwi</h3>
+                <p>Parakeet &bull; 1 year</p>
+                <p class="card-pet-price">$120</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View &amp; Enquire</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/Holland Lop.jpg" alt="Holland Lop rabbit named Cotton" width="400" height="300" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Cotton</h3>
+                <p>Holland Lop &bull; 4 months</p>
+                <p class="card-pet-price">$95</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View &amp; Enquire</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/gallery/beagle-puppy-portrait.webp" alt="Beagle puppy named Buddy" width="400" height="300" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Buddy</h3>
+                <p>Beagle &bull; 16 weeks</p>
+                <p class="card-pet-price">$720</p>
+                <a href="pet-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View &amp; Enquire</a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="pets-for-sale.html" class="btn-pet btn-pet-outline">View All Pets</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="section-pet" aria-labelledby="products-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Top Picks</span>
+          <h2 id="products-heading">Featured Products</h2>
+          <p>Hand-picked favourites loved by pets and their humans alike.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/Premium Dry Dog Food.jpg" alt="Premium dry dog food bag" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Premium Dry Dog Food</h3>
+                <p class="card-pet-price">$49.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/Organic Cat Treats.jpg" alt="Organic cat treats package" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Organic Cat Treats</h3>
+                <p class="card-pet-price">$12.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/aquarium-starter-kit-premium.webp" alt="Aquarium starter kit with filter" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-fish position-absolute top-0 start-0 m-2">Fish</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Aquarium Starter Kit</h3>
+                <p class="card-pet-price">$89.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/bird-seed-premium.webp" alt="Bird seed mix container" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-bird position-absolute top-0 start-0 m-2">Birds</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Premium Bird Seed Mix</h3>
+                <p class="card-pet-price">$18.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/hay-bedding-bundle-premium.webp" alt="Small pet hay and bedding bundle" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-small position-absolute top-0 start-0 m-2">Small Pets</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Hay &amp; Bedding Bundle</h3>
+                <p class="card-pet-price">$24.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/durable-chew-toy-premium.webp" alt="Durable rubber dog chew toy" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">Dogs</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Durable Chew Toy</h3>
+                <p class="card-pet-price">$15.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/cat-scratching-post-premium.webp" alt="Cat scratching post tower" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">Cats</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Cat Scratching Post</h3>
+                <p class="card-pet-price">$34.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/tropical-fish-flakes-premium.webp" alt="Tropical fish food flakes" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-fish position-absolute top-0 start-0 m-2">Fish</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Tropical Fish Flakes</h3>
+                <p class="card-pet-price">$9.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promotional Banner Section -->
+    <section class="section-pet p-0" aria-label="Special Promotion">
+      <div class="container-fluid p-0">
+        <div class="row g-0 align-items-center" style="background-color: var(--color-section); min-height: 350px;">
+          <div class="col-lg-6 p-5 p-md-5">
+            <span class="section-label mb-3 d-inline-block">Special Offer</span>
+            <h2 class="h1 mb-3" style="color: var(--color-text); font-weight: 800;">Healthy Pets, Vibrant Lives</h2>
+            <p class="lead mb-4" style="color: var(--color-muted);">Happy pets enjoying healthy lifestyles with premium products. Give your furry companions the organic nutrition, durable toys, and luxury care they deserve.</p>
+            <a href="products.html" class="btn-pet btn-pet-primary btn-pet-lg">Shop Premium Selection</a>
+          </div>
+          <div class="col-lg-6 position-relative" style="height: 350px;">
+            <img src="../assets/images/Lives.jpg" alt="Happy pets enjoying healthy lifestyles with premium products" class="w-100 h-100 position-absolute top-0 start-0" style="object-fit: cover;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grooming Services Teaser -->
+    <section class="section-pet section-pet-alt" aria-labelledby="grooming-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Pamper Your Pet</span>
+          <h2 id="grooming-heading">Grooming Services</h2>
+          <p>Professional grooming to keep your pet looking and feeling their best.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <article class="service-card">
+              <i class="fas fa-shower" aria-hidden="true"></i>
+              <h3>Bath &amp; Brush</h3>
+              <p>A refreshing bath with premium shampoo followed by a thorough brush-out.</p>
+              <p class="service-price">$35</p>
+              <a href="grooming.html" class="btn-pet btn-pet-primary btn-pet-sm">Learn More</a>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="service-card">
+              <i class="fas fa-cut" aria-hidden="true"></i>
+              <h3>Full Groom</h3>
+              <p>Complete grooming package including bath, haircut, nail trim, and ear cleaning.</p>
+              <p class="service-price">$65</p>
+              <a href="grooming.html" class="btn-pet btn-pet-primary btn-pet-sm">Learn More</a>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="service-card">
+              <i class="fas fa-hand-scissors" aria-hidden="true"></i>
+              <h3>Nail Trim</h3>
+              <p>Quick and gentle nail trimming to keep paws healthy and comfortable.</p>
+              <p class="service-price">$15</p>
+              <a href="grooming.html" class="btn-pet btn-pet-primary btn-pet-sm">Learn More</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Logos Strip -->
+    <section class="section-pet" aria-label="Featured brands">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Trusted Partners</span>
+          <h2>Featured Brands</h2>
+        </div>
+        <div class="brand-strip">
+          <span class="brand-logo">Royal Canin</span>
+          <span class="brand-logo">Hill's</span>
+          <span class="brand-logo">Purina</span>
+          <span class="brand-logo">Kong</span>
+          <span class="brand-logo">Whiskas</span>
+          <span class="brand-logo">Tetra</span>
+        </div>
+        <div class="text-center">
+          <a href="brands.html" class="btn-pet btn-pet-outline">View All Brands</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Shop With Us -->
+    <section class="section-pet section-pet-alt" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Our Promise</span>
+          <h2 id="why-heading">Why Shop With Us</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              <h3>Pet-Loving Staff</h3>
+              <p>Our team are passionate animal lovers with years of expertise.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <i class="fas fa-shield-alt" aria-hidden="true"></i>
+              <h3>Quality Guaranteed</h3>
+              <p>Only trusted brands and health-checked pets from reputable sources.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <i class="fas fa-truck" aria-hidden="true"></i>
+              <h3>Fast Delivery</h3>
+              <p>Free delivery on orders over $50 within the local area.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <i class="fas fa-headset" aria-hidden="true"></i>
+              <h3>Expert Advice</h3>
+              <p>Free pet care consultations with every visit or purchase.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-pet" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Happy Customers</span>
+          <h2 id="testimonials-heading">What Pet Parents Say</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <blockquote class="testimonial-card">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+              </div>
+              <p>"Found our perfect puppy at PetsMart! The staff were incredibly helpful and Max came with everything we needed to get started."</p>
+              <footer class="testimonial-author">
+                <img src="../assets/images/testimonial-sarah.webp" alt="Sarah M." class="testimonial-avatar" width="48" height="48" loading="lazy">
+                <div>
+                  <strong>Sarah M.</strong>
+                  <small class="d-block text-muted">Dog Owner</small>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="col-md-4">
+            <blockquote class="testimonial-card">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+              </div>
+              <p>"The grooming service is fantastic. Luna always comes back looking beautiful and smelling amazing. Highly recommend the full groom package!"</p>
+              <footer class="testimonial-author">
+                <img src="../assets/images/testimonial-james.webp" alt="James T." class="testimonial-avatar" width="48" height="48" loading="lazy">
+                <div>
+                  <strong>James T.</strong>
+                  <small class="d-block text-muted">Cat Owner</small>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="col-md-4">
+            <blockquote class="testimonial-card">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+              </div>
+              <p>"Best pet shop in town! Great selection of aquarium supplies and the staff helped me set up my first tank perfectly."</p>
+              <footer class="testimonial-author">
+                <img src="../assets/images/testimonial-emily.webp" alt="Emily R." class="testimonial-avatar" width="48" height="48" loading="lazy">
+                <div>
+                  <strong>Emily R.</strong>
+                  <small class="d-block text-muted">Fish Enthusiast</small>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section" aria-labelledby="newsletter-heading">
+      <div class="container text-center">
+        <h2 id="newsletter-heading">Join Our Pet Lovers Club</h2>
+        <p>Get exclusive deals, pet care tips, and new arrival alerts straight to your inbox.</p>
+        <!-- Mailchimp-ready placeholder -->
+        <form class="newsletter-form" action="https://YOUR-MAILCHIMP-URL.list-manage.com/subscribe/post" method="post" target="_blank" aria-label="Newsletter signup">
+          <input type="email" name="EMAIL" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit" class="btn-pet btn-pet-secondary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-pet" aria-label="Site footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h3><i class="fas fa-paw" aria-hidden="true"></i> PetsMart</h3>
+          <p>Your trusted pet shop for supplies, companions, and grooming since 2010.</p>
+          <div class="footer-social mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="pets-for-sale.html">Pets for Sale</a></li>
+            <li><a href="grooming.html">Grooming</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="coming-soon.html">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123 Paw Street, Petville, CA 90210</li>
+            <li><a href="tel:+15557387467"><i class="fas fa-phone" aria-hidden="true"></i> (555) PET-SHOP</a></li>
+            <li><a href="mailto:hello@petsmart-store.com"><i class="fas fa-envelope" aria-hidden="true"></i> hello@petsmart-store.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PetsMart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="../assets/js/images.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/auth-ui.js"></script>
+  <script src="../assets/js/orders.js"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
+
+
+
+

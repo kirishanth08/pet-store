@@ -1,0 +1,57 @@
+PetsMart — Credits & Attributions
+==================================
+
+FRAMEWORKS & LIBRARIES
+----------------------
+Bootstrap 5.3.3
+  https://getbootstrap.com/
+  License: MIT
+
+Font Awesome 6.5.1 (Free)
+  https://fontawesome.com/
+  License: Font Awesome Free License
+
+Google Fonts
+  Fredoka One — https://fonts.google.com/specimen/Fredoka+One
+  Nunito      — https://fonts.google.com/specimen/Nunito
+  License: SIL Open Font License 1.1
+
+FONTS
+-----
+Fredoka One by Hafontia (via Google Fonts)
+Nunito by Vernon Adams, Cyreal (via Google Fonts)
+
+IMAGES
+------
+Placeholder images sourced from Unsplash (https://unsplash.com/)
+Used under the Unsplash License (free for commercial and non-commercial use).
+Replace with your own licensed images before production deployment.
+
+Sample Unsplash photographers credited:
+  - Dog photos: various Unsplash contributors
+  - Cat photos: various Unsplash contributors
+  - Fish, bird, small pet photos: various Unsplash contributors
+
+ICONS
+-----
+All icons by Font Awesome (fas / fab classes).
+
+INTEGRATION SERVICES (Placeholders)
+-----------------------------------
+Formspree — https://formspree.io/ (form handling)
+Mailchimp — https://mailchimp.com/ (email marketing)
+Google Maps — https://maps.google.com/ (map embed)
+
+DESIGN INSPIRATION
+------------------
+Hover interaction references:
+  - https://boutique-lake-mu.vercel.app/
+  - https://deep-space-rosy.vercel.app/
+
+TEMPLATE
+--------
+PetsMart Pet Shop & Pet Supplies Store Website
+Assignment 09 — Static HTML Website Template
+Built with HTML5, CSS3, Bootstrap 5, and JavaScript ES6+
+
+© 2026 PetsMart. All rights reserved.

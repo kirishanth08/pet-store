@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard — PetsMart</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="../assets/css/orders.css">
+  <script>
+    (function () {
+      const saved = localStorage.getItem('petshop-theme') || localStorage.getItem('theme');
+      const theme = saved || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      if (!saved) {
+        localStorage.setItem('petshop-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+
+  <div id="adminGate" class="d-flex align-items-center justify-content-center" style="min-height:100vh;">
+    <div class="text-center">
+      <i class="fas fa-paw fa-2x mb-3" aria-hidden="true"></i>
+      <p>Checking your access...</p>
+    </div>
+  </div>
+
+  <div class="admin-shell d-none" id="adminShell">
+    <aside class="admin-sidebar">
+      <div class="admin-brand"><i class="fas fa-paw" aria-hidden="true"></i> PetsMart Admin</div>
+      <ul class="admin-nav">
+        <li><button type="button" class="nav-btn active" data-panel="overview"><i class="fas fa-chart-line"></i>
+            Overview</button></li>
+        <li><button type="button" class="nav-btn" data-panel="users"><i class="fas fa-users"></i> Users</button></li>
+        <li><button type="button" class="nav-btn" data-panel="products"><i class="fas fa-box"></i> Products</button>
+        </li>
+        <li><button type="button" class="nav-btn" data-panel="orders"><i class="fas fa-receipt"></i> Orders</button>
+        </li>
+        <li><button type="button" class="nav-btn" data-panel="appointments"><i class="fas fa-calendar-check"></i>
+            Appointments</button></li>
+        <li><button type="button" class="nav-btn" data-panel="activity"><i class="fas fa-history"></i> Activity
+            Log</button></li>
+        <li class="mt-3"><a href="index.html" class="btn-pet btn-pet-outline btn-pet-sm w-100 text-center d-block"><i
+              class="fas fa-arrow-left"></i> Back to Site</a></li>
+        <li class="mt-2"><button type="button" class="btn-pet btn-pet-secondary btn-pet-sm w-100" id="adminLogoutBtn"><i
+              class="fas fa-sign-out-alt"></i> Log Out</button></li>
+      </ul>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-topbar">
+        <div>
+          <h1 class="h3 mb-0" id="panelTitle">Overview</h1>
+          <p class="text-muted mb-0" id="adminWelcome"></p>
+        </div>
+        <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="admin-table-card mb-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+          <div>
+            <h2 class="h5 mb-1">Admin Profile</h2>
+            <p class="text-muted mb-0">Update your administrator account details here.</p>
+          </div>
+          <button type="button" class="btn-pet btn-pet-outline btn-pet-sm" id="adminProfileEditToggle">
+            <i class="fas fa-user-edit"></i> Edit Profile
+          </button>
+        </div>
+        <div class="row g-3 mt-2">
+          <div class="col-md-6">
+            <div><strong>Name:</strong> <span id="adminProfileName">—</span></div>
+            <div><strong>Email:</strong> <span id="adminProfileEmail">—</span></div>
+            <div><strong>Role:</strong> <span id="adminProfileRole">—</span></div>
+          </div>
+          <div class="col-md-6">
+            <div><strong>Phone:</strong> <span id="adminProfilePhone">—</span></div>
+            <div><strong>Address:</strong> <span id="adminProfileAddress">—</span></div>
+          </div>
+        </div>
+        <form id="adminProfileForm" class="row g-3 mt-3 d-none">
+          <div class="col-md-6">
+            <label class="form-label" for="adminProfileNameInput">Full name</label>
+            <input type="text" class="form-control" id="adminProfileNameInput" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="adminProfileEmailInput">Email</label>
+            <input type="email" class="form-control" id="adminProfileEmailInput" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="adminProfilePhoneInput">Phone</label>
+            <input type="text" class="form-control" id="adminProfilePhoneInput" placeholder="Add phone number">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="adminProfileAddressInput">Address</label>
+            <input type="text" class="form-control" id="adminProfileAddressInput" placeholder="Add address">
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="adminProfilePasswordInput">New password <span class="text-muted">(leave blank
+                to keep the current password)</span></label>
+            <input type="password" class="form-control" id="adminProfilePasswordInput" minlength="8">
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn-pet btn-pet-primary btn-pet-sm">Save Changes</button>
+            <button type="button" class="btn-pet btn-pet-outline btn-pet-sm" id="adminProfileCancelBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- OVERVIEW -->
+      <section class="admin-panel active" id="panel-overview">
+        <div class="row g-3 mb-4">
+          <div class="col-sm-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#ff7a45;"><i class="fas fa-users"></i></div>
+              <div class="stat-value" id="statUsers">0</div>
+              <div class="stat-label">Registered Users</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#6f42c1;"><i class="fas fa-user-shield"></i></div>
+              <div class="stat-value" id="statAdmins">0</div>
+              <div class="stat-label">Admin Accounts</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#0d9488;"><i class="fas fa-box"></i></div>
+              <div class="stat-value" id="statProducts">0</div>
+              <div class="stat-label">Products (<span id="statLowStock">0</span> low stock)</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#198754;"><i class="fas fa-rupee-sign"></i></div>
+              <div class="stat-value" id="statRevenue">₹0</div>
+              <div class="stat-label"><span id="statOrders">0</span> orders total</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-table-card">
+          <h2 class="h5 mb-3"><i class="fas fa-history"></i> Recent Activity</h2>
+          <ul class="activity-feed" id="overviewActivity"></ul>
+        </div>
+      </section>
+
+      <!-- USERS -->
+      <section class="admin-panel" id="panel-users">
+        <div class="admin-table-card">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <h2 class="h5 mb-0">Manage Users</h2>
+            <input type="search" class="form-control form-control-sm" id="userSearch"
+              placeholder="Search by name or email" style="max-width:240px;">
+          </div>
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Joined</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="admin-panel" id="panel-products">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+          <h2 class="h5 mb-0">Manage Products</h2>
+          <button type="button" class="btn-pet btn-pet-primary btn-pet-sm" id="addProductBtn"><i
+              class="fas fa-plus"></i> Add Product</button>
+        </div>
+
+        <div class="admin-table-card mb-4 d-none" id="productFormCard">
+          <h3 class="h6" id="productFormTitle">Add Product</h3>
+          <form id="productForm" class="row g-3 form-pet">
+            <input type="hidden" id="productId">
+            <div class="col-md-4">
+              <label class="form-label" for="productName">Name</label>
+              <input type="text" class="form-control" id="productName" required>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label" for="productCategory">Category</label>
+              <input type="text" class="form-control" id="productCategory" required>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label" for="productPrice">Price (₹)</label>
+              <input type="number" min="0" step="0.01" class="form-control" id="productPrice" required>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label" for="productStock">Stock</label>
+              <input type="number" min="0" class="form-control" id="productStock" required>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label" for="productStatus">Status</label>
+              <select class="form-select" id="productStatus" style="min-width: 120px; padding-right: 2rem;">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="col-12 d-flex gap-2">
+              <button type="submit" class="btn-pet btn-pet-primary btn-pet-sm">Save Product</button>
+              <button type="button" class="btn-pet btn-pet-outline btn-pet-sm" id="cancelProductBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="admin-table-card">
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ORDERS -->
+      <section class="admin-panel" id="panel-orders">
+        <div class="row g-3 mb-4">
+          <div class="col-sm-6 col-lg-2">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#6c757d;"><i class="fas fa-receipt"></i></div>
+              <div class="stat-value" id="ordStatTotal">0</div>
+              <div class="stat-label">Total Orders</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-2">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#0d6efd;"><i class="fas fa-clock"></i></div>
+              <div class="stat-value" id="ordStatPending">0</div>
+              <div class="stat-label">Pending</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-2">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#fd7e14;"><i class="fas fa-truck"></i></div>
+              <div class="stat-value" id="ordStatShipped">0</div>
+              <div class="stat-label">Shipped</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-2">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#198754;"><i class="fas fa-circle-check"></i></div>
+              <div class="stat-value" id="ordStatDelivered">0</div>
+              <div class="stat-label">Delivered</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-2">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#dc3545;"><i class="fas fa-ban"></i></div>
+              <div class="stat-value" id="ordStatCancelled">0</div>
+              <div class="stat-label">Cancelled</div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-2">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#6f42c1;"><i class="fas fa-sack-dollar"></i></div>
+              <div class="stat-value" id="ordStatRevenue">₹0</div>
+              <div class="stat-label">Total Revenue</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-table-card">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <h2 class="h5 mb-0">Order Management</h2>
+            <div class="d-flex gap-2 flex-wrap">
+              <input type="search" class="form-control form-control-sm" id="ordSearch"
+                placeholder="Search Order ID or Customer" style="max-width:230px;">
+              <select class="form-select form-select-sm" id="ordStatusFilter" style="max-width:180px;">
+                <option value="">All Status</option>
+                <option>Order Placed</option>
+                <option>Confirmed</option>
+                <option>Packed</option>
+                <option>Shipped</option>
+                <option>Out for Delivery</option>
+                <option>Delivered</option>
+                <option>Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Email</th>
+                  <th>Product</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                  <th>Order Date</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="ordTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ORDER VIEW/EDIT MODAL -->
+      <div class="modal fade" id="adminOrderModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title h5"><i class="fas fa-receipt"></i> Order <span id="aoOrderId"></span></h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <h6>Customer</h6>
+                  <p class="mb-0" id="aoCustomerName">—</p>
+                  <p class="mb-0" id="aoCustomerEmail">—</p>
+                  <p class="mb-0" id="aoAddress">—</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Order Info</h6>
+                  <p class="mb-0">Date: <span id="aoOrderDate">—</span></p>
+                  <p class="mb-0">Payment: <span id="aoPaymentMethod">—</span></p>
+                  <p class="mb-0">Tracking: <span id="aoTrackingNumber">—</span> via <span id="aoCourier">—</span></p>
+                </div>
+              </div>
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody id="aoProductsTable"></tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" class="text-end fw-bold">Total</td>
+                    <td class="fw-bold" id="aoTotal">—</td>
+                  </tr>
+                </tfoot>
+              </table>
+              <div class="mt-3">
+                <label class="form-label" for="aoStatusSelect">Update Status</label>
+                <select class="form-select" id="aoStatusSelect"></select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn-pet btn-pet-primary btn-pet-sm" id="aoSaveStatusBtn"><i
+                  class="fas fa-save"></i> Save Status</button>
+              <button type="button" class="btn-pet btn-pet-outline btn-pet-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APPOINTMENTS -->
+      <section class="admin-panel" id="panel-appointments">
+        <div class="admin-table-card">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <h2 class="h5 mb-0">Grooming Appointments</h2>
+            <select id="appointmentStatusFilter" class="form-select form-select-sm" style="max-width:220px;">
+              <option value="">All Status</option>
+              <option>Requested</option>
+              <option>Confirmed</option>
+              <option>Completed</option>
+              <option>Cancelled</option>
+            </select>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Pet</th>
+                  <th>Service</th>
+                  <th>Owner</th>
+                  <th>Phone</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACTIVITY -->
+      <section class="admin-panel" id="panel-activity">
+        <div class="admin-table-card">
+          <h2 class="h5 mb-3">Full Activity Log</h2>
+          <ul class="activity-feed" id="fullActivity" style="max-height:600px;"></ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/orders.js"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (async function () {
+      await PMAuth.ready;
+      PMAuth.requireAdmin('index.html'); // redirects non-admins away
+
+      const session = PMAuth.getSession();
+      if (!session || session.role !== 'admin') return; // redirect already triggered
+
+      document.getElementById('adminGate').classList.add('d-none');
+      document.getElementById('adminShell').classList.remove('d-none');
+      document.getElementById('adminWelcome').textContent = `Logged in as ${session.name} (${session.email})`;
+
+      PMOrders.syncCurrentUserFromSession();
+
+      function fmtMoney(n) {
+        return '₹' + Number(n || 0).toLocaleString('en-IN');
+      }
+      function fmtDate(iso) {
+        try { return new Date(iso).toLocaleString(); } catch (e) { return iso; }
+      }
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      /* ----------------------- panel navigation ----------------------- */
+      const titles = { overview: 'Overview', users: 'Manage Users', products: 'Manage Products', orders: 'Orders', activity: 'Activity Log' };
+      document.querySelectorAll('.nav-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById('panel-' + btn.dataset.panel).classList.add('active');
+          document.getElementById('panelTitle').textContent = titles[btn.dataset.panel];
+          renderAll();
+        });
+      });
+
+      document.getElementById('adminLogoutBtn').addEventListener('click', function () {
+        PMAuth.logout();
+        window.location.href = 'login.html';
+      });
+
+      const adminProfileForm = document.getElementById('adminProfileForm');
+      const adminProfileEditToggle = document.getElementById('adminProfileEditToggle');
+      const adminProfileCancelBtn = document.getElementById('adminProfileCancelBtn');
+
+      function renderAdminProfile() {
+        const profile = PMAuth.getCurrentUserProfile();
+        if (!profile) return;
+        document.getElementById('adminProfileName').textContent = profile.name || '—';
+        document.getElementById('adminProfileEmail').textContent = profile.email || '—';
+        document.getElementById('adminProfileRole').textContent = profile.role || 'admin';
+        document.getElementById('adminProfilePhone').textContent = profile.phone || '—';
+        document.getElementById('adminProfileAddress').textContent = profile.address || '—';
+
+        document.getElementById('adminProfileNameInput').value = profile.name || '';
+        document.getElementById('adminProfileEmailInput').value = profile.email || '';
+        document.getElementById('adminProfilePhoneInput').value = profile.phone || '';
+        document.getElementById('adminProfileAddressInput').value = profile.address || '';
+        document.getElementById('adminProfilePasswordInput').value = '';
+      }
+
+      adminProfileEditToggle.addEventListener('click', function () {
+        adminProfileForm.classList.remove('d-none');
+        document.getElementById('adminProfileNameInput').focus();
+      });
+      adminProfileCancelBtn.addEventListener('click', function () {
+        adminProfileForm.classList.add('d-none');
+        renderAdminProfile();
+      });
+      adminProfileForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        try {
+          await PMAuth.updateProfile({
+            name: document.getElementById('adminProfileNameInput').value,
+            email: document.getElementById('adminProfileEmailInput').value,
+            phone: document.getElementById('adminProfilePhoneInput').value,
+            address: document.getElementById('adminProfileAddressInput').value,
+            password: document.getElementById('adminProfilePasswordInput').value,
+          });
+          pmToast('Admin profile updated successfully.', 'success');
+          adminProfileForm.classList.add('d-none');
+          renderAdminProfile();
+          document.getElementById('adminWelcome').textContent = `Logged in as ${PMAuth.getSession().name} (${PMAuth.getSession().email})`;
+        } catch (err) {
+          pmToast(err.message, 'danger');
+        }
+      });
+
+      /* ----------------------------- render ---------------------------- */
+      function renderOverview() {
+        const s = PMAuth.stats();
+        document.getElementById('statUsers').textContent = s.totalUsers;
+        document.getElementById('statAdmins').textContent = s.totalAdmins;
+        document.getElementById('statProducts').textContent = s.totalProducts;
+        document.getElementById('statLowStock').textContent = s.lowStock;
+        document.getElementById('statOrders').textContent = s.totalOrders;
+        document.getElementById('statRevenue').textContent = fmtMoney(s.revenue);
+
+        renderActivityList('overviewActivity', PMAuth.listActivity(8));
+      }
+
+      function renderActivityList(elId, items) {
+        const el = document.getElementById(elId);
+        el.innerHTML = items.length ? items.map(function (a) {
+          return `<li><i class="fas fa-circle-dot mt-1" style="font-size:6px;color:#ff7a45;"></i>
+            <div><div>${escapeHtml(a.message)}</div><time>${fmtDate(a.at)}</time></div></li>`;
+        }).join('') : '<li class="text-muted">No activity yet.</li>';
+      }
+
+      function renderUsers(filter) {
+        filter = (filter || '').toLowerCase();
+        const users = PMAuth.listUsers().filter(function (u) {
+          return !filter || u.name.toLowerCase().includes(filter) || u.email.toLowerCase().includes(filter);
+        });
+        const body = document.getElementById('usersTableBody');
+        body.innerHTML = users.map(function (u) {
+          const isSelf = u.id === session.userId;
+          return `
+            <tr>
+              <td>${escapeHtml(u.name)}</td>
+              <td>${escapeHtml(u.email)}</td>
+              <td><span class="badge badge-role-${u.role}">${u.role}</span></td>
+              <td><span class="badge badge-status-${u.status}">${u.status}</span></td>
+              <td>${fmtDate(u.createdAt)}</td>
+              <td class="text-end">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-secondary" data-action="role" data-id="${u.id}" title="Toggle role" ${isSelf ? 'disabled' : ''}><i class="fas fa-user-tag"></i></button>
+                  <button class="btn btn-outline-secondary" data-action="status" data-id="${u.id}" title="Block/unblock" ${isSelf ? 'disabled' : ''}><i class="fas fa-ban"></i></button>
+                  <button class="btn btn-outline-danger" data-action="delete" data-id="${u.id}" title="Delete user" ${isSelf ? 'disabled' : ''}><i class="fas fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>`;
+        }).join('') || '<tr><td colspan="6" class="text-center text-muted py-4">No users found.</td></tr>';
+      }
+
+      document.getElementById('usersTableBody').addEventListener('click', function (e) {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const id = btn.dataset.id;
+        const action = btn.dataset.action;
+        const user = PMAuth.listUsers().find(u => u.id === id);
+        if (!user) return;
+
+        if (action === 'role') {
+          PMAuth.setUserRole(id, user.role === 'admin' ? 'customer' : 'admin');
+        } else if (action === 'status') {
+          PMAuth.setUserStatus(id, user.status === 'blocked' ? 'active' : 'blocked');
+        } else if (action === 'delete') {
+          if (confirm(`Delete account for ${user.email}? This cannot be undone.`)) {
+            PMAuth.deleteUser(id);
+          }
+        }
+        renderAll();
+      });
+
+      document.getElementById('userSearch').addEventListener('input', function (e) {
+        renderUsers(e.target.value);
+      });
+
+      function renderProducts() {
+        const products = PMAuth.listProducts();
+        const body = document.getElementById('productsTableBody');
+        body.innerHTML = products.map(function (p) {
+          return `
+            <tr>
+              <td>${escapeHtml(p.name)}</td>
+              <td>${escapeHtml(p.category)}</td>
+              <td>${fmtMoney(p.price)}</td>
+              <td>${p.stock <= 5 ? `<span class="text-danger fw-bold">${p.stock}</span>` : p.stock}</td>
+              <td><span class="badge badge-status-${p.status}">${p.status}</span></td>
+              <td class="text-end">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-secondary" data-action="edit" data-id="${p.id}"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-outline-danger" data-action="delete" data-id="${p.id}"><i class="fas fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>`;
+        }).join('') || '<tr><td colspan="6" class="text-center text-muted py-4">No products yet.</td></tr>';
+      }
+
+      const productFormCard = document.getElementById('productFormCard');
+      const productForm = document.getElementById('productForm');
+
+      document.getElementById('addProductBtn').addEventListener('click', function () {
+        productForm.reset();
+        document.getElementById('productId').value = '';
+        document.getElementById('productFormTitle').textContent = 'Add Product';
+        productFormCard.classList.remove('d-none');
+      });
+      document.getElementById('cancelProductBtn').addEventListener('click', function () {
+        productFormCard.classList.add('d-none');
+      });
+
+      document.getElementById('productsTableBody').addEventListener('click', function (e) {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const id = btn.dataset.id;
+        if (btn.dataset.action === 'delete') {
+          if (confirm('Delete this product?')) {
+            PMAuth.deleteProduct(id);
+            renderAll();
+          }
+        } else if (btn.dataset.action === 'edit') {
+          const p = PMAuth.listProducts().find(x => x.id === id);
+          if (!p) return;
+          document.getElementById('productId').value = p.id;
+          document.getElementById('productName').value = p.name;
+          document.getElementById('productCategory').value = p.category;
+          document.getElementById('productPrice').value = p.price;
+          document.getElementById('productStock').value = p.stock;
+          document.getElementById('productStatus').value = p.status;
+          document.getElementById('productFormTitle').textContent = 'Edit Product';
+          productFormCard.classList.remove('d-none');
+        }
+      });
+
+      productForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        PMAuth.saveProduct({
+          id: document.getElementById('productId').value || undefined,
+          name: document.getElementById('productName').value.trim(),
+          category: document.getElementById('productCategory').value.trim(),
+          price: parseFloat(document.getElementById('productPrice').value),
+          stock: parseInt(document.getElementById('productStock').value, 10),
+          status: document.getElementById('productStatus').value,
+        });
+        productFormCard.classList.add('d-none');
+        renderAll();
+      });
+
+      /* ------------------------- Order Management ------------------------ */
+      const adminOrderModalEl = document.getElementById('adminOrderModal');
+      const adminOrderModal = new bootstrap.Modal(adminOrderModalEl);
+
+      function ordStatusClass(status) {
+        return 'status-' + status.toLowerCase().replace(/[^a-z]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+
+      function renderOrderStats() {
+        const s = PMOrders.stats();
+        document.getElementById('ordStatTotal').textContent = s.total;
+        document.getElementById('ordStatPending').textContent = s.pending;
+        document.getElementById('ordStatShipped').textContent = s.shipped;
+        document.getElementById('ordStatDelivered').textContent = s.delivered;
+        document.getElementById('ordStatCancelled').textContent = s.cancelled;
+        document.getElementById('ordStatRevenue').textContent = PMOrders.money(s.revenue);
+      }
+
+      function renderOrders() {
+        renderOrderStats();
+
+        const search = document.getElementById('ordSearch').value.trim().toLowerCase();
+        const filter = document.getElementById('ordStatusFilter').value;
+        let orders = PMOrders.allOrders();
+
+        if (search) {
+          orders = orders.filter(o =>
+            o.orderId.toLowerCase().includes(search) ||
+            o.customerName.toLowerCase().includes(search)
+          );
+        }
+        if (filter) {
+          orders = orders.filter(o => o.status === filter);
+        }
+        orders = orders.slice().sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+
+        const body = document.getElementById('ordTableBody');
+        body.innerHTML = orders.map(function (o) {
+          const productSummary = o.products.map(p => `${escapeHtml(p.name)} (x${p.quantity})`).join(', ');
+          const totalQty = o.products.reduce((sum, p) => sum + p.quantity, 0);
+          return `
+            <tr>
+              <td><code>${o.orderId}</code></td>
+              <td>${escapeHtml(o.customerName)}</td>
+              <td>${escapeHtml(o.email)}</td>
+              <td>${productSummary}</td>
+              <td>${totalQty}</td>
+              <td>${PMOrders.money(o.total)}</td>
+              <td>${escapeHtml(o.paymentMethod)}</td>
+              <td>${o.orderDate}</td>
+              <td style="max-width:160px;" class="text-truncate" title="${escapeHtml(o.address)}">${escapeHtml(o.address)}</td>
+              <td><span class="status-badge ${ordStatusClass(o.status)}">${o.status}</span></td>
+              <td class="text-end">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-secondary" data-action="view" data-id="${o.orderId}" title="View / Update"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-outline-danger" data-action="delete" data-id="${o.orderId}" title="Delete order"><i class="fas fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>`;
+        }).join('') || '<tr><td colspan="11" class="text-center text-muted py-4">No orders found.</td></tr>';
+      }
+
+      function openOrderModal(orderId) {
+        const o = PMOrders.getOrder(orderId);
+        if (!o) return;
+        document.getElementById('aoOrderId').textContent = '#' + o.orderId;
+        document.getElementById('aoCustomerName').textContent = o.customerName;
+        document.getElementById('aoCustomerEmail').textContent = o.email;
+        document.getElementById('aoAddress').textContent = o.address;
+        document.getElementById('aoOrderDate').textContent = o.orderDate;
+        document.getElementById('aoPaymentMethod').textContent = o.paymentMethod;
+        document.getElementById('aoTrackingNumber').textContent = o.trackingNumber;
+        document.getElementById('aoCourier').textContent = o.courier;
+        document.getElementById('aoTotal').textContent = PMOrders.money(o.total);
+
+        document.getElementById('aoProductsTable').innerHTML = o.products.map(function (p) {
+          return `<tr><td>${escapeHtml(p.name)}</td><td>${p.quantity}</td><td>${PMOrders.money(p.price)}</td><td>${PMOrders.money(p.price * p.quantity)}</td></tr>`;
+        }).join('');
+
+        const statusSelect = document.getElementById('aoStatusSelect');
+        statusSelect.innerHTML = PMOrders.ALL_STATUSES.map(s => `<option value="${s}" ${s === o.status ? 'selected' : ''}>${s}</option>`).join('');
+
+        document.getElementById('aoSaveStatusBtn').dataset.id = o.orderId;
+        adminOrderModal.show();
+      }
+
+      document.getElementById('ordTableBody').addEventListener('click', function (e) {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const id = btn.dataset.id;
+        if (btn.dataset.action === 'view') {
+          openOrderModal(id);
+        } else if (btn.dataset.action === 'delete') {
+          if (confirm(`Delete order #${id}? This cannot be undone.`)) {
+            PMOrders.deleteOrder(id);
+            pmToast(`Order #${id} deleted.`, 'success');
+            renderAll();
+          }
+        }
+      });
+
+      document.getElementById('aoSaveStatusBtn').addEventListener('click', function () {
+        const id = this.dataset.id;
+        const newStatus = document.getElementById('aoStatusSelect').value;
+        try {
+          PMOrders.updateStatus(id, newStatus);
+          pmToast(`Order #${id} updated to "${newStatus}".`, 'success');
+          adminOrderModal.hide();
+          renderAll();
+        } catch (err) {
+          pmToast(err.message, 'danger');
+        }
+      });
+
+      document.getElementById('ordSearch').addEventListener('input', renderOrders);
+      document.getElementById('ordStatusFilter').addEventListener('change', renderOrders);
+
+      function apptStatusClass(status) {
+        return 'status-' + status.toLowerCase().replace(/[^a-z]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+
+      function renderAppointments() {
+        const search = document.getElementById('appointmentStatusFilter').value;
+        let appointments = PMOrders.listAppointments();
+
+        if (search) {
+          appointments = appointments.filter(a => a.status === search);
+        }
+
+        const body = document.getElementById('appointmentsTableBody');
+        body.innerHTML = appointments.map(function (a) {
+          return `
+            <tr>
+              <td><code>${escapeHtml(a.id)}</code></td>
+              <td>${escapeHtml(a.petName)} <small class="text-muted">(${escapeHtml(a.petType)})</small></td>
+              <td>${escapeHtml(a.service)}</td>
+              <td>${escapeHtml(a.ownerName)}</td>
+              <td>${escapeHtml(a.phone)}</td>
+              <td>${escapeHtml(a.appointmentDate)}</td>
+              <td><span class="status-badge ${apptStatusClass(a.status)}">${escapeHtml(a.status)}</span></td>
+              <td class="text-end">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-secondary" data-action="view-appointment" data-id="${escapeHtml(a.id)}" title="View / Update"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-outline-danger" data-action="delete-appointment" data-id="${escapeHtml(a.id)}" title="Delete booking"><i class="fas fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>`;
+        }).join('') || '<tr><td colspan="8" class="text-center text-muted py-4">No appointments found.</td></tr>';
+      }
+
+      document.getElementById('appointmentStatusFilter').addEventListener('change', renderAppointments);
+      document.getElementById('appointmentsTableBody').addEventListener('click', function (e) {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const id = btn.dataset.id;
+        if (btn.dataset.action === 'view-appointment') {
+          const appt = PMOrders.getAppointment(id);
+          if (!appt) return;
+          alert(`Booking ${appt.id}\nPet: ${appt.petName} (${appt.petType})\nService: ${appt.service}\nDate: ${appt.appointmentDate}\nOwner: ${appt.ownerName}\nPhone: ${appt.phone}\nStatus: ${appt.status}`);
+        } else if (btn.dataset.action === 'delete-appointment') {
+          if (confirm(`Delete booking ${id}? This cannot be undone.`)) {
+            PMOrders.deleteAppointment(id);
+            pmToast(`Appointment ${id} deleted.`, 'success');
+            renderAll();
+          }
+        }
+      });
+
+      function renderActivity() {
+        renderActivityList('fullActivity', PMAuth.listActivity(200));
+      }
+
+      renderAdminProfile();
+
+      function renderAll() {
+        renderOverview();
+        renderUsers(document.getElementById('userSearch').value);
+        renderProducts();
+        renderOrders();
+        renderAppointments();
+        renderActivity();
+      }
+
+      renderAll();
+    })();
+  </script>
+</body>
+
+</html>
