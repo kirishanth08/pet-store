@@ -77,3 +77,12 @@
 [dir="rtl"] .navbar-controls {
   flex-direction: row-reverse;
 }
+
+[dir="rtl"] .accordion-button {
+  text-align: right;
+}
+
+[dir="rtl"] .accordion-button::after {
+  margin-right: auto;
+  margin-left: 0;
+}

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta & SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PetsMart — Weekly deals, new arrivals, adoption spotlights and rewards for every pet parent. Discover what's new at your friendly neighbourhood pet shop.">
+  <title>PetsMart — Deals, New Arrivals &amp; Rewards | Home 2</title>
+  <link rel="canonical" href="https://www.petsmart-store.com/pages/home2.html">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/icons/favicon.svg">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="../assets/css/orders.css">
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "PetStore",
+    "name": "PetsMart",
+    "description": "Weekly deals, new arrivals, adoption spotlights, and a rewards club for pet parents.",
+    "url": "https://www.petsmart-store.com",
+    "telephone": "+1-555-PET-SHOP",
+    "email": "hello@petsmart-store.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Paw Street",
+      "addressLocality": "Petville",
+      "addressRegion": "CA",
+      "postalCode": "90210",
+      "addressCountry": "US"
+    },
+    "priceRange": "$$"
+  }
+  </script>
+  <script>
+      (function() {
+        const saved = localStorage.getItem('petshop-theme') || localStorage.getItem('theme');
+        const theme = saved || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        if (!saved) {
+          localStorage.setItem('petshop-theme', 'light');
+          localStorage.setItem('theme', 'light');
+        }
+      })();
+  </script>
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-pet" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-paw" aria-hidden="true"></i> PetsMart
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="home2.html">Home 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="pets-for-sale.html">Pets for Sale</a></li>
+          <li class="nav-item"><a class="nav-link" href="grooming.html">Grooming</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-controls ms-lg-3">
+          <a href="login.html" class="btn-pet btn-pet-outline btn-pet-sm me-2" id="navAuthLink">
+            <i class="fas fa-user" aria-hidden="true"></i> Login
+          </a>
+          <a href="checkout.html" class="cart-toggle me-2" id="navCartLink" aria-label="View cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="cart-badge d-none" id="navCartBadge">0</span>
+          </a>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="rtl-toggle" aria-label="Switch to RTL layout">
+            <i class="fas fa-align-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6 hero-content">
+            <span class="section-label">This Week at PetsMart</span>
+            <h1 id="hero-heading">New Arrivals, Big Deals, Happier Tails</h1>
+            <p class="hero-tagline">From fresh stock on shelves to pets waiting for a forever home, there's always something new to discover. Join the club and never miss a deal.</p>
+            <div class="hero-cta-group">
+              <a href="products.html" class="btn-pet btn-pet-primary">See This Week's Deals</a>
+              <a href="#rewards" class="btn-pet btn-pet-secondary">Join Rewards Club</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-image-wrapper">
+              <img src="../assets/images/hero-golden-retriever.webp" alt="Cheerful dog and cat sitting together in a bright store aisle" width="800" height="500" loading="eager">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weekly Deal Countdown -->
+    <section class="section-pet" aria-labelledby="deal-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Limited Time</span>
+          <h2 id="deal-heading">Flash Sale Ends Soon</h2>
+          <p>Save up to 25% storewide on food, toys, and accessories before the timer runs out.</p>
+        </div>
+        <div class="countdown" role="timer" aria-label="Sale ends in 2 days, 14 hours, 32 minutes">
+          <div class="countdown-item">
+            <span id="countDays">02</span>
+            <small>Days</small>
+          </div>
+          <div class="countdown-item">
+            <span id="countHours">14</span>
+            <small>Hours</small>
+          </div>
+          <div class="countdown-item">
+            <span id="countMinutes">32</span>
+            <small>Minutes</small>
+          </div>
+          <div class="countdown-item">
+            <span id="countSeconds">08</span>
+            <small>Seconds</small>
+          </div>
+        </div>
+        <div class="text-center">
+          <a href="products.html" class="btn-pet btn-pet-primary btn-pet-lg">Shop the Flash Sale</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="section-pet section-pet-alt" aria-labelledby="arrivals-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Fresh on the Shelf</span>
+          <h2 id="arrivals-heading">New Arrivals This Month</h2>
+          <p>The latest gear and treats our buyers just brought in — grab them before they're gone.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/gallery/Spacious Birds Cage.jpg" alt="Spacious wire bird cage with perches" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-bird position-absolute top-0 start-0 m-2">New</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Spacious Bird Cage</h3>
+                <p class="card-pet-price">$79.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/Daily Dog Vitamins.jpg" alt="Daily multivitamin chews for dogs" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-dog position-absolute top-0 start-0 m-2">New</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Daily Dog Vitamins</h3>
+                <p class="card-pet-price">$21.49</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/Plush Cat Bed.jpg" alt="Soft plush donut cat bed" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-cat position-absolute top-0 start-0 m-2">New</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Plush Cat Bed</h3>
+                <p class="card-pet-price">$28.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/Small pet exercise wheel.jpeg" alt="Exercise wheel for small pets" width="400" height="300" loading="lazy">
+                <span class="badge-pet badge-small position-absolute top-0 start-0 m-2">New</span>
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Small Pet Exercise Wheel</h3>
+                <p class="card-pet-price">$19.99</p>
+                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Adoption Spotlight -->
+    <section class="section-pet p-0" aria-label="Adoption Spotlight">
+      <div class="container-fluid p-0">
+        <div class="row g-0 align-items-center" style="background-color: var(--color-section); min-height: 350px;">
+          <div class="col-lg-6 p-5 p-md-5">
+            <span class="section-label mb-3 d-inline-block">Adoption Spotlight</span>
+            <h2 class="h1 mb-3" style="color: var(--color-text);">Give a Rescue a Second Chance</h2>
+            <p class="lead mb-4" style="color: var(--color-muted);">We partner with local shelters to help rescue dogs find loving homes. Every adoption includes a free starter kit and a free wellness check.</p>
+            <a href="pets-for-sale.html" class="btn-pet btn-pet-primary btn-pet-lg">Meet Adoptable Pets</a>
+          </div>
+          <div class="col-lg-6 p-5 p-md-5">
+            <img src="../assets/images/community-dog-adoption.webp" alt="Volunteer introducing a rescue dog to a new family at an adoption event" class="w-100" style="height: 300px; object-fit: cover; border-radius: 24px;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rewards Club -->
+    <section class="section-pet section-pet-alt" id="rewards" aria-labelledby="rewards-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Members Save More</span>
+          <h2 id="rewards-heading">Join the PetsMart Rewards Club</h2>
+          <p>Free to join — earn points on every purchase and unlock birthday treats for your pet.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <i class="fas fa-star" aria-hidden="true"></i>
+              <h3>Earn Points</h3>
+              <p>Get 1 point for every $1 spent, redeemable for future purchases.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <i class="fas fa-gift" aria-hidden="true"></i>
+              <h3>Birthday Treats</h3>
+              <p>A free gift for your pet on their special day, on us.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <i class="fas fa-bell" aria-hidden="true"></i>
+              <h3>Early Access</h3>
+              <p>Be the first to know about sales and new arrivals.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+              <h3>Give Back</h3>
+              <p>A portion of every membership fee supports local shelters.</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="register.html" class="btn-pet btn-pet-primary btn-pet-lg">Become a Member — It's Free</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- In-Store Experience -->
+    <section class="section-pet" aria-labelledby="store-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Visit Us</span>
+          <h2 id="store-heading">More Than a Store — A Community</h2>
+          <p>Stop by for expert advice, in-store events, and a genuinely warm welcome for you and your pet.</p>
+        </div>
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <img src="../assets/images/about-store-interior.webp" alt="Bright, welcoming interior of a PetsMart store with organized aisles" class="w-100" style="border-radius: 24px; object-fit: cover; height: 320px;">
+          </div>
+          <div class="col-lg-6">
+            <ul class="list-unstyled">
+              <li class="mb-3"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i>Free in-store nutrition consultations every weekend</li>
+              <li class="mb-3"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i>Monthly adoption days hosted with local shelters</li>
+              <li class="mb-3"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i>Kids' pet-care workshops on the first Saturday of every month</li>
+              <li class="mb-3"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i>Friendly staff on hand to answer any question, big or small</li>
+            </ul>
+            <a href="contact.html" class="btn-pet btn-pet-outline">Find Store Hours</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pet Care Tips / Blog Highlights -->
+    <section class="section-pet section-pet-alt" aria-labelledby="tips-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">From Our Blog</span>
+          <h2 id="tips-heading">Pet Care Tips You Can Use Today</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/Summer Safety Tips for Dogs.jpg" alt="Dog cooling off in the shade on a hot day" width="400" height="300" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Summer Safety Tips for Dogs</h3>
+                <a href="blog-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/Indoor Enrichment for Cats.jpg" alt="Cat playing on an indoor enrichment climbing tower" width="400" height="300" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Indoor Enrichment Ideas for Cats</h3>
+                <a href="blog-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-pet">
+              <div class="card-pet-image">
+                <img src="../assets/images/products/Setting Up Aquarium.jpg" alt="Freshly set up home aquarium with colourful fish" width="400" height="300" loading="lazy">
+              </div>
+              <div class="card-pet-body">
+                <h3 class="card-pet-title">Setting Up Your First Aquarium</h3>
+                <a href="blog-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- CTA Banner -->
+    <section class="section-pet section-pet-alt">
+      <div class="container">
+        <div class="cta-banner">
+          <h2>Download the PetsMart App</h2>
+          <p class="mb-4">Order refills, book grooming, and track rewards points — all from your phone.</p>
+          <a href="coming-soon.html" class="btn-pet btn-pet-outline">Get Notified at Launch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section" aria-labelledby="newsletter-heading">
+      <div class="container text-center">
+        <h2 id="newsletter-heading">Never Miss a Deal</h2>
+        <p>Sign up for weekly savings, new arrival alerts, and pet care tips.</p>
+        <form class="newsletter-form" action="https://YOUR-MAILCHIMP-URL.list-manage.com/subscribe/post" method="post" target="_blank" aria-label="Newsletter signup">
+          <input type="email" name="EMAIL" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit" class="btn-pet btn-pet-secondary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-pet" aria-label="Site footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h3 class="footer-logo"><i class="fas fa-paw" aria-hidden="true"></i> PetsMart</h3>
+          <p>Your trusted pet shop for supplies, companions, and grooming since 2010.</p>
+          <div class="footer-social mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="pets-for-sale.html">Pets for Sale</a></li>
+            <li><a href="grooming.html">Grooming</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="coming-soon.html">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123 Paw Street, Petville, CA 90210</li>
+            <li><a href="tel:+15557387467"><i class="fas fa-phone" aria-hidden="true"></i> (555) PET-SHOP</a></li>
+            <li><a href="mailto:hello@petsmart-store.com"><i class="fas fa-envelope" aria-hidden="true"></i> hello@petsmart-store.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PetsMart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="../assets/js/images.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/auth-ui.js"></script>
+  <script src="../assets/js/orders.js"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+const d=document.getElementById('countDays'),h=document.getElementById('countHours'),m=document.getElementById('countMinutes'),s=document.getElementById('countSeconds');
+if(!d||!h||!m||!s)return;
+const target=new Date();target.setDate(target.getDate()+2);
+function u(){const diff=target-new Date();if(diff<=0){[d,h,m,s].forEach(e=>e.textContent='00');clearInterval(i);return;}
+d.textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+h.textContent=String(Math.floor(diff/3600000)%24).padStart(2,'0');
+m.textContent=String(Math.floor(diff/60000)%60).padStart(2,'0');
+s.textContent=String(Math.floor(diff/1000)%60).padStart(2,'0');}
+u();const i=setInterval(u,1000);
+});
+</script>
+</body>
+</html>

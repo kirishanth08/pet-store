@@ -369,11 +369,35 @@ ul {
 
 @media (max-width: 1199.98px) {
   .navbar-pet .container {
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
   }
 
   .navbar-pet .nav-link {
-    padding-inline: var(--spacing-sm) !important;
+    padding-inline: 4px !important;
+    font-size: 0.85rem;
+  }
+
+  /* Tablet/small-desktop (992-1199px): logo + 8 nav links + auth/cart/theme
+     controls no longer fit on one row at full spacing, which was pushing the
+     controls off the right edge of the viewport. Tighten the gaps and
+     margins so everything lines up in a single row without overflowing. */
+  .navbar-pet .navbar-nav {
+    gap: 0;
+  }
+
+  .navbar-controls {
+    gap: 4px;
+  }
+
+  .navbar-controls > a,
+  .navbar-controls > button,
+  .navbar-controls .btn {
+    padding: 0 var(--spacing-sm) !important;
+  }
+
+  .navbar-controls #navAuthLink,
+  .navbar-controls .cart-toggle {
+    margin-right: 4px !important;
   }
 }
 
@@ -535,8 +559,8 @@ ul {
 .card-pet-image img {
   width: 100%;
   height: 220px;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center 25%;
   transition: var(--transition);
 }
 
@@ -697,6 +721,8 @@ ul {
   border: 1px solid var(--color-border);
   transition: var(--transition);
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .testimonial-card:hover {
@@ -714,7 +740,8 @@ ul {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
+  margin-top: auto;
+  padding-top: var(--spacing-lg);
 }
 
 .testimonial-avatar {
@@ -779,6 +806,23 @@ ul {
   margin-bottom: var(--spacing-md);
 }
 
+/* Footer logo: keep the same brand color and size as the header logo (.navbar-brand)
+   so the PetsMart wordmark is visually consistent site-wide, instead of blending
+   in with the plain white footer column headings. */
+.footer-pet h3.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-pet h3.footer-logo i {
+  color: var(--color-primary);
+}
+
 .footer-pet a {
   color: rgba(255, 255, 255, 0.8);
   transition: var(--transition);
@@ -787,6 +831,12 @@ ul {
 .footer-pet a:hover {
   color: var(--color-white);
   padding-left: var(--spacing-xs);
+}
+
+.footer-pet ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
 .footer-pet ul li {
@@ -929,7 +979,7 @@ ul {
 .product-gallery-main img {
   width: 100%;
   height: 400px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
@@ -941,7 +991,7 @@ ul {
 .product-thumbnails img {
   width: 80px;
   height: 80px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   background-color: var(--color-section, #f4f1ea);
   border-radius: var(--radius-sm);
@@ -1276,8 +1326,8 @@ ul {
 .gallery-grid img {
   width: 100%;
   height: 200px;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center 25%;
   background-color: var(--color-section, #f4f1ea);
   border-radius: var(--radius-md);
   transition: var(--transition);
@@ -1363,6 +1413,108 @@ ul {
   margin-bottom: var(--spacing-md);
 }
 
+/* Grooming Page — Redesigned Service Cards (image-led, equal height, bottom-aligned CTA) */
+.grooming-packages .row {
+  align-items: stretch;
+}
+
+.grooming-packages .service-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.grooming-packages .service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+.grooming-packages .service-card-img {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.grooming-packages .service-card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+}
+
+.grooming-packages .service-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.grooming-packages .service-card:hover .service-card-img img {
+  transform: scale(1.08);
+}
+
+.grooming-packages .service-price-badge {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  z-index: 2;
+  background-color: var(--color-white);
+  color: var(--color-secondary);
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  line-height: 1;
+  padding: 8px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+}
+
+.grooming-packages .service-card-body {
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.grooming-packages .service-card-body h3 {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grooming-packages .service-card-body > p {
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  /* Reserve space for exactly 3 lines so every card body is the same
+     height regardless of description length or which row it wraps
+     into — this is what keeps the CTA buttons aligned across the
+     whole grid, not just within a single Bootstrap row. */
+  min-height: calc(0.9375rem * 1.6 * 3);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.grooming-packages .service-card-body .btn-book-scroll {
+  margin-top: auto;
+  width: 100%;
+}
+
 /* Brand Cards */
 .brand-card {
   background-color: var(--color-white);
@@ -1372,6 +1524,9 @@ ul {
   text-align: center;
   transition: var(--transition);
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .brand-card:hover {
@@ -1381,23 +1536,56 @@ ul {
 }
 
 .brand-card-logo {
-  width: 80px;
-  height: 80px;
+  width: 88px;
+  height: 88px;
   background-color: var(--color-section);
+  border: 2px solid var(--color-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--spacing-md);
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   color: var(--color-primary);
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .brand-card:hover .brand-card-logo {
   background-color: var(--color-primary);
   color: var(--color-white);
+  transform: scale(1.06);
+}
+
+.brand-card-logo.brand-card-logo-img {
+  background-color: var(--color-white);
+  padding: var(--spacing-sm);
+}
+
+.brand-card-logo-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.brand-card:hover .brand-card-logo.brand-card-logo-img {
+  background-color: var(--color-white);
+  transform: scale(1.06);
+}
+
+.brand-card h3 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.brand-card p {
+  min-height: 3.2em;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.brand-card .btn-pet {
+  margin-top: auto;
 }
 
 /* Checklist */
@@ -1494,6 +1682,10 @@ ul {
     transform: none;
   }
 
+  .grooming-packages .service-card:hover .service-card-img img {
+    transform: none;
+  }
+
   .gallery-grid {
     grid-template-columns: 1fr;
   }
@@ -1521,4 +1713,129 @@ ul {
   .newsletter-form button {
     width: 100%;
   }
+}
+
+
+/* Global image fill fix */
+.card img,.card-img-top,.card-pet-image img,.product-card img,.blog-card img,.gallery-grid img,.team-card img{
+width:100%!important;
+height:100%!important;
+object-fit:cover!important;
+display:block;
+}
+/* Pet/team photos: keep faces & heads in frame instead of centering on the body */
+.card-pet-image img,.gallery-grid img,.team-card img{
+object-position:top center!important;
+}
+/* Product/blog photos: usually product-only shots, center works fine */
+.product-card img,.blog-card img{
+object-position:center!important;
+}
+.card-pet-image,.card .card-img-top,.product-card .card-img-top,.blog-card .card-img-top{overflow:hidden;height:260px!important;}
+.gallery-grid img{height:250px!important;}
+.team-card img{height:320px!important;}
+
+
+/* Image framing fixes */
+.card-pet-image{height:320px;overflow:hidden}
+.card-pet-image img{width:100%;height:100%;object-fit:cover;object-position:center 15%!important}
+.blog-card img,.card-img-top{object-fit:cover;object-position:center 20%!important}
+
+/* Header actions order: theme + rtl toggles first, Login and Cart moved to the end, Cart last */
+.navbar-controls{display:flex;align-items:center;gap:10px}
+.theme-toggle{order:1}
+.rtl-toggle{order:2}
+.navbar-controls #navAuthLink{order:3;background:var(--color-primary);color:#fff}
+.navbar-controls #navCartLink{order:4}
+
+/* Desktop nav (>=992px, matches Bootstrap's navbar-expand-lg breakpoint):
+   center the link list between the logo and the header actions.
+   Scoped to desktop only so it never fights Bootstrap's mobile collapse
+   (which must stay display:none until toggled) or pushes the hero down. */
+@media (min-width: 992px) {
+  .navbar-pet .navbar-collapse{
+    display:flex!important;
+    align-items:center;
+    flex: 1 1 auto;
+  }
+  .navbar-pet .navbar-nav{
+    gap:14px;
+    margin:0!important;
+    flex: 1 1 auto;
+    justify-content:center;
+  }
+  .navbar-controls{
+    flex-shrink: 0;
+  }
+}
+
+/* Mobile/tablet nav (<992px): open the menu as an overlay dropdown instead of
+   pushing the page content (hero section) downward when the hamburger is toggled. */
+@media (max-width: 991.98px) {
+  .navbar-pet {
+    position: relative;
+  }
+
+  .navbar-pet .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.12));
+    padding: var(--spacing-md) var(--spacing-lg);
+    max-height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    z-index: 999;
+  }
+
+  .navbar-controls{margin-left:0!important}
+}
+/* Hero + all primary CTAs follow the site's single --color-primary token for consistency */
+/* (no override here — .btn-pet-primary already uses var(--color-primary) from its base rule) */
+
+/* Top Categories circle icons: give every circle a soft, non-white backdrop so
+   product photos shot on a white/near-white background (e.g. Toys, Healthcare)
+   don't disappear into the light-theme section background. */
+.dept-icon-circle{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #eef3f7;
+  padding: 8px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dept-icon-circle img{
+  border-radius: 50%;
+}
+/* Override secondary button hover */
+.btn-pet.btn-pet-secondary:hover,
+a.btn-pet.btn-pet-secondary:hover {
+    background-color: var(--color-secondary-dark) !important;
+    color: var(--color-white) !important;
+    border-color: var(--color-secondary-dark) !important;
+    transform: scale(1.02);
+}
+/* ===============================
+   Mobile Navbar Fix
+================================= */
+@media (max-width: 768px) {
+    .navbar {
+        position: relative;
+        z-index: 1050;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 1040;
+        box-shadow: 0 8px 20px rgba(0,0,0,.1);
+    }
 }

@@ -1,5 +1,5 @@
 /**
- * Pet Shop & Pet Supplies Store â€” Main JavaScript
+ * Pet Shop & Pet Supplies Store — Main JavaScript
  * Dark mode toggle, RTL toggle, form validation
  */
 
@@ -1058,7 +1058,7 @@
           window.updateCartBadge();
         }
         if (typeof window.pmToast === 'function') {
-          window.pmToast(qty + ' Ã— ' + product.name + ' added to your cart.', 'success');
+          window.pmToast(qty + ' × ' + product.name + ' added to your cart.', 'success');
         }
       }
 

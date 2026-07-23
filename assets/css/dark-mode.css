@@ -83,6 +83,11 @@
   color: var(--color-text);
   border-color: var(--color-border);
 }
+[data-theme="dark"] .form-pet .form-select {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
 
 [data-theme="dark"] .badge-dog { background-color: rgba(21, 101, 192, 0.2); color: #64B5F6; }
 [data-theme="dark"] .badge-cat { background-color: rgba(123, 31, 162, 0.2); color: #CE93D8; }
@@ -191,4 +196,46 @@
   background-color: var(--color-section) !important;
   border-color: var(--color-border) !important;
   color: var(--color-text) !important;
+}
+
+/* ==========================================
+   Grooming - Fix Date Picker Calendar Icon
+   (single source of truth - do not duplicate
+   these rules elsewhere, conflicting opacity
+   values will hide the icon again)
+   ========================================== */
+
+.date-input-wrapper{position:relative;}
+
+/* Light mode (default, no data-theme attribute): keep the browser's
+   native dark icon, just make sure it's fully opaque and clickable. */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 1 !important;
+    cursor: pointer;
+}
+
+/* Dark mode: color-scheme:dark already makes the browser render the
+   native calendar icon in a light color automatically. Do NOT also
+   apply filter:invert() here - that flips the already-light icon back
+   to dark, which is what was making it invisible. */
+[data-theme="dark"] input[type="date"] {
+    color-scheme: dark;
+}
+
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 1 !important;
+    cursor: pointer;
+}
+
+/* ==========================================
+   Grooming FAQ - Accordion Arrow Dark Mode Fix
+   ========================================== */
+
+[data-theme="dark"] .accordion-button::after {
+    filter: brightness(0) invert(1) !important;
+    opacity: 1 !important;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1) !important;
 }

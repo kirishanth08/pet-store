@@ -59,6 +59,22 @@
     return sha256Hex(salt + ":" + password);
   }
 
+  /** Decode a JWT's payload without verifying it (verification, where
+   *  possible, is done separately — see loginWithGoogle). */
+  function decodeJwtPayload(token) {
+    const parts = String(token || "").split(".");
+    if (parts.length !== 3) throw new Error("Malformed token.");
+    const base64 = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+    const padded = base64.padEnd(base64.length + ((4 - (base64.length % 4)) % 4), "=");
+    const json = decodeURIComponent(
+      atob(padded)
+        .split("")
+        .map((c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"))
+        .join("")
+    );
+    return JSON.parse(json);
+  }
+
   function logActivity(message, meta) {
     const log = readJSON(ACTIVITY_KEY, []);
     log.unshift({
@@ -193,6 +209,129 @@
       };
       writeJSON(SESSION_KEY, session);
       logActivity(`${user.name} logged in`, { userId: user.id });
+      return this._publicUser(user);
+    },
+
+    /**
+     * Complete sign-in using a real Google ID token returned by Google
+     * Identity Services. The token is verified against Google's own
+     * servers (tokeninfo endpoint) so a forged/expired token is rejected
+     * even though this site has no backend of its own.
+     */
+    async loginWithGoogle(idToken) {
+      await this.ready;
+      if (!idToken) throw new Error("No credential returned by Google.");
+
+      const verifyRes = await fetch(
+        "https://oauth2.googleapis.com/tokeninfo?id_token=" + encodeURIComponent(idToken)
+      );
+      if (!verifyRes.ok) {
+        throw new Error("Google could not verify that sign-in. Please try again.");
+      }
+      const claims = await verifyRes.json();
+
+      const expectedAud = (window.PM_AUTH_CONFIG || {}).GOOGLE_CLIENT_ID;
+      if (expectedAud && claims.aud !== expectedAud) {
+        throw new Error("This sign-in was issued for a different site.");
+      }
+      if (claims.email_verified !== "true" && claims.email_verified !== true) {
+        throw new Error("Your Google email is not verified.");
+      }
+
+      return this._loginWithSocialProfile({
+        provider: "google",
+        providerId: claims.sub,
+        email: claims.email,
+        name: claims.name || claims.email,
+      });
+    },
+
+    /**
+     * Complete sign-in using the response from Apple's Sign in with Apple
+     * JS SDK. Apple only sends the user's name on the very first
+     * authorization, so it's passed in separately when available.
+     * NOTE: unlike Google's tokeninfo endpoint, there is no equivalent
+     * free public endpoint to verify an Apple id_token's signature from
+     * the browser — real signature verification requires a small backend
+     * that checks it against Apple's published JWKS keys. This still
+     * performs a genuine Apple sign-in (real account, real Apple-issued
+     * token); it is just not independently re-verified client-side.
+     */
+    async loginWithApple(idToken, appleName) {
+      await this.ready;
+      if (!idToken) throw new Error("No credential returned by Apple.");
+
+      const claims = decodeJwtPayload(idToken);
+      if (!claims || !claims.sub) throw new Error("Invalid response from Apple.");
+
+      const expectedAud = (window.PM_AUTH_CONFIG || {}).APPLE_CLIENT_ID;
+      if (expectedAud && claims.aud !== expectedAud) {
+        throw new Error("This sign-in was issued for a different site.");
+      }
+      if (claims.exp && Date.now() / 1000 > claims.exp) {
+        throw new Error("This sign-in has expired. Please try again.");
+      }
+
+      return this._loginWithSocialProfile({
+        provider: "apple",
+        providerId: claims.sub,
+        // Apple hides real emails behind a relay address unless the user
+        // opts to share it — either way this is the address to use.
+        email: claims.email || `${claims.sub}@appleid.privaterelay.local`,
+        name: appleName || (claims.email ? claims.email.split("@")[0] : "Apple User"),
+      });
+    },
+
+    /** Shared account-linking logic for social sign-in providers. */
+    async _loginWithSocialProfile({ provider, providerId, email, name }) {
+      email = String(email || "").trim().toLowerCase();
+      const users = readJSON(USERS_KEY, []);
+
+      let user = users.find(
+        (u) => u.provider === provider && u.providerId === providerId
+      );
+      if (!user) {
+        user = users.find((u) => u.email === email);
+      }
+
+      if (!user) {
+        user = {
+          id: uid("usr"),
+          name: name,
+          email: email,
+          provider: provider,
+          providerId: providerId,
+          salt: null,
+          hash: null,
+          role: "customer",
+          status: "active",
+          createdAt: new Date().toISOString(),
+          phone: "",
+          address: "",
+        };
+        users.push(user);
+        logActivity(`New account registered via ${provider}: ${email}`, { userId: user.id });
+      } else if (user.status === "blocked") {
+        throw new Error("This account has been blocked. Contact support.");
+      } else if (!user.provider) {
+        // Link the social identity to an existing email/password account.
+        user.provider = provider;
+        user.providerId = providerId;
+      }
+
+      writeJSON(USERS_KEY, users);
+
+      const session = {
+        userId: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        loginAt: new Date().toISOString(),
+        remember: true,
+        provider: provider,
+      };
+      writeJSON(SESSION_KEY, session);
+      logActivity(`${user.name} logged in via ${provider}`, { userId: user.id });
       return this._publicUser(user);
     },
 

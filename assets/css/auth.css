@@ -18,6 +18,21 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-primary, #00897B);
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+}
+
+.auth-logo:hover {
+  color: var(--color-secondary, #FF7043);
+}
+
 [data-theme="dark"] .auth-card {
   background: var(--card-bg, #1f2430);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
