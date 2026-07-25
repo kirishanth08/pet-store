@@ -568,8 +568,8 @@
       badge: 'Cats',
       badgeClass: 'badge-cat',
       price: '$39.99',
-      image: '../assets/images/products/plush-cat-bed-premium.webp',
-      thumbs: ['../assets/images/products/plush-cat-bed-premium.webp', '../assets/images/gallery/ragdoll-cat-portrait.webp', '../assets/images/gallery/persian-cat-portrait.webp', '../assets/images/products/Organic Cat Treats.jpg'],
+      image: '../assets/images/products/Plush Cat Bed.jpg',
+      thumbs: ['../assets/images/products/Plush Cat Bed.jpg', '../assets/images/products/plush-cat-bed-premium.webp', '../assets/images/gallery/ragdoll-cat-portrait.webp', '../assets/images/gallery/persian-cat-portrait.webp'],
       description: ['A soft cat bed with a washable cover for everyday comfort.', 'Perfect for window spots, bedrooms, or quiet corners.'],
       ingredients: 'Plush fabric, padded filling, and removable cover.',
       feeding: 'Wash cover regularly and place in a calm resting area.'
@@ -582,11 +582,25 @@
       badge: 'Birds',
       badgeClass: 'badge-bird',
       price: '$74.99',
-      image: '../assets/images/products/spacious-bird-cage-premium.webp',
-      thumbs: ['../assets/images/products/spacious-bird-cage-premium.webp', '../assets/images/gallery/parakeet-portrait.jpg', '../assets/images/gallery/cockatiel-portrait.webp', '../assets/images/products/bird-seed-premium.webp'],
+      image: '../assets/images/gallery/Spacious Birds Cage.jpg',
+      thumbs: ['../assets/images/gallery/Spacious Birds Cage.jpg', '../assets/images/products/spacious-bird-cage-premium.webp', '../assets/images/gallery/parakeet-portrait.jpg', '../assets/images/gallery/cockatiel-portrait.webp'],
       description: ['A spacious bird cage with perches, dishes, and easy-clean access.', 'Suitable for parakeets, cockatiels, and similar companion birds.'],
       ingredients: 'Powder-coated wire, plastic base, wooden perches, and feed cups.',
       feeding: 'Clean trays often and add toys for enrichment.'
+    },
+    'dog-vitamins': {
+      name: 'Daily Dog Vitamins',
+      title: 'Daily Dog Vitamins | PetsMart Product Details',
+      meta: 'Daily multivitamin chews for dogs.',
+      brand: 'Kong',
+      badge: 'Dogs',
+      badgeClass: 'badge-dog',
+      price: '$21.49',
+      image: '../assets/images/products/Daily Dog Vitamins.jpg',
+      thumbs: ['../assets/images/products/Daily Dog Vitamins.jpg', '../assets/images/products/pet-vitamins-premium.webp', '../assets/images/products/dog-vitamins.webp', '../assets/images/products/dog-food-bowl-premium.webp'],
+      description: ['Tasty daily multivitamin chews that support a dog\u2019s coat, joints, and immune health.', 'A simple way to round out mealtime nutrition for dogs of any age.'],
+      ingredients: 'Vitamin blend, glucosamine, omega oils, and natural chicken flavoring.',
+      feeding: 'Give one chew daily with food, or as advised by your veterinarian.'
     },
     'exercise-wheel': {
       name: 'Exercise Wheel & Tunnel Set',
@@ -596,8 +610,8 @@
       badge: 'Small Pets',
       badgeClass: 'badge-small',
       price: '$19.99',
-      image: '../assets/images/products/exercise-wheel-tunnel-premium.webp',
-      thumbs: ['../assets/images/products/exercise-wheel-tunnel-premium.webp', '../assets/images/gallery/guinea-pig-portrait.webp', '../assets/images/products/hay-bedding-bundle-premium.webp', '../assets/images/gallery/Holland Lop.jpg'],
+      image: '../assets/images/products/Small pet exercise wheel.jpeg',
+      thumbs: ['../assets/images/products/Small pet exercise wheel.jpeg', '../assets/images/products/exercise-wheel-tunnel-premium.webp', '../assets/images/gallery/guinea-pig-portrait.webp', '../assets/images/gallery/Holland Lop.jpg'],
       description: ['A small pet activity set for movement, hiding, and enrichment.', 'Great for creating a more interesting habitat.'],
       ingredients: 'Pet-safe plastic wheel and flexible tunnel.',
       feeding: 'Choose wheel size carefully and inspect parts during cleaning.'
@@ -612,7 +626,7 @@
       date: '2026-06-10',
       dateText: 'June 10, 2026',
       minutes: '6 min read',
-      image: '../assets/images/blog/dog-summer-safety.webp',
+      image: '../assets/images/products/Summer Safety Tips for Dogs.jpg',
       alt: 'Dog enjoying a summer walk',
       intro: 'Warm weather is wonderful for outdoor adventures, but dogs need extra care when temperatures rise.',
       sections: [
@@ -644,7 +658,7 @@
       date: '2026-05-28',
       dateText: 'May 28, 2026',
       minutes: '8 min read',
-      image: '../assets/images/products/aquarium-starter-kit-premium.webp',
+      image: '../assets/images/products/Setting Up Aquarium.jpg',
       alt: 'Aquarium starter kit with fish tank supplies',
       intro: 'A healthy aquarium starts before the first fish arrives. Good setup prevents stress and keeps water stable.',
       sections: [
@@ -686,14 +700,14 @@
       ]
     },
     'cat-enrichment': {
-      title: 'Indoor Cat Enrichment Ideas',
+      title: 'Indoor Enrichment Ideas for Cats',
       badge: 'Cats',
       badgeClass: 'badge-cat',
       date: '2026-05-12',
       dateText: 'May 12, 2026',
       minutes: '5 min read',
-      image: '../assets/images/Indoor Cat Enrichment Ideas.jpg',
-      alt: 'Cat scratching post and enrichment furniture',
+      image: '../assets/images/products/Indoor Enrichment for Cats.jpg',
+      alt: 'Cat playing on an indoor enrichment climbing tower',
       intro: 'Indoor cats need chances to climb, scratch, stalk, and rest in safe elevated places.',
       sections: [
         ['Create Vertical Space', 'Cat trees, shelves, and window perches give cats secure lookout spots.'],

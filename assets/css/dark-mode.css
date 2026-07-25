@@ -239,3 +239,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 [data-theme="dark"] .accordion-button:not(.collapsed)::after {
     filter: brightness(0) invert(1) !important;
 }
+/* ==========================================
+   Blog Details - Author Bio Card Dark Mode Fix
+   The .author-bio card keeps a hardcoded light
+   cream background (#fff8ef) even in dark mode,
+   so its text must stay dark to remain readable
+   instead of inheriting the light dark-mode text color.
+   ========================================== */
+
+[data-theme="dark"] .author-bio {
+    background: #fff8ef !important;
+}
+
+[data-theme="dark"] .author-bio h2,
+[data-theme="dark"] .author-bio p,
+[data-theme="dark"] .author-bio div {
+    color: #2D2D2D !important;
+}
+
+/* ==========================================
+   Bootstrap .text-muted Dark Mode Fix
+   Bootstrap's default .text-muted color is a dark
+   gray tuned for light backgrounds, so it becomes
+   nearly invisible on dark-mode card/section
+   backgrounds (e.g. About page service cards).
+   Point it at our theme's muted color instead.
+   ========================================== */
+
+[data-theme="dark"] .text-muted {
+  color: var(--color-muted) !important;
+}

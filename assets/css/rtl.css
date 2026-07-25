@@ -86,3 +86,16 @@
   margin-right: auto;
   margin-left: 0;
 }
+
+/* ============================================
+   RTL Dropdown Fix
+   ============================================ */
+
+[dir="rtl"] .form-select,
+[dir="rtl"] select {
+    direction: rtl;
+    text-align: right;
+    background-position: left 0.75rem center !important;
+    padding-left: 2.5rem !important;
+    padding-right: 1rem !important;
+}

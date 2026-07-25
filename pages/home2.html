@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="../assets/css/rtl.css">
   <link rel="stylesheet" href="../assets/css/auth.css">
   <link rel="stylesheet" href="../assets/css/orders.css">
+  <!-- Home 2 "Deals" theme — visually distinguishes this page from the main Home -->
+  <link rel="stylesheet" href="../assets/css/home2-theme.css">
 
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
@@ -57,9 +59,23 @@
       })();
   </script>
 </head>
-<body>
+<body class="home2-page">
   <!-- Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Deals Ticker -->
+  <div class="deals-ticker" aria-hidden="true">
+    <div class="deals-ticker-track">
+      <span>🔥 Flash Sale — Up to 25% Off Storewide</span>
+      <span>🐾 New Arrivals Just Landed</span>
+      <span>⭐ Join Rewards &amp; Earn Points on Every Order</span>
+      <span>🚚 Free Delivery Over $50</span>
+      <span>🔥 Flash Sale — Up to 25% Off Storewide</span>
+      <span>🐾 New Arrivals Just Landed</span>
+      <span>⭐ Join Rewards &amp; Earn Points on Every Order</span>
+      <span>🚚 Free Delivery Over $50</span>
+    </div>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-pet" aria-label="Main navigation">
@@ -119,6 +135,7 @@
           <div class="col-lg-6">
             <div class="hero-image-wrapper">
               <img src="../assets/images/hero-golden-retriever.webp" alt="Cheerful dog and cat sitting together in a bright store aisle" width="800" height="500" loading="eager">
+              <span class="hero-sale-sticker" aria-hidden="true">Up to<br><strong>25% OFF</strong></span>
             </div>
           </div>
         </div>
@@ -175,7 +192,7 @@
               <div class="card-pet-body">
                 <h3 class="card-pet-title">Spacious Bird Cage</h3>
                 <p class="card-pet-price">$79.99</p>
-                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                <a href="product-details.html?product=bird-cage" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
               </div>
             </article>
           </div>
@@ -188,7 +205,7 @@
               <div class="card-pet-body">
                 <h3 class="card-pet-title">Daily Dog Vitamins</h3>
                 <p class="card-pet-price">$21.49</p>
-                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                <a href="product-details.html?product=dog-vitamins" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
               </div>
             </article>
           </div>
@@ -201,7 +218,7 @@
               <div class="card-pet-body">
                 <h3 class="card-pet-title">Plush Cat Bed</h3>
                 <p class="card-pet-price">$28.99</p>
-                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                <a href="product-details.html?product=cat-bed" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
               </div>
             </article>
           </div>
@@ -214,7 +231,7 @@
               <div class="card-pet-body">
                 <h3 class="card-pet-title">Small Pet Exercise Wheel</h3>
                 <p class="card-pet-price">$19.99</p>
-                <a href="product-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
+                <a href="product-details.html?product=exercise-wheel" class="btn-pet btn-pet-primary btn-pet-sm w-100">View</a>
               </div>
             </article>
           </div>
@@ -323,7 +340,7 @@
               </div>
               <div class="card-pet-body">
                 <h3 class="card-pet-title">Summer Safety Tips for Dogs</h3>
-                <a href="blog-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
+                <a href="blog-details.html?post=summer-dog-safety" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
               </div>
             </article>
           </div>
@@ -334,7 +351,7 @@
               </div>
               <div class="card-pet-body">
                 <h3 class="card-pet-title">Indoor Enrichment Ideas for Cats</h3>
-                <a href="blog-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
+                <a href="blog-details.html?post=cat-enrichment" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
               </div>
             </article>
           </div>
@@ -345,7 +362,7 @@
               </div>
               <div class="card-pet-body">
                 <h3 class="card-pet-title">Setting Up Your First Aquarium</h3>
-                <a href="blog-details.html" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
+                <a href="blog-details.html?post=first-aquarium" class="btn-pet btn-pet-primary btn-pet-sm w-100">Read More</a>
               </div>
             </article>
           </div>
