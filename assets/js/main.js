@@ -71,14 +71,19 @@
   /* ---- RTL Toggle ---- */
   const rtlToggles = document.querySelectorAll('.rtl-toggle');
 
-  if (rtlToggles.length) {
-    const savedDir = localStorage.getItem('petshop-dir');
-    if (savedDir === 'rtl') {
-      htmlEl.setAttribute('dir', 'rtl');
-      htmlEl.setAttribute('lang', 'ar');
-      updateRtlIcons(true);
-    }
+  // Apply the saved direction preference on every page, even ones (like the
+  // admin login page) that don't render a .rtl-toggle button themselves.
+  // Previously this whole block — including reading the saved preference —
+  // lived inside `if (rtlToggles.length)`, so pages without a toggle button
+  // never picked up dir="rtl" set from elsewhere on the site.
+  const savedDir = localStorage.getItem('petshop-dir');
+  if (savedDir === 'rtl') {
+    htmlEl.setAttribute('dir', 'rtl');
+    htmlEl.setAttribute('lang', 'ar');
+    updateRtlIcons(true);
+  }
 
+  if (rtlToggles.length) {
     rtlToggles.forEach(function (toggle) {
       toggle.addEventListener('click', function () {
         const isRtl = htmlEl.getAttribute('dir') === 'rtl';
@@ -235,8 +240,8 @@
       colour: 'Golden',
       price: '$850',
       type: 'dog',
-      image: '../assets/images/gallery/golden-retriever-portrait.webp',
-      thumbs: ['../assets/images/gallery/golden-retriever-portrait.webp', '../assets/images/hero/hero-banner.webp', '../assets/images/gallery/beagle-puppy-portrait.webp'],
+      image: '../assets/images/gallery/golden-retriever-photo.webp',
+      thumbs: ['../assets/images/gallery/golden-retriever-photo.webp'],
       about: 'Max is a playful and affectionate Golden Retriever puppy raised in a loving home environment. He is socialised with children and other dogs, crate-trained, and ready to join his forever family.',
       personality: 'Curious, gentle, and eager to please. Max loves fetch, belly rubs, and nap time in sunny spots.',
       care: 'Golden Retrievers need daily exercise and regular brushing. Feed a premium puppy food three times daily until six months old.'
@@ -252,7 +257,7 @@
       price: '$650',
       type: 'cat',
       image: '../assets/images/gallery/ragdoll-cat-portrait.webp',
-      thumbs: ['../assets/images/gallery/ragdoll-cat-portrait.webp', '../assets/images/gallery/persian-cat-portrait.webp', '../assets/images/products/plush-cat-bed-premium.webp', '../assets/images/Indoor Cat Enrichment Ideas.jpg'],
+      thumbs: ['../assets/images/gallery/ragdoll-cat-portrait.webp'],
       about: 'Luna is a calm, affectionate British Shorthair who enjoys quiet company, soft beds, and gentle play.',
       personality: 'Easygoing, tidy, and affectionate on her own schedule. Luna is ideal for a peaceful home.',
       care: 'Brush weekly, offer enrichment toys, and keep her feeding routine consistent with high-quality cat food.'
@@ -268,7 +273,7 @@
       price: '$25',
       type: 'fish',
       image: '../assets/images/gallery/nemo.jpg',
-      thumbs: ['../assets/images/gallery/nemo.jpg', '../assets/images/products/aquarium-starter-kit-premium.webp', '../assets/images/products/tropical-fish-flakes-premium.webp'],
+      thumbs: ['../assets/images/gallery/nemo.jpg'],
       about: 'Splash is an active Betta with bright colour and confident movement, best suited to a filtered, heated tank.',
       personality: 'Alert, curious, and interactive at feeding time.',
       care: 'Keep him in a cycled aquarium with warm water, gentle filtration, and measured feeding.'
@@ -283,8 +288,8 @@
       colour: 'Green and yellow',
       price: '$120',
       type: 'bird',
-      image: '../assets/images/gallery/parakeet-portrait.jpg',
-      thumbs: ['../assets/images/gallery/parakeet-portrait.jpg', '../assets/images/gallery/cockatiel-portrait.webp', '../assets/images/products/spacious-bird-cage-premium.webp', '../assets/images/products/bird-seed-premium.webp'],
+      image: '../assets/images/parakeet-portrait.jpg',
+      thumbs: ['../assets/images/parakeet-portrait.jpg'],
       about: 'Kiwi is a bright, social parakeet who enjoys gentle handling, climbing, and soft chatter.',
       personality: 'Lively, observant, and happiest with daily attention.',
       care: 'Provide a spacious cage, varied perches, clean water, seed mix, greens, and supervised out-of-cage time.'
@@ -300,7 +305,7 @@
       price: '$95',
       type: 'small',
       image: '../assets/images/gallery/Holland Lop.jpg',
-      thumbs: ['../assets/images/gallery/Holland Lop.jpg', '../assets/images/products/hay-bedding-bundle-premium.webp', '../assets/images/products/exercise-wheel-tunnel-premium.webp', '../assets/images/gallery/guinea-pig-portrait.webp'],
+      thumbs: ['../assets/images/gallery/Holland Lop.jpg'],
       about: 'Cotton is a soft, gentle rabbit who enjoys fresh hay, quiet handling, and room to hop.',
       personality: 'Sweet, curious, and calm once comfortable.',
       care: 'Give unlimited hay, daily greens, safe chew toys, and a roomy enclosure with exercise time.'
@@ -316,7 +321,7 @@
       price: '$720',
       type: 'dog',
       image: '../assets/images/gallery/beagle-puppy-portrait.webp',
-      thumbs: ['../assets/images/gallery/beagle-puppy-portrait.webp', '../assets/images/gallery/golden-retriever-portrait.webp', '../assets/images/products/adjustable-dog-leash-premium.webp'],
+      thumbs: ['../assets/images/gallery/beagle-puppy-portrait.webp'],
       about: 'Buddy is a cheerful Beagle puppy who loves sniffing games, toys, and being part of family activity.',
       personality: 'Friendly, food-motivated, and adventurous.',
       care: 'Beagles need daily walks, scent games, positive training, and secure outdoor spaces.'
@@ -332,7 +337,7 @@
       price: '$900',
       type: 'dog',
       image: '../assets/images/gallery/german-shepherd-portrait.webp',
-      thumbs: ['../assets/images/gallery/german-shepherd-portrait.webp', '../assets/images/products/adjustable-dog-leash-premium.webp', '../assets/images/products/durable-chew-toy-premium.webp', '../assets/images/services/pet-grooming-tools.webp'],
+      thumbs: ['../assets/images/gallery/german-shepherd-portrait.webp'],
       about: 'Rocky is alert, confident, and quick to learn, ideal for a family ready to continue structured training.',
       personality: 'Loyal, intelligent, and energetic.',
       care: 'Plan daily exercise, early socialisation, obedience training, and regular coat brushing.'
@@ -348,7 +353,7 @@
       price: '$550',
       type: 'cat',
       image: '../assets/images/gallery/persian-cat-portrait.webp',
-      thumbs: ['../assets/images/gallery/persian-cat-portrait.webp', '../assets/images/gallery/ragdoll-cat-portrait.webp', '../assets/images/products/plush-cat-bed-premium.webp', '../assets/images/products/Organic Cat Treats.jpg'],
+      thumbs: ['../assets/images/gallery/persian-cat-portrait.webp'],
       about: 'Bella is a quiet, affectionate Persian who enjoys relaxed homes and cosy resting spots.',
       personality: 'Gentle, sweet, and calm.',
       care: 'Persians need daily brushing, regular eye cleaning, and quality food to support coat health.'
@@ -364,7 +369,7 @@
       price: '$35',
       type: 'fish',
       image: '../assets/images/gallery/betta-fish.webp',
-      thumbs: ['../assets/images/gallery/betta-fish.webp', '../assets/images/products/aquarium-starter-kit-premium.webp', '../assets/images/products/tropical-fish-flakes-premium.webp'],
+      thumbs: ['../assets/images/gallery/betta-fish.webp'],
       about: 'Nemo is a lively clownfish suitable for a mature saltwater aquarium with stable water parameters.',
       personality: 'Active, bold, and fun to watch.',
       care: 'Maintain marine water quality, avoid overfeeding, and introduce tank mates carefully.'
@@ -379,8 +384,8 @@
       colour: 'Grey and yellow',
       price: '$150',
       type: 'bird',
-      image: '../assets/images/gallery/cockatiel-portrait.webp',
-      thumbs: ['../assets/images/gallery/cockatiel-portrait.webp', '../assets/images/gallery/parakeet-portrait.jpg', '../assets/images/products/spacious-bird-cage-premium.webp', '../assets/images/products/bird-seed-premium.webp'],
+      image: '../assets/images/gallery/rio.jpg',
+      thumbs: ['../assets/images/gallery/rio.jpg'],
       about: 'Rio is a friendly cockatiel with a soft whistle and an outgoing personality.',
       personality: 'Social, vocal, and curious.',
       care: 'Offer daily interaction, a varied diet, clean cage space, and safe chewable toys.'
@@ -396,7 +401,7 @@
       price: '$45',
       type: 'small',
       image: '../assets/images/gallery/guinea-pig-portrait.webp',
-      thumbs: ['../assets/images/gallery/guinea-pig-portrait.webp', '../assets/images/products/hay-bedding-bundle-premium.webp', '../assets/images/gallery/Holland Lop.jpg', '../assets/images/products/exercise-wheel-tunnel-premium.webp'],
+      thumbs: ['../assets/images/gallery/guinea-pig-portrait.webp'],
       about: 'Peanut is a gentle guinea pig who enjoys fresh hay, cosy hideouts, and careful handling.',
       personality: 'Sweet, vocal at feeding time, and relaxed with patient owners.',
       care: 'Provide unlimited hay, vitamin C-rich vegetables, clean bedding, and a roomy habitat.'
@@ -412,7 +417,7 @@
       price: '$600',
       type: 'dog',
       image: '../assets/images/labrador retriever.jpg',
-      thumbs: ['../assets/images/labrador retriever.jpg', '../assets/images/products/durable-chew-toy-premium.webp', '../assets/images/products/adjustable-dog-leash-premium.webp', '../assets/images/services/pet-spa-golden-retriever.webp'],
+      thumbs: ['../assets/images/labrador retriever.jpg'],
       about: 'Daisy is an affectionate adult Labrador who loves people, walks, and gentle play.',
       personality: 'Loving, steady, and social.',
       care: 'Maintain daily exercise, measured meals, and regular grooming to keep her healthy.'
@@ -429,7 +434,7 @@
       badgeClass: 'badge-dog',
       price: '$49.99',
       image: '../assets/images/products/Premium Dry Dog Food.jpg',
-      thumbs: ['../assets/images/products/Premium Dry Dog Food.jpg', '../assets/images/gallery/golden-retriever-portrait.webp', '../assets/images/products/dog-food-bowl-premium.webp'],
+      thumbs: ['../assets/images/products/Premium Dry Dog Food.jpg', '../assets/images/gallery/golden-retriever-photo.webp', '../assets/images/products/dog-food-bowl-premium.webp'],
       description: ['Complete dry dog food with quality protein and balanced nutrients for adult dogs.', 'Crunchy kibble supports daily feeding routines and helps keep mealtime simple.'],
       ingredients: 'Chicken meal, rice, poultry fat, vitamins, minerals, omega oils, and probiotics.',
       feeding: 'Feed according to your dog weight and activity level. Always provide fresh water.'
@@ -626,8 +631,8 @@
       date: '2026-06-10',
       dateText: 'June 10, 2026',
       minutes: '6 min read',
-      image: '../assets/images/products/Summer Safety Tips for Dogs.jpg',
-      alt: 'Dog enjoying a summer walk',
+      image: '../assets/images/blog/dog-summer-safety.webp',
+      alt: 'Golden retriever playing outdoors in summer',
       intro: 'Warm weather is wonderful for outdoor adventures, but dogs need extra care when temperatures rise.',
       sections: [
         ['Walk at Cooler Times', 'Plan walks in the early morning or evening, when pavement is cooler and shade is easier to find.'],
@@ -642,8 +647,8 @@
       date: '2026-06-05',
       dateText: 'June 5, 2026',
       minutes: '7 min read',
-      image: '../assets/images/products/Organic Cat Treats.jpg',
-      alt: 'Cat food and treats for healthy feeding',
+      image: '../assets/images/Understanding cat Nutrients.jpg',
+      alt: 'Cat eating from a bowl of nutritious food',
       intro: 'Cats are obligate carnivores, which means their meals should be built around animal protein and balanced nutrients.',
       sections: [
         ['Protein First', 'Choose cat food with quality animal protein and taurine to support heart, eye, and muscle health.'],
@@ -658,8 +663,8 @@
       date: '2026-05-28',
       dateText: 'May 28, 2026',
       minutes: '8 min read',
-      image: '../assets/images/products/Setting Up Aquarium.jpg',
-      alt: 'Aquarium starter kit with fish tank supplies',
+      image: '../assets/images/Setting Up Your First Aquarium.jpg',
+      alt: 'Colourful tropical fish in a home aquarium',
       intro: 'A healthy aquarium starts before the first fish arrives. Good setup prevents stress and keeps water stable.',
       sections: [
         ['Cycle the Tank', 'Run filtration and establish beneficial bacteria before adding fish. Test water during the process.'],
@@ -674,7 +679,7 @@
       date: '2026-05-20',
       dateText: 'May 20, 2026',
       minutes: '6 min read',
-      image: '../assets/images/gallery/parakeet-portrait.jpg',
+      image: '../assets/images/parent-essentials.jpeg',
       alt: 'Green parakeet perched on a branch',
       intro: 'Parakeets are social, clever birds that thrive with space, enrichment, and consistent gentle handling.',
       sections: [
@@ -690,8 +695,8 @@
       date: '2026-05-15',
       dateText: 'May 15, 2026',
       minutes: '7 min read',
-      image: '../assets/images/gallery/golden-retriever-portrait.webp',
-      alt: 'Puppy during training session',
+      image: '../assets/images/Puppy Training Basics.jpg',
+      alt: 'Puppy learning basic obedience training',
       intro: 'Early training gives puppies confidence, structure, and a strong bond with their families.',
       sections: [
         ['Reward Good Choices', 'Use treats, praise, and play to reward behaviours you want your puppy to repeat.'],
@@ -706,8 +711,8 @@
       date: '2026-05-12',
       dateText: 'May 12, 2026',
       minutes: '5 min read',
-      image: '../assets/images/products/Indoor Enrichment for Cats.jpg',
-      alt: 'Cat playing on an indoor enrichment climbing tower',
+      image: '../assets/images/Indoor Cat Enrichment Ideas.jpg',
+      alt: 'Indoor cat playing with enrichment toys',
       intro: 'Indoor cats need chances to climb, scratch, stalk, and rest in safe elevated places.',
       sections: [
         ['Create Vertical Space', 'Cat trees, shelves, and window perches give cats secure lookout spots.'],

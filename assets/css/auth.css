@@ -113,7 +113,7 @@
 
 .admin-sidebar .admin-brand {
   font-family: "Fredoka One", cursive;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -295,4 +295,15 @@
   .admin-main {
     padding: 1.25rem 1rem 2.5rem;
   }
+}
+
+/* Alt-action prompt ("Don't have an account? Sign up" / "Already have an
+   account? Log in") — flex row, centered. Forced to direction: ltr so the
+   text/link order stays the same in both RTL and LTR modes. */
+.auth-alt-action {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  direction: ltr;
 }

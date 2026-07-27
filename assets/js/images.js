@@ -11,7 +11,7 @@
     default: '../assets/images/hero/hero-banner.webp',
     fallback: FALLBACK_IMAGE,
     product: '../assets/images/products/dry-dog-food-premium.webp',
-    pet: '../assets/images/gallery/golden-retriever-portrait.webp',
+    pet: '../assets/images/gallery/golden-retriever-photo.webp',
     blog: '../assets/images/blog/dog-summer-safety.webp',
     grooming: '../assets/images/services/pet-grooming-tools.webp',
     gallery: '../assets/images/products/dog-food-kibble-premium.webp',

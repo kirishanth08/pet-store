@@ -2,69 +2,17 @@
    Home 2 — "Deals & Rewards" Theme
    Scoped entirely under body.home2-page so it never affects
    the main Home page or any other page on the site.
-   Strategy: re-point the shared design-system's CSS custom
-   properties to a hotter, high-energy palette (most components
-   in style.css already read from these variables), then layer
-   a handful of page-specific flourishes (ticker, sticker,
-   countdown, pill buttons) that only exist on this page.
+   Strategy: Home 2 now shares Home 1's teal/orange palette
+   (no custom color-variable overrides), and only keeps the
+   page-specific flourishes (ticker, sticker, countdown, pill
+   buttons) — recolored to use that same teal/orange palette
+   instead of its previous rose/gold identity.
    ============================================================ */
-
-/* ---- 1. Re-themed palette: rose/red + gold, vs. Home 1's teal/orange ----
-   Light mode (default): warm cream page with rose/gold accents.
-   Dark mode: see the `[data-theme="dark"] body.home2-page` block below,
-   which repoints the same variables to a dark rose/plum palette so the
-   page actually goes dark (and stays readable) when the site-wide dark
-   mode toggle is switched on — only the navbar stays dark in both
-   themes, since that's what makes the "deals zone" pop even in light
-   mode. ---- */
-body.home2-page {
-  --color-primary: #E11D48;
-  --color-primary-dark: #9F1239;
-  --color-secondary: #F59E0B;
-  --color-secondary-dark: #B45309;
-  --color-section: #FDECEA;
-  --color-bg: #FFFDF7;
-  --color-border: #E0E0E0;
-  --color-text: #2D2D2D;
-  --color-muted: #6B6B6B;
-}
-
-/* ---- 1b. Dark mode override for Home 2 ----
-   Re-points the same variables to a dark, warm rose/plum palette instead
-   of inheriting the site-wide navy dark theme, so Home 2 keeps its own
-   identity even at night. Card/box components on this page (.card-pet,
-   .icon-box, .testimonial-card) normally read their background from
-   --color-white, which the global dark theme sets to a light off-white
-   (#E8E8E8) — meant to work as "light text on a colored band" elsewhere,
-   but here it would leave near-white text (from --color-text below)
-   sitting on a near-white card. Those components are re-pointed to
-   --color-section instead so text stays clearly visible. ---- */
-[data-theme="dark"] body.home2-page {
-  --color-primary: #FB7185;
-  --color-primary-dark: #E11D48;
-  --color-secondary: #FBBF24;
-  --color-secondary-dark: #F59E0B;
-  --color-bg: #1E1420;
-  --color-section: #2E1B26;
-  --color-border: #4A2E40;
-  --color-text: #F5EFEC;
-  --color-muted: #CBB8C4;
-}
-
-[data-theme="dark"] body.home2-page .card-pet,
-[data-theme="dark"] body.home2-page .icon-box,
-[data-theme="dark"] body.home2-page .testimonial-card {
-  background-color: var(--color-section);
-}
-
-[data-theme="dark"] body.home2-page .card-pet-image {
-  background-color: var(--color-bg);
-}
 
 /* ---- 2. Deals ticker (unique to Home 2, sits above the navbar) ---- */
 .deals-ticker {
-  background-color: #1F2937;
-  color: #FCD34D;
+  background-color: var(--color-primary-dark);
+  color: #FFFFFF;
   overflow: hidden;
   white-space: nowrap;
   position: relative;
@@ -96,87 +44,9 @@ body.home2-page {
   }
 }
 
-/* ---- 3. Dark navbar exclusively on Home 2, so the "deals zone" reads instantly ---- */
-body.home2-page .navbar-pet {
-  background-color: #1F2937;
-}
-
-body.home2-page .navbar-pet .navbar-brand {
-  color: #FCD34D !important;
-}
-
-body.home2-page .navbar-pet .nav-link {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-body.home2-page .navbar-pet .nav-link:hover,
-body.home2-page .navbar-pet .nav-link.active {
-  color: #FCD34D !important;
-}
-
-body.home2-page .navbar-pet .nav-link::after {
-  background-color: #FCD34D;
-}
-
-body.home2-page .navbar-toggler-icon {
-  filter: invert(1);
-}
-
-/* ---- 3b. Nav icon buttons (moon, RTL, cart) + Login pill: the navbar is
-   permanently dark on Home 2, but these controls normally pick up
-   --color-text / --color-border, which stay dark in light theme — making
-   them invisible against the dark bar. Pin them to a light, theme-proof
-   color here so they read the same whether the site is in light or dark
-   mode. ---- */
-body.home2-page .navbar-pet .theme-toggle,
-body.home2-page .navbar-pet .rtl-toggle,
-body.home2-page .navbar-pet .cart-toggle {
-  color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-body.home2-page .navbar-pet .theme-toggle:hover,
-body.home2-page .navbar-pet .rtl-toggle:hover,
-body.home2-page .navbar-pet .cart-toggle:hover {
-  color: #FCD34D;
-  border-color: #FCD34D;
-}
-
-body.home2-page .navbar-pet #navAuthLink {
-  background-color: #E11D48;
-  color: #FFFFFF;
-}
-
-body.home2-page .navbar-pet #navAuthLink:hover {
-  background-color: #FCD34D;
-  color: #1F2937;
-}
-
-/* ---- 3c. Nav-links panel (.navbar-collapse): dark-mode.css sets this to
-   var(--color-section) with NO width restriction, so at desktop widths it
-   was overriding straight to the (now pinned-light) --color-section value —
-   a pink strip behind "Home / About / Products / …" while the outer bar
-   stayed dark navy. Match it to the bar's dark navy at every width, not
-   just the mobile dropdown. ---- */
-body.home2-page .navbar-pet .navbar-collapse {
-  background-color: #1F2937;
-}
-
-/* ---- 3d. Mobile dropdown only: the panel opens as an overlay list, so give
-   each row a subtle divider against the dark background from 3c above. ---- */
-@media (max-width: 991.98px) {
-  body.home2-page .navbar-pet .nav-link {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-}
-
-/* ---- 4. Punchier headings & pill-shaped buttons for a "promo" feel ---- */
-body.home2-page .section-label {
-  background-color: rgba(245, 158, 11, 0.15);
-  border: 1px dashed var(--color-secondary);
-  letter-spacing: 1.5px;
-}
-
+/* ---- 4. Punchier headings & pill-shaped buttons for a "promo" feel
+   (shape/typography only — colors now come from the shared Home 1
+   palette via style.css, same as every other page) ---- */
 body.home2-page h1,
 body.home2-page .section-header h2 {
   text-transform: uppercase;
@@ -190,24 +60,24 @@ body.home2-page .btn-pet {
   font-size: 0.9rem;
 }
 
-/* ---- 5. Hero: diagonal color block + floating sale sticker ---- */
+/* ---- 5. Hero: diagonal color block + floating sale sticker,
+   recolored to Home 1's teal/orange ---- */
 body.home2-page .hero-section {
-  background: linear-gradient(115deg, #FFF4E6 0%, #FFF4E6 55%, rgba(225, 29, 72, 0.08) 55%, rgba(225, 29, 72, 0.08) 100%);
+  background: linear-gradient(115deg, #FFF4E6 0%, #FFF4E6 55%, rgba(0, 137, 123, 0.08) 55%, rgba(0, 137, 123, 0.08) 100%);
 }
 
 body.home2-page .hero-section::before {
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 112, 67, 0.12) 0%, transparent 70%);
 }
 
-/* Dark mode: swap the cream diagonal block for a dark plum one so the
-   split still reads, and give the radial glow a touch more presence
-   against the darker backdrop. */
+/* Dark mode: keep the same diagonal-split idea, but in the site-wide
+   dark palette's own teal/orange tones rather than a separate hue. */
 [data-theme="dark"] body.home2-page .hero-section {
-  background: linear-gradient(115deg, #241723 0%, #241723 55%, rgba(251, 113, 133, 0.10) 55%, rgba(251, 113, 133, 0.10) 100%);
+  background: linear-gradient(115deg, var(--color-bg) 0%, var(--color-bg) 55%, rgba(38, 166, 154, 0.10) 55%, rgba(38, 166, 154, 0.10) 100%);
 }
 
 [data-theme="dark"] body.home2-page .hero-section::before {
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.10) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 138, 101, 0.10) 0%, transparent 70%);
 }
 
 body.home2-page .hero-image-wrapper {
@@ -220,7 +90,7 @@ body.home2-page .hero-image-wrapper {
   right: 16px;
   z-index: 3;
   background: var(--color-secondary);
-  color: #1F2937;
+  color: #2D2D2D;
   width: 92px;
   height: 92px;
   border-radius: 50%;
@@ -243,35 +113,29 @@ body.home2-page .hero-image-wrapper {
   font-family: var(--font-heading);
 }
 
-/* ---- 6. Countdown: dark, glowing "deal clock" instead of soft white cards ---- */
+/* ---- 6. Countdown: "deal clock" panel, recolored to teal/orange ---- */
 body.home2-page .countdown-item {
-  background-color: #1F2937;
-  border: 1px solid #374151;
+  background-color: var(--color-primary-dark);
+  border: 1px solid var(--color-primary);
 }
 
 body.home2-page .countdown-item span {
-  color: #FCD34D;
-  text-shadow: 0 0 12px rgba(252, 211, 77, 0.5);
+  color: #FFFFFF;
+  text-shadow: 0 0 12px rgba(255, 112, 67, 0.5);
 }
 
 body.home2-page .countdown-item small {
   color: rgba(255, 255, 255, 0.65);
 }
 
-/* ---- 7. Section texture: faint diagonal stripes on alt sections ---- */
+/* ---- 7. Section texture: faint diagonal stripes on alt sections,
+   using Home 1's teal instead of rose ---- */
 body.home2-page .section-pet-alt {
   background-image: repeating-linear-gradient(
     -45deg,
-    rgba(225, 29, 72, 0.035),
-    rgba(225, 29, 72, 0.035) 12px,
+    rgba(0, 137, 123, 0.035),
+    rgba(0, 137, 123, 0.035) 12px,
     transparent 12px,
     transparent 24px
   );
-}
-
-/* ---- 8. Cards: warmer hover glow instead of Home 1's teal ---- */
-body.home2-page .card-pet:hover,
-body.home2-page .category-card:hover,
-body.home2-page .icon-box:hover {
-  box-shadow: 0 8px 32px rgba(225, 29, 72, 0.22);
 }

@@ -713,6 +713,15 @@ ul {
   font-size: 0.9375rem;
 }
 
+/* Store Checklist — icon sits immediately after its text, not stretched to the row's edge */
+.store-checklist li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-sm);
+}
+
+
 /* Testimonials */
 .testimonial-card {
   background-color: var(--color-white);
@@ -806,13 +815,14 @@ ul {
   margin-bottom: var(--spacing-md);
 }
 
-/* Footer logo: keep the same brand color and size as the header logo (.navbar-brand)
-   so the PetsMart wordmark is visually consistent site-wide, instead of blending
-   in with the plain white footer column headings. */
+/* Footer logo: keep the same brand color, size, and hover behavior as the
+   header logo (.navbar-brand) so the PetsMart wordmark is visually
+   consistent site-wide, instead of blending in with the plain white footer
+   column headings. */
 .footer-pet h3.footer-logo {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  color: var(--color-white);
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
@@ -821,6 +831,12 @@ ul {
 
 .footer-pet h3.footer-logo i {
   color: var(--color-primary);
+  transition: var(--transition);
+}
+
+.footer-pet h3.footer-logo:hover i {
+  color: var(--color-secondary);
+  transform: scale(1.1);
 }
 
 .footer-pet a {
@@ -978,9 +994,9 @@ ul {
 
 .product-gallery-main img {
   width: 100%;
-  height: 400px;
+  height: 440px;
   object-fit: cover;
-  object-position: center;
+  object-position: center 12%;
 }
 
 .product-thumbnails {
@@ -992,7 +1008,7 @@ ul {
   width: 80px;
   height: 80px;
   object-fit: cover;
-  object-position: center;
+  object-position: center 12%;
   background-color: var(--color-section, #f4f1ea);
   border-radius: var(--radius-sm);
   border: 2px solid transparent;
@@ -2325,4 +2341,41 @@ p.delivery-info {
 
 .delivery-info i {
     color: #28c76f;
+}
+/* ===========================
+   RTL Fix - Store Section
+   Add this at the end of style.css
+=========================== */
+
+html[dir="rtl"] .store-section,
+html[dir="rtl"] .store-content {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] .store-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+html[dir="rtl"] .store-content li {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    text-align: right;
+}
+
+html[dir="rtl"] .store-content li i,
+html[dir="rtl"] .store-content li svg {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+html[dir="rtl"] .store-content .btn,
+html[dir="rtl"] .store-content .btn-outline-primary,
+html[dir="rtl"] .store-content .btn-outline-danger {
+    float: right;
 }

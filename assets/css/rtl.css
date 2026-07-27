@@ -6,6 +6,33 @@
   text-align: right;
 }
 
+/* Fix trailing punctuation (. ? !) jumping to the start of a sentence.
+   The site's RTL mode mirrors the layout while the copy itself stays in
+   English, so letting the browser resolve these blocks as strictly
+   right-to-left can pull a sentence's closing punctuation to the visual
+   left instead of leaving it right after the last word (e.g. an FAQ
+   question rendering as "?How often should I groom my pet" instead of
+   "How often should I groom my pet?"). unicode-bidi: plaintext tells the
+   browser to base each block's direction on its own (Latin) content
+   instead of inheriting dir="rtl", so punctuation stays attached to the
+   text — text-align: right still keeps everything visually right-aligned
+   in its container. */
+[dir="rtl"] p,
+[dir="rtl"] li,
+[dir="rtl"] span,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] .accordion-button,
+[dir="rtl"] .accordion-body,
+[dir="rtl"] label,
+[dir="rtl"] a {
+  unicode-bidi: plaintext;
+}
+
 [dir="rtl"] .navbar-pet .nav-link::after {
   left: auto;
   right: 0;
@@ -43,39 +70,59 @@
 }
 
 [dir="rtl"] .author-bio {
-  flex-direction: row-reverse;
+  flex-direction: row; /* auto-mirrors correctly under dir="rtl"; row-reverse double-flips back to LTR order */
 }
 
 [dir="rtl"] .testimonial-author {
-  flex-direction: row-reverse;
+  flex-direction: row; /* auto-mirrors correctly under dir="rtl"; row-reverse double-flips back to LTR order */
 }
 
 [dir="rtl"] .checklist-pet li {
-  flex-direction: row-reverse;
+  flex-direction: row; /* auto-mirrors correctly under dir="rtl"; row-reverse double-flips back to LTR order */
 }
 
 [dir="rtl"] .hero-cta-group {
-  flex-direction: row-reverse;
+  flex-direction: row; /* auto-mirrors correctly under dir="rtl"; row-reverse double-flips back to LTR order */
 }
 
 [dir="rtl"] .filter-group label {
-  flex-direction: row-reverse;
+  flex-direction: row; /* auto-mirrors correctly under dir="rtl"; row-reverse double-flips back to LTR order */
 }
 
 [dir="rtl"] .newsletter-form {
-  flex-direction: row-reverse;
+  flex-direction: row; /* auto-mirrors correctly under dir="rtl"; row-reverse double-flips back to LTR order */
 }
 
 [dir="rtl"] .toolbar-pet {
-  flex-direction: row-reverse;
+  flex-direction: row; /* auto-mirrors correctly under dir="rtl"; row-reverse double-flips back to LTR order */
 }
 
 [dir="rtl"] .quantity-picker {
-  flex-direction: row-reverse;
+  flex-direction: row; /* auto-mirrors correctly under dir="rtl"; row-reverse double-flips back to LTR order */
 }
 
 [dir="rtl"] .navbar-controls {
-  flex-direction: row-reverse;
+  flex-direction: row;
+}
+
+/* Desired RTL order (left-to-right on screen): Cart, Login, RTL toggle, Theme toggle.
+   Note: with dir="rtl" the flex main-start is on the RIGHT, so the lowest
+   order value lands on the right edge, not the left. Values below are
+   inverted (highest = leftmost) to produce the correct visual order. */
+[dir="rtl"] .navbar-controls #navCartLink {
+  order: 4;
+}
+
+[dir="rtl"] .navbar-controls #navAuthLink {
+  order: 3;
+}
+
+[dir="rtl"] .navbar-controls .rtl-toggle {
+  order: 2;
+}
+
+[dir="rtl"] .navbar-controls .theme-toggle {
+  order: 1;
 }
 
 [dir="rtl"] .accordion-button {
