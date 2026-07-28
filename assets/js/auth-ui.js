@@ -12,11 +12,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     btn.addEventListener('click', function () {
       const input = document.getElementById(btn.dataset.target);
       if (!input) return;
-      const isPw = input.type === 'password';
-      input.type = isPw ? 'text' : 'password';
-      btn.innerHTML = isPw
-        ? '<i class="fas fa-eye-slash" aria-hidden="true"></i>'
-        : '<i class="fas fa-eye" aria-hidden="true"></i>';
+      // About to reveal the password (currently hidden as dots)?
+      const willReveal = input.type === 'password';
+      input.type = willReveal ? 'text' : 'password';
+      // Open eye = password is visible right now; slashed eye = it's hidden.
+      btn.innerHTML = willReveal
+        ? '<i class="fas fa-eye" aria-hidden="true"></i>'
+        : '<i class="fas fa-eye-slash" aria-hidden="true"></i>';
+      btn.setAttribute('aria-label', willReveal ? 'Hide password' : 'Show password');
     });
   });
 

@@ -35,6 +35,14 @@
   <main id="main-content">
     <section class="auth-section">
       <div class="container">
+        <div class="auth-top-controls">
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="rtl-toggle" aria-label="Switch to RTL layout">
+            <i class="fas fa-align-right" aria-hidden="true"></i>
+          </button>
+        </div>
         <div class="row justify-content-center">
           <div class="col-lg-5 col-md-7">
             <div class="auth-card">
@@ -65,7 +73,7 @@
                   <div class="input-group">
                     <input type="password" class="form-control" id="regPassword" required autocomplete="new-password" placeholder="At least 8 characters" minlength="8">
                     <button class="btn btn-outline-secondary toggle-password" type="button" data-target="regPassword" aria-label="Show password">
-                      <i class="fas fa-eye" aria-hidden="true"></i>
+                      <i class="fas fa-eye-slash" aria-hidden="true"></i>
                     </button>
                   </div>
                   <div class="form-text">Use 8+ characters. Stored as a salted hash, never in plain text.</div>

@@ -4,6 +4,13 @@
    in style.css / dark-mode.css) for login, register, and admin pages.
    ========================================================================== */
 
+.auth-top-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm, 10px);
+  margin-bottom: 1.25rem;
+}
+
 .auth-section {
   padding: 4rem 0;
   min-height: 70vh;

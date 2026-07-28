@@ -138,6 +138,16 @@
    RTL Dropdown Fix
    ============================================ */
 
+/* Phone/number fields: keep the digits themselves left-to-right so new
+   characters are typed right after the last one instead of leaving a gap
+   before them, while still aligning the field to the right like the rest
+   of the RTL form. */
+[dir="rtl"] input[type="tel"],
+[dir="rtl"] input[type="number"] {
+  direction: ltr;
+  text-align: right;
+}
+
 [dir="rtl"] .form-select,
 [dir="rtl"] select {
     direction: rtl;
