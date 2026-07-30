@@ -18,6 +18,12 @@
   align-items: center;
 }
 
+@media (max-width: 576px) {
+  .auth-section {
+    padding: 1.5rem 0;
+  }
+}
+
 .auth-card {
   background: var(--card-bg, #fff);
   border-radius: 1.25rem;
@@ -26,18 +32,26 @@
 }
 
 .auth-logo {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: var(--logo-font-size, 1.5rem);
+  font-weight: var(--logo-font-weight, 800);
+  line-height: 1;
   color: var(--color-primary, #00897B);
   text-decoration: none;
   margin-bottom: 0.75rem;
 }
 
-.auth-logo:hover {
+.auth-logo i {
+  font-size: var(--logo-icon-size, 1em);
+  transition: var(--transition, all 0.3s ease);
+}
+
+.auth-logo:hover i {
   color: var(--color-secondary, #FF7043);
+  transform: scale(1.1);
 }
 
 [data-theme="dark"] .auth-card {
@@ -119,13 +133,34 @@
 }
 
 .admin-sidebar .admin-brand {
-  font-family: "Fredoka One", cursive;
-  font-size: 1.5rem;
+  font-family: var(--font-heading, "Fredoka One", cursive);
+  font-size: var(--logo-font-size, 1.5rem);
+  font-weight: var(--logo-font-weight, 800);
+  line-height: 1;
+  color: var(--color-primary, #00897B);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 2rem;
   padding: 0 0.5rem;
+  transition: var(--transition, all 0.3s ease);
+  transform-origin: left center;
+}
+
+.admin-sidebar .admin-brand i {
+  font-size: var(--logo-icon-size, 1em);
+  transition: var(--transition, all 0.3s ease);
+}
+
+.admin-sidebar .admin-brand:hover i {
+  color: var(--color-secondary, #FF7043);
+  transform: scale(1.1);
+}
+
+/* Loading-gate paw icon: same brand color as the sidebar logo so every
+   PetsMart "logo" mark on the admin page is visually consistent. */
+#adminGate .fa-paw {
+  color: var(--color-primary, #00897B);
 }
 
 .admin-nav {

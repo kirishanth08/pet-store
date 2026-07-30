@@ -105,23 +105,29 @@
   flex-direction: row;
 }
 
-/* Desired RTL order (left-to-right on screen): Cart, Login, RTL toggle, Theme toggle.
+/* Desired RTL order (left-to-right on screen): Cart, RTL toggle.
    Note: with dir="rtl" the flex main-start is on the RIGHT, so the lowest
    order value lands on the right edge, not the left. Values below are
    inverted (highest = leftmost) to produce the correct visual order. */
 [dir="rtl"] .navbar-controls #navCartLink {
-  order: 4;
-}
-
-[dir="rtl"] .navbar-controls #navAuthLink {
-  order: 3;
-}
-
-[dir="rtl"] .navbar-controls .rtl-toggle {
   order: 2;
 }
 
-[dir="rtl"] .navbar-controls .theme-toggle {
+[dir="rtl"] .navbar-controls .rtl-toggle {
+  order: 1;
+}
+
+/* Auth link + theme toggle now live outside .navbar-controls, in
+   .navbar-quick-controls, so mirror their internal order there instead. */
+[dir="rtl"] .navbar-quick-controls {
+  flex-direction: row;
+}
+
+[dir="rtl"] .navbar-quick-controls #navAuthLink {
+  order: 2;
+}
+
+[dir="rtl"] .navbar-quick-controls .theme-toggle {
   order: 1;
 }
 
@@ -155,4 +161,14 @@
     background-position: left 0.75rem center !important;
     padding-left: 2.5rem !important;
     padding-right: 1rem !important;
+}
+/* ============================================
+   Keep the PetsMart logo (paw icon + wordmark)
+   in the same left-to-right order on the
+   login / signup pages only, instead of the
+   paw flipping to the other side in RTL mode.
+   ============================================ */
+[dir="rtl"] .auth-logo,
+[dir="rtl"] .login-logo {
+  direction: ltr;
 }

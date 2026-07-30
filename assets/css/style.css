@@ -19,6 +19,12 @@
   --color-error: #E53935;
   --font-heading: 'Fredoka One', cursive;
   --font-body: 'Nunito', sans-serif;
+  /* Single source of truth for every "PetsMart" logo instance site-wide
+     (navbar, footer, login/register auth card, admin sidebar) so they
+     always render at the exact same size/weight/color. */
+  --logo-font-size: 1.5rem;
+  --logo-font-weight: 800;
+  --logo-icon-size: 1em;
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -136,13 +142,13 @@ ul {
 }
 
 .btn-pet-secondary {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   color: var(--color-white);
 }
 
 .btn-pet-secondary:hover {
-  background-color: var(--color-secondary-dark);
-  /* color: var(--color-white); */
+  background-color: var(--color-primary);
+  color: var(--color-white);
   transform: scale(1.02);
 }
 
@@ -186,7 +192,8 @@ ul {
 
 .navbar-pet .navbar-brand {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: var(--logo-font-size);
+  font-weight: var(--logo-font-weight);
   color: var(--color-primary) !important;
   display: flex;
   align-items: center;
@@ -198,6 +205,7 @@ ul {
 }
 
 .navbar-pet .navbar-brand i {
+  font-size: var(--logo-icon-size);
   transition: var(--transition);
 }
 
@@ -395,7 +403,6 @@ ul {
     padding: 0 var(--spacing-sm) !important;
   }
 
-  .navbar-controls #navAuthLink,
   .navbar-controls .cart-toggle {
     margin-right: 4px !important;
   }
@@ -821,7 +828,9 @@ ul {
    column headings. */
 .footer-pet h3.footer-logo {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: var(--logo-font-size);
+  font-weight: var(--logo-font-weight);
+  line-height: 1;
   color: var(--color-primary);
   display: flex;
   align-items: center;
@@ -830,6 +839,7 @@ ul {
 }
 
 .footer-pet h3.footer-logo i {
+  font-size: var(--logo-icon-size);
   color: var(--color-primary);
   transition: var(--transition);
 }
@@ -1757,12 +1767,52 @@ object-position:center!important;
 .card-pet-image img{width:100%;height:100%;object-fit:cover;object-position:center 15%!important}
 .blog-card img,.card-img-top{object-fit:cover;object-position:center 20%!important}
 
-/* Header actions order: theme + rtl toggles first, Login and Cart moved to the end, Cart last */
+/* Header actions order: rtl toggle first, Cart last */
 .navbar-controls{display:flex;align-items:center;gap:10px}
-.theme-toggle{order:1}
-.rtl-toggle{order:2}
-.navbar-controls #navAuthLink{order:3;background:var(--color-primary);color:#fff}
-.navbar-controls #navCartLink{order:4}
+.rtl-toggle{order:1}
+.navbar-controls #navCartLink{order:2}
+
+/* Auth link + theme toggle live outside the collapsible menu so they always
+   sit in the top-right corner of the header, on every screen size, instead
+   of being hidden inside the mobile hamburger dropdown. */
+.navbar-quick-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.navbar-quick-controls #navAuthLink {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.navbar-quick-controls-label {
+  display: none;
+}
+
+/* Mobile/tablet (<992px): no Bootstrap collapse to push against yet, so keep
+   quick-controls right after the logo, just left of the hamburger icon —
+   still the top-right corner of the visible header row. */
+@media (max-width: 991.98px) {
+  .navbar-quick-controls {
+    order: 1;
+  }
+}
+
+/* Desktop (>=992px): Bootstrap's order-lg-3 utility (already on the element
+   in HTML) pushes quick-controls past the nav links + cart/rtl group so it
+   lands in the true top-right corner of the page. */
+@media (min-width: 992px) {
+  .navbar-quick-controls {
+    margin-left: 0;
+    gap: 10px;
+  }
+
+  .navbar-quick-controls-label {
+    display: inline;
+  }
+}
 
 /* Desktop nav (>=992px, matches Bootstrap's navbar-expand-lg breakpoint):
    center the link list between the logo and the header actions.
@@ -1828,12 +1878,12 @@ object-position:center!important;
 .dept-icon-circle img{
   border-radius: 50%;
 }
-/* Override secondary button hover */
+/* Secondary button hover: keep the same green, no color change */
 .btn-pet.btn-pet-secondary:hover,
 a.btn-pet.btn-pet-secondary:hover {
-    background-color: var(--color-secondary-dark) !important;
+    background-color: var(--color-primary) !important;
     color: var(--color-white) !important;
-    border-color: var(--color-secondary-dark) !important;
+    border-color: var(--color-primary) !important;
     transform: scale(1.02);
 }
 /* ===============================
@@ -2378,4 +2428,425 @@ html[dir="rtl"] .store-content .btn,
 html[dir="rtl"] .store-content .btn-outline-primary,
 html[dir="rtl"] .store-content .btn-outline-danger {
     float: right;
+}
+/* ===========================
+   Navbar Right Controls
+=========================== */
+
+.navbar-quick-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-toggle,
+.rtl-toggle {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.theme-toggle:hover,
+.rtl-toggle:hover {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+}
+
+.theme-toggle i,
+.rtl-toggle i {
+    font-size: 18px;
+}
+
+/* Login button */
+#navAuthLink {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+    .navbar-quick-controls {
+        margin-left: auto;
+    }
+
+    .navbar-controls {
+        display: none; /* Remove old RTL button section */
+    }
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+    .navbar-quick-controls {
+        gap: 8px;
+    }
+
+    .theme-toggle,
+    .rtl-toggle {
+        width: 40px;
+        height: 40px;
+    }
+}
+/* ===== Authentication Page - Top Right Controls Override ===== */
+
+.auth-top-controls,
+.auth-controls,
+.login-controls,
+.page-controls {
+    position: fixed !important;
+    top: 8px !important;
+    right: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    z-index: 9999 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.auth-top-controls .theme-toggle,
+.auth-top-controls .rtl-toggle,
+.auth-controls .theme-toggle,
+.auth-controls .rtl-toggle,
+.login-controls .theme-toggle,
+.login-controls .rtl-toggle {
+    width: 52px !important;
+    height: 52px !important;
+}
+
+/* Remove extra top spacing */
+body,
+.auth-page,
+.login-page {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+/* Authentication page controls */
+.auth-top-controls {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+@media (max-width: 576px) {
+    .auth-top-controls {
+        top: 20px !important;
+        right: 20px !important;
+    }
+}
+
+/* Parent of the controls */
+.auth-container,
+.auth-card,
+.login-card {
+    position: relative;
+}
+/* ===== Smaller Theme Toggle Icon ===== */
+.theme-toggle,
+#themeToggle {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+}
+
+.theme-toggle i,
+#themeToggle i {
+    font-size: 15px;
+}
+
+/* ===== Smaller RTL Toggle Icon ===== */
+#rtlToggle {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+}
+
+#rtlToggle i {
+    font-size: 15px;
+}
+
+/* ===== Smaller Admin Login Icon ===== */
+.login-header .fa-paw,
+.auth-header .fa-paw,
+.login-logo i {
+    font-size: 18px;   /* Change to 16px if you want even smaller */
+    margin-bottom: 6px;
+}
+
+/* ===== Admin Login Heading ===== */
+.login-header h2,
+.auth-header h2 {
+    font-size: 1.55rem;
+    margin-top: 4px;
+}
+/* ===== Login Header Spacing ===== */
+.login-header,
+.auth-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* PetsMart logo */
+.login-header .logo,
+.auth-header .logo,
+.login-header .brand,
+.auth-header .brand {
+    margin-bottom: 12px;
+}
+
+/* Admin Login heading */
+.login-header h2,
+.auth-header h2 {
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* ADMIN ACCESS badge */
+.login-header .badge,
+.auth-header .badge {
+    margin-bottom: 14px;
+}
+/* ===== Fix top controls on mobile ===== */
+@media (max-width: 576px) {
+
+    .auth-section .container{
+        position: relative;
+        padding-top: 70px;
+    }
+
+    .auth-top-controls{
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        display: flex;
+        gap: 8px;
+        z-index: 1000;
+    }
+
+    .theme-toggle,
+    .rtl-toggle{
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .theme-toggle i,
+    .rtl-toggle i{
+        font-size: 15px;
+    }
+
+    .auth-card{
+        margin-top: 0;
+    }
+}
+/* Mobile fix for theme & RTL buttons */
+@media (max-width: 576px) {
+
+    .auth-top-controls{
+        position: static !important;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 12px;
+    }
+
+    .auth-card{
+        margin-top: 0 !important;
+    }
+
+    .theme-toggle,
+    .rtl-toggle{
+        width: 40px;
+        height: 40px;
+    }
+}
+/* ===== Mobile Fix ===== */
+@media (max-width: 576px) {
+
+    /* Keep the buttons at the top-right */
+    .auth-top-controls{
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 1000;
+    }
+
+    /* Push the login card down */
+    .auth-card{
+        margin-top: 55px !important;
+    }
+}
+/* Remove the top white gap on mobile */
+@media (max-width: 576px) {
+
+    .auth-section{
+        padding-top: 0 !important;
+    }
+
+    .auth-section .container{
+        padding-top: 0 !important;
+    }
+
+    .auth-top-controls{
+        display: flex;
+        justify-content: flex-end;
+        margin: 8px 0 8px 0;
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+    }
+
+    .auth-card{
+        margin-top: 0 !important;
+    }
+}
+@media (max-width: 576px) {
+    .theme-toggle,
+    .rtl-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .theme-toggle i,
+    .rtl-toggle i {
+        font-size: 14px;
+    }
+
+    .auth-top-controls {
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+}
+@media (max-width: 576px) {
+
+    .auth-top-controls{
+        margin-bottom: 10px !important;
+    }
+
+    .auth-card{
+        margin-top: 10px !important;
+    }
+
+}
+/* Reduce space on the top-right of the header */
+.elementor-location-header .elementor-container,
+.site-header .elementor-container,
+header .elementor-container {
+    padding-right: 6px !important; /* change to 4px if you want it even tighter */
+}
+
+/* Remove extra margin from the last header column/widget */
+.elementor-location-header .elementor-column:last-child,
+.site-header .elementor-column:last-child,
+header .elementor-column:last-child {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Tighten the icon buttons themselves */
+.elementor-location-header .elementor-button,
+.elementor-location-header .elementor-icon-button,
+.site-header .elementor-button,
+.site-header .elementor-icon-button {
+    margin-right: 0 !important;
+}
+/* Mobile - small top spacing for theme buttons */
+@media (max-width: 576px) {
+
+    .auth-top-controls {
+        margin-top: 8px !important;   /* Adjust: 6px, 8px, or 10px */
+    }
+
+}
+/* Navbar logo sizing lives in the single ".navbar-pet .navbar-brand" rule
+   above (driven by --logo-font-size), which is the same variable used by
+   the footer logo, the login/register auth-logo, and the admin sidebar
+   brand. Do not add a competing ".navbar-brand" rule here again — an
+   earlier duplicate like that is exactly what caused the logo to render
+   at a different size in different places. */
+
+/* Change the secondary hero button to green */
+.hero .btn-secondary,
+.hero-section .btn-secondary,
+.hero-banner .btn-secondary,
+.hero .btn-outline,
+.hero-section .btn-outline {
+    background: #0d9488 !important;
+    border: 2px solid #0d9488 !important;
+    color: #fff !important;
+}
+
+.hero .btn-secondary:hover,
+.hero-section .btn-secondary:hover,
+.hero-banner .btn-secondary:hover,
+.hero .btn-outline:hover,
+.hero-section .btn-outline:hover {
+    background: #0b7f75 !important;
+    border-color: #0b7f75 !important;
+    color: #fff !important;
+}
+/* About page - Make all CTA buttons green */
+.btn-pet-primary,
+.btn-pet-outline {
+    background-color: #0d9488 !important;
+    border: 2px solid #0d9488 !important;
+    color: #fff !important;
+}
+
+.btn-pet-primary:hover,
+.btn-pet-outline:hover {
+    background-color: #0b7f75 !important;
+    border-color: #0b7f75 !important;
+    color: #fff !important;
+}
+
+/* Secondary button (e.g. "Find Your Pet"): stays green everywhere,
+   including inside the hero, and does not change color on hover. */
+.btn-pet-secondary,
+.btn-pet-secondary:visited,
+.btn-pet-secondary:focus,
+.btn-pet-secondary:hover,
+.btn-pet-secondary:active,
+.hero-cta-group .btn-pet-secondary,
+.hero-cta-group .btn-pet-secondary:hover,
+.hero-cta-group .btn-pet-secondary:focus,
+.hero-cta-group .btn-pet-secondary:active,
+.hero-actions .btn-pet-secondary:hover,
+.hero-buttons .btn-pet-secondary:hover,
+.hero .btn-pet-secondary:hover {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: #fff !important;
+}
+@media (max-width: 768px) {
+    .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+
+    .header-actions > * {
+        flex: 0 0 auto;
+    }
 }
