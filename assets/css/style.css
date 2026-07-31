@@ -142,12 +142,12 @@ ul {
 }
 
 .btn-pet-secondary {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
   color: var(--color-white);
 }
 
 .btn-pet-secondary:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary-dark);
   color: var(--color-white);
   transform: scale(1.02);
 }
@@ -827,15 +827,19 @@ ul {
    consistent site-wide, instead of blending in with the plain white footer
    column headings. */
 .footer-pet h3.footer-logo {
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-pet h3.footer-logo a {
   font-family: var(--font-heading);
   font-size: var(--logo-font-size);
   font-weight: var(--logo-font-weight);
   line-height: 1;
   color: var(--color-primary);
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
 }
 
 .footer-pet h3.footer-logo i {
@@ -844,7 +848,8 @@ ul {
   transition: var(--transition);
 }
 
-.footer-pet h3.footer-logo:hover i {
+.footer-pet h3.footer-logo a:hover i,
+.footer-pet h3.footer-logo a:focus i {
   color: var(--color-secondary);
   transform: scale(1.1);
 }
@@ -1878,14 +1883,6 @@ object-position:center!important;
 .dept-icon-circle img{
   border-radius: 50%;
 }
-/* Secondary button hover: keep the same green, no color change */
-.btn-pet.btn-pet-secondary:hover,
-a.btn-pet.btn-pet-secondary:hover {
-    background-color: var(--color-primary) !important;
-    color: var(--color-white) !important;
-    border-color: var(--color-primary) !important;
-    transform: scale(1.02);
-}
 /* ===============================
    Mobile Navbar Fix
 ================================= */
@@ -2783,57 +2780,55 @@ header .elementor-column:last-child {
    earlier duplicate like that is exactly what caused the logo to render
    at a different size in different places. */
 
-/* Change the secondary hero button to green */
-.hero .btn-secondary,
-.hero-section .btn-secondary,
-.hero-banner .btn-secondary,
-.hero .btn-outline,
-.hero-section .btn-outline {
-    background: #0d9488 !important;
-    border: 2px solid #0d9488 !important;
-    color: #fff !important;
-}
-
-.hero .btn-secondary:hover,
-.hero-section .btn-secondary:hover,
-.hero-banner .btn-secondary:hover,
-.hero .btn-outline:hover,
-.hero-section .btn-outline:hover {
-    background: #0b7f75 !important;
-    border-color: #0b7f75 !important;
-    color: #fff !important;
-}
-/* About page - Make all CTA buttons green */
+/* Primary and outline CTAs use the site's single --color-primary token
+   (no hardcoded hex) so the color stays consistent everywhere, including
+   inside the hero. */
 .btn-pet-primary,
 .btn-pet-outline {
-    background-color: #0d9488 !important;
-    border: 2px solid #0d9488 !important;
+    background-color: var(--color-primary) !important;
+    border: 2px solid var(--color-primary) !important;
     color: #fff !important;
+}
+.btn-pet-outline {
+    background-color: transparent !important;
+    color: var(--color-primary) !important;
 }
 
 .btn-pet-primary:hover,
 .btn-pet-outline:hover {
-    background-color: #0b7f75 !important;
-    border-color: #0b7f75 !important;
+    background-color: var(--color-primary-dark) !important;
+    border-color: var(--color-primary-dark) !important;
+    color: #fff !important;
+}
+.btn-pet-outline:hover {
     color: #fff !important;
 }
 
-/* Secondary button (e.g. "Find Your Pet"): stays green everywhere,
-   including inside the hero, and does not change color on hover. */
+/* Secondary CTA (e.g. "Find Your Pet"): uses the distinct --color-secondary
+   token everywhere, including inside the hero, so it reads differently
+   from the primary CTA. */
 .btn-pet-secondary,
 .btn-pet-secondary:visited,
+.hero-cta-group .btn-pet-secondary,
+.hero-actions .btn-pet-secondary,
+.hero-buttons .btn-pet-secondary,
+.hero .btn-pet-secondary {
+    background: var(--color-secondary) !important;
+    border-color: var(--color-secondary) !important;
+    color: #fff !important;
+}
+
 .btn-pet-secondary:focus,
 .btn-pet-secondary:hover,
 .btn-pet-secondary:active,
-.hero-cta-group .btn-pet-secondary,
 .hero-cta-group .btn-pet-secondary:hover,
 .hero-cta-group .btn-pet-secondary:focus,
 .hero-cta-group .btn-pet-secondary:active,
 .hero-actions .btn-pet-secondary:hover,
 .hero-buttons .btn-pet-secondary:hover,
 .hero .btn-pet-secondary:hover {
-    background: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
+    background: var(--color-secondary-dark) !important;
+    border-color: var(--color-secondary-dark) !important;
     color: #fff !important;
 }
 @media (max-width: 768px) {
